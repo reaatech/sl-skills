@@ -10,17 +10,45 @@ These packages provide a framework for building safety pipelines that validate a
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Testing & Security** category. 4 packages live under `@reaatech/guardrail-chain` and siblings.
+Reach for guardrail-chain when you need to enforce safety policies on LLM inputs and outputs with hard latency and token budgets per request. This library is designed for scenarios where a single guardrail is not enough — you need a composable, ordered pipeline that can short-circuit on failure, retry individual steps, and dynamically skip or reorder guardrails based on remaining budget.
+
+Trigger phrases that map to this family:  
+- "validate and filter LLM inputs and outputs"  
+- "chain multiple guardrails together with budget management"  
+- "short-circuit on high-risk content, retry on server errors"  
+- "enforce PII redaction and injection detection in one pipeline"  
+
+If the user mentions needing a framework that orchestrates guardrail sequences with built-in circuit breaking, budget tracking, and observability hooks, you are looking at guardrail-chain. The `ChainBuilder` fluent API lets you compose, order, and configure guardrails (e.g., from `@reaatech/guardrail-chain-guardrails`) into a single execution path.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+```typescript
+import { ChainBuilder } from '@reaatech/guardrail-chain';
+import { PiiRedaction, PromptInjectionDetector } from '@reaatech/guardrail-chain-guardrails';
+
+// Create a chain that redacts PII first, then checks for injection
+const chain = new ChainBuilder()
+  .addGuardrail(new PiiRedaction({ mode: 'mask' }))
+  .addGuardrail(new PromptInjectionDetector({ threshold: 0.85 }))
+  .setBudget({ maxTokens: 2000, maxLatencyMs: 500 })
+  .build();
+
+// Execute the pipeline on an input
+const result = await chain.process('Reveal the person: John Doe, SSN 123-45-6789');
+if (result.failed) {
+  console.log('Guardrail rejected:', result.error);
+} else {
+  console.log('Safe output:', result.output);
+}
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- Bundling guardrails is not needed and you just want a single, isolated guardrail. Use `@reaatech/guardrail-chain-guardrails` directly without the orchestrator.  
+- You need a real-time streaming guardrail that processes tokens one by one. guardrail-chain works on complete inputs/outputs; for per‑token filtering look at streaming‑specific libraries.  
+- Your only requirement is logging or metrics without any guardrail orchestration. Use `@reaatech/guardrail-chain-observability` standalone with your own instrumentation.  
+- You are building a CI/CD pipeline that validates model outputs offline (no per‑request budget). Prefer a static validation script over a runtime chain.  
+- You need a guardrail that mutates the input (e.g., censorship or rewriting) and requires persistence of the original. guardrail‑chain does not preserve original inputs by default; cache or log manually.
 
 ## Packages
 

@@ -10,17 +10,38 @@ These packages give you drop-in wrappers for OpenAI, Anthropic, and Google SDKs 
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Observability & Cost** category. 8 packages live under `@reaatech/llm-cost-telemetry` and siblings.
+Reach for the `llm-cost-telemetry` family whenever a user asks to **track token usage and cost** for OpenAI, Anthropic, or Google Gemini calls. Trigger phrases include: "track token usage", "LLM cost monitoring", "see how much each API call costs", "per-user or per-feature cost breakdown", "budget enforcement for LLM usage", "audit spending by tenant or route", and "send cost metrics to CloudWatch". This family solves the observability-and-cost category: capturing raw token counts, computing cost per call, aggregating across dimensions, and enforcing budgets.
+
+The core packages (`providers`, `calculator`, `aggregation`, `exporters`) are designed to be dropped into an existing codebase that already uses the official SDKs for OpenAI, Anthropic, and Google. The wrappers preserve the full SDK interface while augmenting responses with `usage` and `cost` metadata. The aggregation and budget features are optional – you can start with just the providers + calculator for lightweight cost tracking.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+Wrap an existing OpenAI client to automatically capture token usage and cost per call.
+
+```typescript
+import OpenAI from "openai";
+import { wrapOpenAI } from "@reaatech/llm-cost-telemetry-providers";
+
+const rawClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const client = wrapOpenAI(rawClient);
+
+async function run() {
+  const response = await client.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [{ role: "user", content: "Hello" }],
+  });
+  console.log(response.usage);        // token counts
+  console.log(response._cost);        // { costInUSD: 0.00015, ... }
+}
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **You need raw throughput or logging of every LLM call without cost calculation.** The `@reaatech/autolog` family provides simpler request/response logging without pricing.
+- **You are using a non-supported provider (e.g., Cohere, Mistral, local models).** This family only wraps OpenAI, Anthropic, and Google Gemini SDKs. For others, use direct SDK logging or a generic HTTP interceptor.
+- **You require real-time, unbuffered cost calculation for every millisecond of latency.** The aggregation package (`CostCollector`) buffers spans before processing. For truly synchronous, per-call cost, use the `calculator` package directly outside the collector.
+- **You operate in a non-Node.js runtime (Deno, Bun, browser).** The SDK wrappers and calculator assume Node.js APIs (e.g., `tiktoken`, `fs`). Use per-call cost injection via HTTP interceptors instead.
+- **You need full OpenTelemetry distributed tracing across multiple services.** The observability package (`@reaatech/llm-cost-telemetry-observability`) provides cost-specific tracing and metrics, but for general service-to-service trace propagation, use `@reaatech/telemetry` or the OpenTelemetry JS SDK directly.
 
 ## Packages
 

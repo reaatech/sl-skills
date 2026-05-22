@@ -10,17 +10,42 @@ These packages provide a fault injection toolkit for testing the resilience of L
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Testing & Security** category. 6 packages live under `@reaatech/agent-chaos-cli` and siblings.
+Reach for `agent-chaos` when the task explicitly asks to **inject faults into an LLM agent’s tool calls** to validate error-handling logic, circuit breakers, fallbacks, or retry policies. This family solves one problem: *how do you know your agent won’t crash when a tool returns a malformed JSON payload, a rate-limit error, or a 10-second delay?* You use it in test suites and staging environments, not production.
+
+Trigger phrases that map directly to this family:
+- “chaos engineering for AI agents”
+- “inject latency / rate limits / malformed tool outputs”
+- “validate resilience of my agent’s tool orchestration”
+- “test circuit breakers or fallback behavior without mocking every tool”
+
+The scenario-driven YAML/JSON configuration means you can codify failure modes that mirror real-world API behavior (e.g., “90% of calls return 429, then recover after 2 seconds”). The middleware architecture lets you wrap existing tool interfaces without rewriting agent code—works with LangChain, LlamaIndex, Vercel AI SDK, or any custom tool-call shape.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The following loads a fault-injection scenario from YAML and wraps a single tool to inject a simulated timeout:
 
-## Don't reach for this when
+```typescript
+import { ChaosEngine } from '@reaatech/agent-chaos-core';
+import { ScenarioLoader } from '@reaatech/agent-chaos-scenarios';
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+// Load a scenario that injects a 5-second latency on 50% of calls
+const loader = new ScenarioLoader();
+const scenario = loader.loadFromYaml('./scenarios/latency-50pct.yaml');
+
+// Wrap the original tool call with the chaos middleware
+const engine = new ChaosEngine({ scenario });
+const resilientTool = engine.wrapTool(originalTool);
+
+// Use resilientTool in your agent – it will transparently inject faults
+const response = await resilientTool.invoke({ query: 'fetch data' });
+```
+
+The `ChaosEngine` intercepts every tool invocation, applies the fault rules from the scenario, and records events for observability. No changes to the agent’s core logic.
+
+## Don’t reach for this when
+
+- **You need to unit-test a single function or pure logic.** Use standard testing frameworks (Jest, Vitest) with manual mocks. `agent-chaos` is for integration-level fault injection, not for isolated unit tests.
+- **You want to simulate network failures between microservices.** Use Toxiproxy or a service mesh fault injection (e
 
 ## Packages
 

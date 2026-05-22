@@ -10,17 +10,39 @@ These packages provide a comprehensive suite for testing Model Context Protocol 
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Testing & Security** category. 6 packages live under `@reaatech/mcp-contract-cli` and siblings.
+Reach for the mcp-contract-kit family whenever you need to validate that a Model Context Protocol (MCP) server implementation conforms to the official specification, passes security checks, or meets performance baselines. This is the right tool when an agent task involves automating conformance testing in a CI/CD pipeline, verifying a server’s advertised capabilities (tools, resources, prompts) against actual behavior, or generating structured compliance reports.
+
+Trigger phrases that map here:
+- “Validate MCP server against the spec”
+- “MCP contract test in CI”
+- “Check MCP protocol compliance”
+- “Generate MCP conformance report”
+
+The family solves a single category of problem: automated, reproducible validation of MCP server implementations using a shared core of Zod schemas, typed JSON-RPC 2.0 clients, and composable validator suites. It replaces ad-hoc curl scripts and manual testing with a deterministic, reportable test harness.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The example below creates an MCP client, runs the default protocol‑compliance suite, and writes a Markdown report.
 
-## Don't reach for this when
+```typescript
+import { createClient } from '@reaatech/mcp-contract-client'
+import { compliance } from '@reaatech/mcp-contract-validators'
+import { formatMarkdown } from '@reaatech/mcp-contract-reporters'
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+const client = createClient('http://localhost:8080/mcp')
+const report = await compliance.test(client)
+const markdown = formatMarkdown(report)
+console.log(markdown)
+```
+
+The `compliance` suite tests tool discovery, request/response structure, and error handling. Replace `'http://localhost:8080/mcp'` with your server’s endpoint.
+
+## Don’t reach for this when
+
+- **You only need to call one MCP tool and get a result.** Use `@reaatech/mcp-contract-client` alone, or a lightweight HTTP client like `fetch`. The full contract kit adds test orchestration overhead you don’t need.
+- **You must simulate a non‑compliant server or inject faults.** This family tests *against* a server; it does not stub or mock one. Use a server‑mocking library (e.g., `nock` for Node.js) or a dedicated MCP mock server.
+- **You are testing an API that is not MCP.** The entire suite is built on MCP JSON‑RPC 2.0 types, Zod schemas, and the MCP lifecycle. For REST, GraphQL, or gRPC validation, reach for corresponding contract‑testing tools (e.g., `@reaatech/api-contract-kit` if applicable, or `Pact`/`Supertest`).
+- **Load and performance tests need custom metrics without conformance checks.** Use purpose‑built load‑testing frameworks (k6, Artillery, `autocannon`) and separate observability tooling. The observability package here is designed for test harness audits, not production telemetry.
 
 ## Packages
 

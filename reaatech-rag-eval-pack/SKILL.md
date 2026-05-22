@@ -10,17 +10,44 @@ These packages provide a modular toolkit for evaluating RAG systems using heuris
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Evals & Quality** category. 10 packages live under `@reaatech/rag-eval-cli` and siblings.
+Reach for the `rag-eval-pack` family when the task involves evaluating a RAG pipeline — measuring retrieval precision, generation faithfulness, or overall answer quality. These packages are designed for teams that need a typed, composable evaluation suite that runs in CI/CD, enforces cost budgets, and produces regression gates.
+
+Concrete trigger phrases:
+- “set up RAG evaluation metrics” or “measure faithfulness and relevance”
+- “add a quality gate for RAG outputs” or “fail CI if retrieval precision drops below X”
+- “track LLM judge cost per evaluation run” or “enforce a budget for RAG evals”
+- “run an evaluation suite with heuristic and LLM-as-judge metrics”
+
+This family solves the problem of turning ad-hoc RAG evaluation scripts into a repeatable, gated pipeline that fits into a TypeScript monorepo. It provides the schema (`core`), the metric calculators (`metrics` and `judge`), the cost tracker (`cost`), the gate engine (`gate`), and an orchestrator (`suite` and `cli`).
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+```typescript
+import { EvaluationSuite } from '@reaatech/rag-eval-suite';
+import { Dataset } from '@reaatech/rag-eval-dataset';
+import { loadYaml } from '@reaatech/rag-eval-dataset';
+
+const dataset = Dataset.fromLoadFunction('samples.yaml', loadYaml);
+const suite = new EvaluationSuite({
+  dataset,
+  metrics: { heuristic: ['faithfulness', 'contextPrecision'] },
+  judge: { enabled: true, model: 'openai/gpt-4o' },
+  costBudget: { maxCostUsd: 1.50 },
+  gate: { thresholds: { faithfulness: 0.8, contextPrecision: 0.75 } },
+});
+
+const results = await suite.run();
+console.log(results.summary);
+```
+
+The `EvaluationSuite` orchestrates dataset loading, heuristic metric calculation, optional LLM judge pass, cost tracking, and gate enforcement in one call. Results include per-sample scores, cost breakdown, and a pass/fail flag for CI.
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **You need a single metric without the full orchestration.** Use a standalone scorer like RAGAS or the `@reaatech/rag-eval-metrics` package directly instead of the suite.
+- **You want a hosted evaluation dashboard or experiment tracking.** This family provides no UI; use LangSmith, Arize, or Weights & Biases for trace visualization.
+- **Your evaluation logic lives in Python.** This library is TypeScript-only. For Python RAG evals, use `ragas` or the `langchain` evaluation modules.
+- **You need to evaluate a non-RAG system (pure chat, summarization, classification).** The metric definitions are RAG-specialized. Use general-purpose LLM judges or `
 
 ## Packages
 

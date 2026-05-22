@@ -10,17 +10,36 @@ These packages provide a framework for managing multi-turn AI agent conversation
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Domain Pipelines** category. 6 packages live under `@reaatech/session-continuity` and siblings.
+Reach for `session-continuity-kit` when your agent needs to manage **conversation state across multiple turns**, enforce **token budget limits**, or **compress context windows** to stay within an LLM's maximum input length. This family solves the problem of maintaining a coherent, persistent session history that can survive agent handoffs, process restarts, or re-hydration from external storage.
+
+Trigger on scenarios where the user mentions "multi-turn conversation", "keep context across interactions", "token budget", "session persistence", or "agent handoff". Also reach for it when the prompt contains phrases like "remember what we discussed earlier", "continue from where we left off", or "save conversation state". This family is the right choice when you need a pluggable storage backend (DynamoDB, Firestore, Redis, in-memory) and precise token counting for OpenAI or Anthropic models.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The example below creates a `SessionManager` backed by an in-memory storage adapter with a token counter that uses a heuristic (character count / 4) as a simple fallback. In production, replace the counter with `@reaatech/session-continuity-tokenizers` and swap `MemoryAdapter` for a persistent adapter.
+
+```typescript
+import { SessionManager } from '@reaatech/session-continuity';
+import { MemoryAdapter } from '@reaatech/session-continuity-storage-memory';
+import { OpenAITokenCounter } from '@reaatech/session-continuity-tokenizers';
+
+const adapter = new MemoryAdapter({ ttlMs: 3_600_000 }); // 1 hour TTL
+const tokenCounter = new OpenAITokenCounter({ model: 'gpt-4' });
+const manager = new SessionManager({ adapter, tokenCounter, maxTokens: 4096 });
+
+await manager.createSession('session-1', { userId: 'abc' });
+await manager.addMessage('session-1', { role: 'user', content: 'Hello' });
+const history = await manager.getHistory('session-1');
+console.log(history.messages);
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **Single-turn, stateless requests.** If each call is independent and you don't need to persist or reference prior turns, use a direct API call (e.g., OpenAI SDK) without a session manager.
+- **Simple conversation without persistence or budget enforcement.** If you only need to keep messages in memory for a few turns and don't care about token limits, a plain array suffices.
+- **Need for retrieval-augmented generation (RAG) with external knowledge.** This family does not index or retrieve documents. Use `@reaatech/rag` for combining conversation context with retrieved chunks.
+- **Real-time streaming of responses.** `session-continuity-kit` handles message storage, not LLM response streaming. Combine it with `@reaatech/streaming` for live output.
+- **Collaborative, multi-user sessions with conflict resolution.** This family is single-writer per session. For multi-user edits or live collaboration, consider `@reaatech/realtime` or a CRDT-based approach.
 
 ## Packages
 

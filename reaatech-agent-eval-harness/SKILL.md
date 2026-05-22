@@ -10,17 +10,59 @@ These packages provide a modular toolkit for evaluating AI agent performance, co
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Evals & Quality** category. 13 packages live under `@reaatech/agent-eval-harness-cli` and siblings.
+Reach for the **agent-eval-harness** family when you need to automate quality checks on AI agent behavior — not just log outputs, but structurally validate tool calls, measure cost and latency, and compare trajectories against golden references. These packages are designed to embed evaluation into CI/CD pipelines: gate deployments on regression thresholds, generate JUnit XML for test reporting, or expose evaluation tools via MCP for agent-assisted development.
+
+Concrete trigger phrases that signal this family is appropriate:  
+- "We want to run regression tests on our agent every time we deploy."  
+- "Our agent’s tool calls are drifting — can we flag schema mismatches automatically?"  
+- "We need a pass/fail gate that blocks PRs if latency or cost exceeds a budget."  
+- "Can we use an LLM-as-a-judge to score response quality and compare versions?"
+
+This category solves the “how do I know my agent is still good after a prompt update or model change?” problem. It’s meant for teams who ship agent workflows and need structured, repeatable evaluation — not ad-hoc manual scoring.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The following snippet loads a trajectory from a JSONL file, runs a LatencyTracker to check SLA, and then enforces a CI gate that fails if the total cost exceeds $0.10.
 
-## Don't reach for this when
+```typescript
+import { loadTrajectory } from '@reaatech/agent-eval-harness-trajectory';
+import { LatencyTracker } from '@reaatech/agent-eval-harness-latency';
+import { GateEngine } from '@reaatech/agent-eval-harness-gate';
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+const trajectory = await loadTrajectory('./trajectories/session-01.jsonl');
+
+const latencyTracker = new LatencyTracker({ slaMs: 5000 });
+const latencyResult = latencyTracker.analyze(trajectory);
+
+const gate = new GateEngine({
+  rules: [
+    { metric: 'cost', max: 0.10 },
+    { metric: 'latency.p95', max: 5000 },
+  ],
+});
+
+const gateResult = await gate.evaluate(trajectory);
+if (!gateResult.passed) {
+  process.exit(1); // Block CI
+}
+```
+
+## Don’t reach for this when
+
+- **You need real-time monitoring of a live agent in production.**  
+  Use `@reaatech/agent-observability` (telemetry and dashboards) instead — this family is designed for offline evaluation and CI gates, not live span streaming.
+
+- **You want to tune prompts or model parameters automatically.**  
+  This is an evaluation toolkit, not an optimizer. For automated prompt iteration, pairing, or RL-based tuning, look at a dedicated hyperparameter optimization library or `autogen`-style frameworks.
+
+- **Your evaluation is purely qualitative, no numeric metrics (e.g., “does the agent sound friendly?”).**  
+  The `@reaatech/agent-eval-harness-judge` package can do LLM-as-a-judge for subjectivity, but if you need human-rating workflows, custom rubrics, or A/B preference collection, consider a purpose-built eval platform like LangSmith or a simple survey tool.
+
+- **You are evaluating a rule‑based system with no AI models.**  
+  This family expects agent trajectories with LLM interaction patterns (tool calls, turns, costs). For deterministic rule validation, a standard test framework like Vitest or Jest is simpler and faster.
+
+- **You need to deploy the evaluation infrastructure on a cloud provider.**  
+  The `@reaatech/agent-eval-harness-infra` package (Terraform modules) is still pending — use manual setup or your existing cloud deployment tooling for now.
 
 ## Packages
 

@@ -10,17 +10,40 @@ These packages provide a deterministic engine for managing LLM context windows b
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Domain Pipelines** category. 2 packages live under `@reaatech/context-window-planner` and siblings.
+Reach for `@reaatech/context-window-planner` when an agentic workflow must stay under a token budget while preserving essential data. It is the right fit when the user explicitly mentions “token budget”, “prompt too long”, “context overflow”, or “need to pack data by priority”. This family solves deterministic packing: it decides what to keep, summarize, or drop based on a configurable strategy and actual token counts (via `js-tiktoken`). Use it when you need a repeatable, testable plan rather than a heuristic truncation.
+
+Concrete trigger phrases that map to this family:
+- “The prompt exceeds the model’s context limit.”
+- “Include high-priority items and summarize the rest.”
+- “Drop items over 500 tokens.”
+- “Build a packing plan that respects a token budget of 4000.”
+
+The library is framework-agnostic: it works standalone, in a CLI batch pipeline, or embedded in a real-time agent loop. The builder pattern lets compose custom tokenizer adapters and packing strategies without coupling to a specific LLM provider.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+```typescript
+import { ContextWindowPlanner, TokenizerAdapter } from '@reaatech/context-window-planner';
+import { TiktokenAdapter } from '@reaatech/context-window-planner/tokenizers';
 
-## Don't reach for this when
+const tokenizer: TokenizerAdapter = new TiktokenAdapter('gpt-4');
+const planner = new ContextWindowPlanner({ tokenizer, budget: 4096 });
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+planner.add({ id: 'instruction', content: 'Do X', priority: 'high' });
+planner.add({ id: 'long_history', content: longConversation, priority: 'low' });
+
+const result = planner.plan('priority-then-summarize');
+console.log(result.included);   // items kept verbatim
+console.log(result.summarized); // items replaced with summaries
+console.log(result.dropped);    // items omitted
+```
+
+## Don’t reach for this when
+
+- **When the budget is per-message sliding window** – use the native context management of the LLM SDK (e.g., `@anthropic-ai/sdk`’s sliding window mode) instead of a static plan.
+- **When you need semantic retrieval to select relevant items** – this family does not rank by relevance. Use `@reaatech/retrieval-pipeline` or a third-party RAG library for embedding-based ranking before planning.
+- **When token counting must be model‑specific with unknown or custom tokenizers** – the built-in adapter only supports `js-tiktoken` models. For a non‑OpenAI/Anthropic model, write a custom `TokenizerAdapter`.
+- **When the input is streaming and the total size is unknown upfront** – the planner requires a complete list of items. For real‑time truncation mid‑stream, use a streaming token counter and a simpler trim strategy.
 
 ## Packages
 

@@ -10,17 +10,42 @@ These packages provide a modular orchestrator for routing user requests to multi
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Orchestration & Protocols** category. 10 packages live under `@reaatech/agent-mesh` and siblings.
+Reach for the `@reaatech/agent-mesh` family when you need to build a production-grade gateway that routes user requests to multiple AI agents over the Model Context Protocol (MCP). This is the right choice when the task requires **intent classification** of free-form user input, **confidence gating** to decide whether to route or ask for clarification, **session persistence** across distributed instances (via Firestore), and **circuit breaking** to protect unhealthy agents. The family is designed for multi-agent orchestration where agents are independently deployed and their configurations must be hot-reloadable without service restart.
+
+Common trigger phrases include: "multi-agent orchestrator", "routing user requests to AI agents", "gateway with circuit breaker", "distributed session state", "hot-reloadable agent configs", and "confidence-based fallback". If the user describes a system that classifies user intent against a list of agents, maintains conversation history across Cloud Run instances, and gracefully degrades when agents fail, this family is the right fit.
+
+The family is modular – you can use only the packages you need (e.g., just `@reaatech/agent-mesh-classifier` and `@reaatech/agent-mesh-confidence` if you already have a gateway). All packages share Zod-validated types from `@reaatech/agent-mesh` and rely on Firestore for cross-instance state, making them suitable for horizontally scaled serverless deployments.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+This example demonstrates the core flow: classify a user message, check confidence, retrieve or create a session, and route the request to the intended agent.
+
+```typescript
+import { AgentRequest, SessionState } from '@reaatech/agent-mesh';
+import { classify } from '@reaatech/agent-mesh-classifier';
+import { evaluateConfidence } from '@reaatech/agent-mesh-confidence';
+import { getOrCreateSession } from '@reaatech/agent-mesh-session';
+import { dispatch } from '@reaatech/agent-mesh-router';
+
+async function handleUserMessage(userId: string, message: string) {
+  const classification = await classify(message);
+  const decision = evaluateConfidence(classification);
+  if (decision.action === 'clarify') {
+    return decision.clarificationQuestion;
+  }
+  const session = await getOrCreateSession(userId, classification.agentId);
+  const response = await dispatch(session.id, message, classification.agentId);
+  return response;
+}
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **You only have a single agent and no need for intent classification.** Use a direct MCP client or a simple wrapper like `@modelcontextprotocol/sdk` to reduce complexity.
+- **Your agents are stateless and session persistence is not required.** The Firestore dependency adds latency and cost; consider an in-memory store (e.g., `Map`) or a lightweight solution like `better-sqlite3` for single-instance deployments.
+- **You don't need cross-instance resilience features (circuit breaker, leader election).** The circuit breaker and session packages assume distributed state; for a single Cloud Run instance, simpler retry logic and local state suffice.
+- **You need a generic API gateway that proxies to arbitrary LLM providers (OpenAI, Anthropic, etc.).** This family is purpose-built for MCP-based agents. For a vendor-agnostic LLM gateway, look at LiteLLM or a dedicated proxy like `openai-gateway`.
+- **Your use case involves only human-in-the-loop validation or approval workflows.** The session and routing logic here is designed for autonomous agentic flows. For approval steps, consider a dedicated state machine library (e.g., `xstate`) or a workflow system.
 
 ## Packages
 

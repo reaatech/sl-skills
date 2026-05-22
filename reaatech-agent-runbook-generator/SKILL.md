@@ -10,17 +10,43 @@ These packages automate the creation of operator runbooks by scanning service re
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Reliability & Ops** category. 15 packages live under `@reaatech/agent-runbook` and siblings.
+Reach for this family when your agent’s task involves generating or updating operator runbooks by analyzing a service repository. The core workflow is: scan a codebase to extract its language, framework, endpoints, and dependencies; derive alerts, dashboards, failure modes, health checks, rollback plans, and incident response workflows; then assemble the results into a structured, multi-format runbook.
+
+Trigger phrases to watch for:  
+- “generate an operator runbook from our repo”  
+- “runbook is out of date — regenerate it from the code”  
+- “create incident response docs for this service”  
+- “automate our runbook maintenance”  
+- any mention of needing “failure modes”, “health checks”, “rollback procedures”, or “service maps” derived from source code.
+
+This family works best when the runbook’s content should be programmatically inferred from the repository, not hand-written or maintained separately. It replaces manual, static documentation with dynamically generated, always-current operational context.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+```typescript
+import { scanRepository } from '@reaatech/agent-runbook-analyzer';
+import { AnalysisAgent } from '@reaatech/agent-runbook-agent';
+import { assembleRunbook } from '@reaatech/agent-runbook-runbook';
 
-## Don't reach for this when
+// 1. Scan the repository to extract metadata
+const analysis = await scanRepository('/path/to/service');
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+// 2. Use an LLM agent to enrich and validate the analysis
+const agent = new AnalysisAgent({ provider: 'anthropic' });
+const enriched = await agent.analyze(analysis);
+
+// 3. Generate the final runbook as Markdown and JSON
+const runbook = await assembleRunbook(enriched, { format: ['md', 'json'] });
+console.log(runbook.markdown);
+```
+
+## Don’t reach for this when
+
+- **You only need a service dependency graph, not a full runbook.** Use [`@reaatech/agent-runbook-service-map`](https://github.com/reaatech/agent-runbook-service-map) directly to export a directed graph in Mermaid or DOT format.
+- **You want to configure alerting rules manually in a monitoring tool.** Use the infrastructure-as-code tooling for that platform (e.g., Terraform’s Datadog provider) rather than generating alerts from code analysis.
+- **Your runbook content is primarily human-written narrative with no direct code derivation.** This family adds overhead if you aren’t scanning a repository – write static docs with a tool like Docusaurus.
+- **You need real-time runtime observability, not static runbook generation.** Use an APM or tracing setup (e.g., OpenTelemetry collector) directly; this family only produces documentation from static analysis.
+- **Your environment is not Node.js or TypeScript.** The entire package family is built for the Node.js runtime; other environments cannot import the Zod schemas or run the scanner.
 
 ## Packages
 

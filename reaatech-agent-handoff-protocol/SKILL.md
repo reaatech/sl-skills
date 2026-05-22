@@ -10,17 +10,42 @@ These packages provide a standardized lifecycle for transferring AI agent conver
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Orchestration & Protocols** category. 6 packages live under `@reaatech/agent-handoff` and siblings.
+Reach for the `agent-handoff-protocol` family when the user describes a multi-agent system where conversations (or sessions) must move between different specialized AI agents. The core trigger is any explicit mention of "hand off", "transfer conversation", "pass context to another agent", "agent routing based on skill", or "load balancing between agents". Use it when the task requires compressing a long conversation history before sending it to another agent, or when you need a standardized lifecycle (compress → route → transport) that works over MCP or HTTP.
+
+This family solves the problem of orchestrating agent-to-agent handoffs with configurable compression strategies and capability-aware routing. It is the right choice when the user says "I need to route a user session to the best agent based on expertise and current load", or "I want to compress chat history to stay under a token limit before passing it to a different agent". The protocol is transport-agnostic, so you can plug in different delivery mechanisms without changing the handoff logic.
+
+Specific user requests that map here: "Set up a handoff pipeline between my QA agent and my code review agent", "Implement context-aware routing so a Spanish language query goes to the Spanish-speaking agent", or "Compress the last 50 messages into a summary before handoff". If the prompt contains words like "agent transfer", "session handoff", "context compression", or "capability router", this family applies.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The example below creates a `HandoffManager` with a compression strategy, a capability-based router, and an MCP transport, then executes a handoff.
+
+```typescript
+import { HandoffManager } from '@reaatech/agent-handoff-protocol';
+import { HandoffCompression } from '@reaatech/agent-handoff-compression';
+import { CapabilityBasedRouter, AgentRegistry } from '@reaatech/agent-handoff-routing';
+import { MCPTransport } from '@reaatech/agent-handoff-transport';
+
+const registry = new AgentRegistry([{ id: 'agent-a', capabilities: ['code-review'] }]);
+const router = new CapabilityBasedRouter(registry, { scoring: { load: 0.3, expertise: 0.7 } });
+const compressor = new HandoffCompression({ strategy: 'extractive', maxTokens: 1000 });
+const transport = new MCPTransport('http://localhost:3000/mcp');
+
+const manager = new HandoffManager({ compressor, router, transport });
+await manager.handoff({
+  sessionId: 'session-1',
+  conversation: [{ role: 'user', content: 'Review this PR' }],
+  targetCapabilities: ['code-review'],
+});
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- You only have a single agent and no handoff requirement. Use direct API calls or a simple conversation loop instead.
+- The handoff must happen synchronously inside a single request/response (e.g., within a single HTTP call). This family uses an asynchronous lifecycle with events; prefer a direct function that bundles all logic if synchronous behavior is mandatory.
+- You already have a custom transport layer built into your agent infrastructure and don't want to depend on the provided MCP/HTTP implementations. In that case, implement the `HandoffTransport` interface from `@reaatech/agent-handoff` yourself, skipping the transport package.
+- The conversation history is very short (<50 tokens) and doesn't need compression or routing. A simple direct handoff via a function call or a single-outgoing message is simpler.
+- You need a fully deterministic, stateless chain of calls without event subscriptions. The protocol is designed for stateful, event-driven handoffs; if you just want to call agent B from agent A, use a direct tool call or RPC.
 
 ## Packages
 

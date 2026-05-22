@@ -10,17 +10,40 @@ These packages provide a managed long-term memory layer for AI agents, handling 
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Domain Pipelines** category. 9 packages live under `@reaatech/agent-memory` and siblings.
+Reach for agent-memory when your AI agent needs to remember facts, preferences, or decisions across multiple conversation turns or sessions, and you want automated lifecycle management — decay, contradiction resolution, and importance-based retention — rather than raw vector search. This family solves the problem of turning unstructured dialogue into structured, long-lived memory that the agent can query later with semantic, temporal, or priority filters.
+
+Trigger phrases that signal a fit:
+- “remember that I prefer dark mode”
+- “you previously said you’d send the report”
+- “user wants the agent to recall past decisions”
+- “maintain a persistent knowledge base from conversations”
+
+If the task involves “agent memory with forgetting rules,” “contradiction handling,” or “importance scoring,” this is the right family. The unified `AgentMemory` class, plus modular storage, embedding, LLM, and policy engines, let you compose exactly the memory behavior you need without reinventing the lifecycle logic.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The following creates an agent memory system using in-memory storage and OpenAI providers, then extracts and stores a fact from a conversation turn and retrieves relevant memories by semantic query.
+
+```typescript
+import { AgentMemory } from '@reaatech/agent-memory';
+import { InMemoryStorage } from '@reaatech/agent-memory-storage';
+import { OpenAIEmbeddingProvider } from '@reaatech/agent-memory-embedding';
+import { OpenAILLMProvider } from '@reaatech/agent-memory-llm';
+
+const memory = new AgentMemory({
+  storage: new InMemoryStorage(),
+  embedding: new OpenAIEmbeddingProvider({ apiKey: process.env.OPENAI_API_KEY }),
+  llm: new OpenAILLMProvider({ apiKey: process.env.OPENAI_API_KEY }),
+});
+
+await memory.extractAndStore("User said they love Italian food.");
+const results = await memory.retrieveRelevant("food preferences");
+console.log(results);
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- You only need simple vector search without decay, contradiction resolution, or importance policies. Use a dedicated vector database or `@
 
 ## Packages
 

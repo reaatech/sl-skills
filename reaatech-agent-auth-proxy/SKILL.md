@@ -10,17 +10,47 @@ These packages provide a stateful identity-aware reverse proxy that manages OAut
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Testing & Security** category. 3 packages live under `@reaatech/agent-auth-proxy-client` and siblings.
+Reach for the `agent-auth-proxy` family when an AI agent needs to call third-party APIs on behalf of a human user and you must centralize credential management, OAuth2 token refresh, API key injection, and enforce per-request scopes. The proxy sits between the agent and the upstream service, handling the full auth lifecycle so the agent never touches raw credentials.
+
+**Trigger phrases** that signal this family is the right fit:  
+- "secure agent-to-service communication"  
+- "manage OAuth2 tokens for agents"  
+- "inject API keys into proxied requests"  
+- "enforce scopes on outgoing requests"  
+- "audit all API calls made by agents"  
+
+Use it when the user asks for a zero‑trust architecture where the agent authenticates with an API key, gets a short‑lived JWT, and the proxy enforces allowed scopes before forwarding requests. The server is stateful (requires PostgreSQL), so it fits workflows where credential rotation and per‑user OAuth2 flows are not ephemeral.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+```typescript
+import { AgentClient } from "@reaatech/agent-auth-proxy-client";
 
-## Don't reach for this when
+// The proxy base URL and the agent's API key (from environment)
+const agent = new AgentClient({ baseUrl: "https://proxy.example.com", apiKey: process.env.AGENT_API_KEY! });
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+// Exchange API key for a JWT with requested scopes
+const { token } = await agent.authenticate({ scopes: ["read:orders", "write:feedback"] });
+
+// Make a proxied GET request to an upstream service
+const response = await agent.get("/api/v2/orders", {
+  headers: { Authorization: `Bearer ${token}` },
+});
+```
+
+This snippet shows the core flow: authenticate with the proxy using an API key, obtain a scoped JWT, then use the client to issue proxied requests. The proxy injects the user‑level credentials and enforces scope boundaries.
+
+## Don’t reach for this when
+
+- **You only need to make direct API calls with a single static API key.** If no OAuth2 flow, no per‑user scoping, and no audit logging are required, just use a standard HTTP client (`fetch`, `axios`) with the key in a header. This family adds state and complexity you don’t need.
+
+- **Your downstream API already supports direct OAuth2 from the agent.** If the agent can obtain and refresh tokens itself (e.g., via `@azure/identity` or a client credentials grant), you don’t need a proxy layer. The agent can call the API directly.
+
+- **You need a stateless reverse proxy with no credential management.** If the only requirement is load‑balancing or URL rewriting, use nginx, Caddy, or a lightweight Fastify plugin. This family requires PostgreSQL and manages user grants.
+
+- **Your use case demands per‑request rate limiting or caching that is not scope‑aware.** The proxy handles auth and injection, but not advanced traffic shaping. For that, pair it with a dedicated gateway (e.g., `@reaatech/api‑gateway` if available) or use something like `express‑rate‑limit`.
+
+- **You are building a single‑user or throwaway prototype.** Spinning up PostgreSQL and the proxy server is overkill. For local experiments, hard‑code credentials or use a mock OAuth2 server.
 
 ## Packages
 
@@ -30,9 +60,9 @@ npm install @reaatech/agent-auth-proxy-client @reaatech/agent-auth-proxy-core @r
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/agent-auth-proxy-client` | published v1.0.0 | Typed HTTP client SDK with two classes: `AgentClient` for AI agents to exchange an API key for a JWT and make proxied requests, and `AdminClient` for managing users, agents, gra… |
-| `@reaatech/agent-auth-proxy-core` | published v1.0.0 | Shared Zod schemas, TypeScript types, and error classes used across the agent-auth-proxy server and client SDK. Framework-agnostic and depends only on Zod for runtime validation. |
-| `@reaatech/agent-auth-proxy-server` | published v1.0.0 |  |
+| `@reaatech/agent-auth-proxy-client` | published v1.0.0 | Two typed HTTP clients for the agent-auth-proxy server: `AgentClient` exchanges an API key for a JWT and makes proxied requests to third-party APIs on behalf of a user, while `A… |
+| `@reaatech/agent-auth-proxy-core` | published v1.0.0 | Shared Zod schemas, error classes, and TypeScript types for OAuth2 proxy request validation, scope management, and error handling, exported as framework-agnostic primitives that… |
+| `@reaatech/agent-auth-proxy-server` | published v1.0.0 | Fastify plugin and CLI that implements an identity-aware proxy server for agent-to-service communication, handling API key auth, OAuth2 with PKCE, JWT issuance, scope enforcemen… |
 
 ## Issue reporting
 

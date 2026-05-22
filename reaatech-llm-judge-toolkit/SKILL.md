@@ -10,17 +10,47 @@ These packages provide a modular framework for evaluating LLM-generated text usi
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Evals & Quality** category. 10 packages live under `@reaatech/llm-judge-bias` and siblings.
+Reach for the LLM Judge Toolkit whenever you need to programmatically evaluate the quality of LLM-generated text by having another LLM serve as the evaluator. This family is purpose-built for automating quality assessment pipelines where you want standardized, reproducible judgments across criteria like faithfulness, relevance, safety, or custom rubrics.
+
+Key trigger phrases that should route you here:
+- "automatically evaluate whether an LLM response is good"
+- "check for bias in LLM evaluation scores"
+- "calibrate an LLM judge against human labels"
+- "aggregate multiple LLM judgments into a single score"
+
+The toolkit solves the entire evaluation lifecycle: define judgment criteria via typed templates, execute evaluations through a configurable engine with retry and caching, analyze results for bias (position, length, style), calibrate against ground truth data, and aggregate multi-rater judgments into consensus scores. It’s especially useful when you need to ship automated evaluation guardrails, run batch eval suites during CI, or build dashboards that track model output quality over time.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The core flow uses `JudgmentEngine` from the engine package together with a provider from the providers package and a template from the templates package.
+
+```typescript
+import { JudgmentEngine } from '@reaatech/llm-judge-engine';
+import { OpenAIProvider } from '@reaatech/llm-judge-providers';
+import { FaithfulnessTemplate } from '@reaatech/llm-judge-templates';
+
+const provider = new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY, model: 'gpt-4o' });
+const template = new FaithfulnessTemplate();
+
+const engine = new JudgmentEngine({ provider, template });
+
+const result = await engine.judge({
+  query: 'What is the capital of France?',
+  response: 'Paris is the capital of France.',
+  context: 'The user asked for the capital of France.'
+});
+
+console.log(result.score); // e.g., 1 (on 0-1 scale)
+console.log(result.reasoning); // e.g., 'The response is completely faithful to the query and context.'
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **You need to evaluate outputs from a non-LLM system** (e.g., a classical NLP model or a rule-based chatbot). This family requires an LLM-based judge provider. Consider traditional metrics (BLEU, ROUGE, BERTScore) via libraries like `evaluate` or custom scripts instead.
+- **Your evaluation criteria are purely discrete and non-comparative** (e.g., binary pass/fail on a fixed regex). The overhead of an LLM judge is unnecessary. Use a simple rule-based check or a small classifier.
+- **You need to run evaluation entirely offline without any external API calls**. All built-in providers (OpenAI, Anthropic) require API access. For local-only evaluation, use a self-hosted OpenAI-compatible endpoint via the providers package, but you still need a running model server. Consider deterministic static analysis tools instead.
+- **User wants to conduct a manual human evaluation study with no automation**. This toolkit is for programmatic evaluation; for human annotation workflows, use a dedicated platform like Label Studio or an internal review tool.
+- **You are building a production LLM application and need a guardrail that runs with <100ms latency**. The default LLM judge calls typically take seconds. For near-instant safety checks, use a lightweight classifier or a small model hosted on low-latency infrastructure, not this family.
 
 ## Packages
 

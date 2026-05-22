@@ -10,17 +10,44 @@ These packages provide a standardized framework for benchmarking and evaluating 
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Testing & Security** category. 9 packages live under `@reaatech/pi-bench-adapters` and siblings.
+Reach for this family when the task involves measuring how well a prompt injection defense works: detection rates, false positive rates, or statistical significance. The packages are designed for structured, reproducible benchmarking — not for running defenses in production. Use them when the user explicitly asks to “benchmark a defense against an injection corpus”, “compare two detection methods on the same attack suite”, or “generate a leaderboard with confidence intervals”. The shape of the request usually includes phrases like “run adversarial tests”, “evaluate security posture”, “need a standardized benchmark for prompt injection”, or “calculate attack success rates”. This is the right choice when the deliverable is a quantitative report (e.g., detection accuracy, Wilson score, Cohen’s h) across multiple attack categories, with configurable seeds for reproducibility.
+
+Also reach for it when the user wants to integrate benchmarking into an automated pipeline or MCP toolchain. The `pi-bench-mcp-server` package exposes all operations as MCP tools, so agents can execute benchmarks and compare results via a server interface. If the user says “trigger a benchmark from a workflow” or “return structured benchmark results as JSON”, this family provides the standardized schema and runner.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The following programmatic example uses the main `prompt-injection-bench` library to create an in-memory defense adapter, load a default attack corpus, run a single benchmark, and print summary scores. This mirrors the CLI's default behavior but is embeddable in tests or automation scripts.
+
+```typescript
+import { runBenchmark, DefenseAdapter, AttackCorpus } from 'prompt-injection-bench';
+
+class PassThroughAdapter extends DefenseAdapter {
+  async detect(input: string): Promise<{ isInjection: boolean; confidence: number }> {
+    return { isInjection: false, confidence: 0 };
+  }
+  async sanitize(input: string): Promise<string> { return input; }
+}
+
+async function main() {
+  const corpus = AttackCorpus.default();
+  const results = await runBenchmark({
+    adapter: new PassThroughAdapter(),
+    corpus,
+    iterations: 100,
+    seed: 42,
+  });
+  console.log(results.summary());
+}
+main();
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **You need real-time, production-grade injection detection.** This family benchmarks the *defense itself* — it does not provide a runtime detection engine. For that, use a dedicated defense library such as `@reaatech/pi-bench-adapters` only as a wrapper around an existing service, or a third-party detection API.
+- **You want to generate adversarial examples for training or fine-tuning.** The corpus package (`pi-bench-corpus`) is for benchmarking, not for augmenting training data. For adversarial training, look at libraries like `textattack` or `robustness` that perturb actual model inputs.
+- **You are testing non-text models (vision, audio) or non-LLM systems.** The attack taxonomy and scoring are specific to text-based prompt injection. For other modalities, use a domain-specific adversarial testing framework.
+- **You need to defend a production system against injection in real time.** The benchmark runner does not deploy any defense — it only measures it. For runtime protection, integrate a dedicated injection detection middleware (e.g., from an LLM security gateway).
+- **You only want a list of known attack templates without the benchmarking pipeline.** The corpus package is part of a larger pipeline. If you just need a static JSON list of prompts, consider the `@reaatech/pi-bench-corpus` package alone, but note it expects to be used with the schema from `pi-bench-core`. For a simpler corpus, extract the templates manually or use a third-party list like “Prompt Injection Dataset” on Hugging Face.
 
 ## Packages
 

@@ -10,17 +10,48 @@ These packages provide a circuit breaker implementation designed for agent-to-to
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Reliability & Ops** category. 7 packages live under `@reaatech/circuit-breaker-agents` and siblings.
+Reach for this package family when you're building agentic workflows that call external tools, LLMs, or other agents, and you need protection from repeated failures, runaway costs, or confidence degradation. The circuit breaker here is purpose-built for agent‑to‑tool and agent‑to‑agent communication, supporting tripping on error counts, confidence scores below a threshold, or cumulative cost over a window. It uses a lazy, timer‑free state machine that only evaluates transitions on invocation, and optionally persists state across restarts via Redis, Firestore, or DynamoDB.
+
+Trigger phrases that signal a good fit:  
+- “I need a circuit breaker for my AI agent”  
+- “stop hammering a failing tool”  
+- “limit costs of LLM calls”  
+- “prevent cascading failures in agent tool calls”  
+- “I need a smart circuit breaker that considers confidence and cost, not just errors”
+
+Use it when the reliability concern is tied to *agentic behavior* (e.g., confidence‑based backoff) or when the circuit breaker state must survive process restarts and be shared across multiple service instances. The lazy state machine keeps overhead near zero unless a call is actually made.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+This example creates a simple circuit breaker from `@reaatech/circuit-breaker-core` that wraps a failing async function. The breaker trips after 3 consecutive errors and stays open for 5 seconds.
 
-## Don't reach for this when
+```typescript
+import { CircuitBreaker } from '@reaatech/circuit-breaker-core';
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+const breaker = new CircuitBreaker({
+  name: 'weather-tool',
+  maxFailures: 3,
+  resetTimeoutMs: 5000,
+});
+
+async function callWeatherAPI(location: string): Promise<string> {
+  // Simulate a call that starts failing after the second request
+  return breaker.call(async () => {
+    const res = await fetch(`https://api.weather.com/v1/${location}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.text();
+  });
+}
+```
+
+After the third error, `callWeatherAPI` will throw a `CircuitBreakerOpenError` without touching the network until the reset timeout expires.
+
+## Don’t reach for this when
+
+- You only need simple retry with backoff and no state sharing. Use a dedicated retry library like `p-retry` or `async-retry`.
+- You need to enforce a fixed rate limit (e.g., max 10 requests/second). This family does not control request rate – use a rate limiter such as `p-limit` or `bottleneck`.
+- You’re building a standard HTTP API client with no agent‑specific logic (confidence/cost tripping). A general‑purpose circuit breaker like `opossum` or `resilience4js` is lighter.
+- Your agent runs on a single process and you explicitly don’t need persistence. While the in‑memory strategy works, the core package is overkill if you never want to persist –
 
 ## Packages
 

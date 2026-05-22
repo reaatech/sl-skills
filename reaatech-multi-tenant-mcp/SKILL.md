@@ -10,17 +10,43 @@ These packages provide a suite of modular primitives for implementing multi-tena
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **MCP Infrastructure** category. 9 packages live under `@reaatech/multi-tenant-mcp-artifact-store` and siblings.
+Reach for `multi-tenant-mcp` when you need to run a single MCP server that serves multiple distinct tenants — each with isolated configuration, rate limits, cost tracking, and tool availability. This family provides a composable middleware pipeline that plugs directly into an MCP request handler from `@modelcontextprotocol/sdk`. Use it when the prompt or task contains trigger phrases like: "multi-tenant MCP server", "isolate tenant data per user", "per-tenant rate limiting", "tenant-aware cost tracking", "filter tools by tenant", or "separate configs per organization".
+
+The libraries work together as layered primitives: a tenant resolver extracts identity from headers/JWTs/api keys, a visibility engine filters tools/resources/prompts per tenant, rate limiters and cost trackers operate per tenant, and config isolation merges base config with tenant overrides. The `middleware` package wraps these into a single factory that you apply to your MCP server’s request handler. Use the whole family or pick individual packages — they are independent but designed to compose.
+
+Typical users: teams building an MCP server that serves multiple clients (e.g., SaaS providers, platform teams) and need tenant-isolated resource access, usage billing, or compliance-driven configuration without running a separate server per tenant.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+```typescript
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { multiTenantMiddleware } from "@reaatech/multi-tenant-mcp-middleware";
+import { HeaderTenantResolver } from "@reaatech/multi-tenant-mcp-tenant-resolver";
+import { VisibilityEngineImpl } from "@reaatech/multi-tenant-mcp-tool-visibility";
+import { DefaultRateLimiter } from "@reaatech/multi-tenant-mcp-rate-limiter";
+
+const server = new Server({ name: "my-service", version: "1.0.0" });
+
+const handler = multiTenantMiddleware({
+  resolver: new HeaderTenantResolver({ header: "X-Tenant-Id" }),
+  visibility: new VisibilityEngineImpl({
+    tools: new Map([["tenant-a", ["read-user"]]])
+  }),
+  rateLimiter: new DefaultRateLimiter({ points: 100, duration: 60 })
+});
+
+server.setRequestHandler(handler);
+```
+
+This configures the MCP server to extract the tenant ID from an HTTP header, allow only the `read-user` tool for `tenant-a`, and enforce a per-tenant rate limit of 100 requests per minute.
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- You need a simple single-tenant MCP server with no isolation concerns. Use `@modelcontextprotocol/sdk` directly without any middleware.
+- You already run a separate MCP server instance per tenant (e.g., via Kubernetes namespaces). This family is for consolidating tenants into one server; if isolation requirements (security, compliance) demand process-level separation, keep separate instances.
+- You need general-purpose authentication and authorization unrelated to MCP tool visibility. Look for a dedicated auth library (e.g., `@reaatech/auth-middleware` if applicable) or use a framework like Express/Passport outside the MCP layer.
+- You require fine-grained row-level or field-level data visibility within tools (e.g., a single tool returning different fields per tenant). The visibility engine filters entire tools/resources/prompts, not data inside a tool’s response — combine with tenant-specific config inside the tool implementation.
+- You are building an MCP client, not a server. This family targets server-side middleware; client-side tenant handling is out of scope.
 
 ## Packages
 

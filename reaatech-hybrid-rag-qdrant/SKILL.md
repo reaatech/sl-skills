@@ -10,17 +10,44 @@ These packages give you a complete hybrid RAG system combining vector search (Qd
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Domain Pipelines** category. 10 packages live under `@reaatech/hybrid-rag` and siblings.
+Reach for this family when the task requires a production-grade hybrid RAG stack that combines vector search (Qdrant), BM25 keyword search, cross-encoder reranking, and configurable chunking strategies — all from a single set of packages. The family covers the full lifecycle: document ingestion and chunking, embedding generation across providers, hybrid retrieval, evaluation with standard IR metrics, ablation studies, benchmarking, observability (OpenTelemetry), and an MCP server exposing 40+ tools.
+
+Concrete trigger phrases that map to this family:
+- “hybrid RAG with Qdrant” / “vector + keyword search”
+- “build a RAG pipeline with chunking, reranking, and evaluation”
+- “set up Qdrant collections with BM25 and dense vectors”
+- “run ablation studies or benchmarks on retrieval strategies”
+- “expose RAG operations as MCP tools”
+
+If the user mentions combining semantic search and keyword search, implementing cross-encoder reranking, or structuring a RAG evaluation workflow with metrics like NDCG, MAP, or MRR, this is the right choice. The CLI (`@reaatech/hybrid-rag-cli`) further reduces boilerplate for ingestion, querying, and benchmarking.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The core flow is orchestrated by `RAGPipeline` from `@reaatech/hybrid-rag-pipeline`. Use it with an embedding service and a Qdrant collection to index documents and perform hybrid retrieval with optional reranking.
+
+```typescript
+import { RAGPipeline } from '@reaatech/hybrid-rag-pipeline';
+import { EmbeddingService } from '@reaatech/hybrid-rag-embedding';
+
+const embeddingService = new EmbeddingService({ provider: 'openai', apiKey: process.env.OPENAI_API_KEY });
+const pipeline = new RAGPipeline({
+  qdrantUrl: 'http://localhost:6333',
+  embeddingService,
+  collectionName: 'docs',
+  rerankerModel: 'cross-encoder/ms-marco-MiniLM-L-6-v2',
+});
+
+await pipeline.ingest('./path/to/document.pdf', { chunkingStrategy: 'recursive' });
+const results = await pipeline.query('What is hybrid RAG?', { topK: 5, rerank: true });
+console.log(results.map(r => r.text));
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **You only need simple vector search without BM25 or reranking.** Use the lower-level `@reaatech/hybrid-rag-qdrant` wrapper or `@qdrant/js-client-rest` directly to avoid the overhead of a full RAG pipeline.
+- **You’re building a chatbot or agent that requires LLM memory, tool calling, or conversation management.** This family focuses on retrieval infrastructure. Combine it with a framework like LangChain or the REAA `@reaatech/agent-core` family (if available) for conversational logic.
+- **You only need an embedding service without any RAG orchestration.** Pull in just `@reaatech/hybrid-rag-embedding` — no need for the pipeline, Qdrant, or evaluation packages.
+- **You need to perform evaluation or benchmarks on an existing RAG system that doesn’t use Qdrant.** Use `@reaatech/hybrid-rag-evaluation` in isolation (it accepts generic retrieval results
 
 ## Packages
 

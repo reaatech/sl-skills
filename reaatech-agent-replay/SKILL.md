@@ -10,17 +10,54 @@ These packages let you record, replay, and debug AI agent interactions determini
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Testing & Security** category. 7 packages live under `@reaatech/agent-replay` and siblings.
+Reach for the agent-replay family when you need to record AI agent interactions and replay them deterministically without issuing real LLM API calls. This is the right toolkit for decoupling development and testing from live token consumption — capture a trace once, then iterate on logic, prompts, or tool definitions offline.
+
+Trigger phrases that map to this family:
+
+- “We need to replay agent runs without calling the API again” — use `ReplayEngine` from `@reaatech/agent-replay-core` to load a previously recorded trace.
+- “Debug step-by-step through an agent’s LLM calls and tool uses” — the `ReplayDebugger` lets you inspect spans and state per checkpoint.
+- “Compare two agent runs to find regressions” — `DiffEngine` from the same core package outputs structured diffs between traces.
+- “Instrument LangChain or LangGraph agents for replay” — use `@reaatech/agent-replay-integrations` to hook into framework callbacks.
+
+The family solves offline testing, regression detection, and deterministic debugging of agentic workflows. Any task that mentions recording LLM interactions, stubbing API calls, or trace-based debugging during CI is a candidate.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The most common flow: create a `RecordingEngine`, install an interceptor to capture OpenAI calls, run your agent, then save the trace for later replay. The `@reaatech/agent-replay` entry-point re-exports everything needed.
+
+```typescript
+import { RecordingEngine, ReplayEngine, OpenAIInterceptor } from '@reaatech/agent-replay';
+
+const recorder = new RecordingEngine();
+const interceptor = new OpenAIInterceptor(recorder);
+
+// Interceptor patches the OpenAI client transparently
+interceptor.install();
+
+// Run your agent code that calls OpenAI
+await myAgent.run('What is the weather in Berlin?');
+
+// Retrieve the recorded trace
+const trace = recorder.getTrace();
+
+// Later, replay the same sequence without real API calls
+const replay = new ReplayEngine(trace);
+const replayedSteps = await replay.replayAll(); // returns stubbed responses
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **When you need to capture arbitrary HTTP requests or non-LLM API calls.**  
+  Agent-replay focuses on LLM and tool invocation traces. For general HTTP recording, use a dedicated library like `nock` or a proxy-based recorder such as Polly.js.
+
+- **When you want to test LLM output quality (e.g., semantic correctness) against live responses.**  
+  Replaying stubbed data won't evaluate model behavior. Use a separate evaluation framework (e.g., `@reaatech/eval-models`) that calls real endpoints and scores outputs.
+
+- **When you only need to mock a single OpenAI response in a unit test.**  
+  Direct mocking (`jest.spyOn` or `sinon.stub`) is lighter. Agent-replay is designed for multi-step, stateful workflows; for a one-off mock, a simpler stub suffices.
+
+- **When you must replay across different LLM providers not in the interceptor list.**  
+  Currently only OpenAI and Anthropic SDKs are supported. If your agent uses Cohere, Mistral, or a custom endpoint, you’ll need to extend the interceptor or use the core `RecordingEngine` API manually to instrument each call.
 
 ## Packages
 

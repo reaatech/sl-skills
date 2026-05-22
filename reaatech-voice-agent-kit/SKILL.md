@@ -10,17 +10,40 @@ These packages provide a transport layer for real-time voice AI, orchestrating t
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Domain Pipelines** category. 5 packages live under `@reaatech/voice-agent-core` and siblings.
+Reach for this family when a user request involves building a real-time voice AI agent that must listen, think, and speak within conversational latency (sub-second round trips). Typical trigger phrases are "voice agent that can take or make phone calls", "STT → MCP → TTS pipeline with telephony", "real-time voice assistant using Twilio", or "low-latency speech-to-text and text-to-speech for an AI agent". The core problem is orchestrating a continuous audio stream from a telephony source (e.g., Twilio Media Stream) through speech recognition, agent reasoning via MCP tool calls, and back to speech synthesis, all while maintaining strict per-stage time budgets.
+
+This family is particularly valuable when you need to swap cloud providers (Deepgram, AWS, Google) for STT or TTS without rewriting orchestration logic, or when you want to add custom MCP servers to control tool discovery and agent behaviour independently of the voice pipeline. The event-driven pipeline exposed by `@reaatech/voice-agent-core` decouples telephony handling from the agent decision loop, so you can reuse the same pipeline logic across different telephony providers or test with mock services.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+```typescript
+import { Pipeline, Session } from '@reaatech/voice-agent-core';
+import { TwilioMediaStreamHandler } from '@reaatech/voice-agent-telephony';
+import { MCPClient } from '@reaatech/voice-agent-mcp-client';
+
+const mcpClient = new MCPClient({ serverUrl: 'http://localhost:3001/mcp' });
+const pipeline = new Pipeline({
+  sttProvider: 'deepgram',
+  ttsProvider: 'google',
+  mcpClient,
+  latencyBudgetMs: { stt: 400, mcp: 800, tts: 400 },
+});
+
+const handler = new TwilioMediaStreamHandler();
+handler.onAudioStream(async (audioChunk) => {
+  await pipeline.processAudio(audioChunk);
+});
+pipeline.start({ inboundStream: handler });
+```
+
+The example sets up a voice pipeline that accepts a Twilio Media Stream, routes audio through Deepgram for speech-to-text, passes transcripts to an MCP-based agent for decision-making, and synthesises replies via Google Cloud TTS. Latency budgets enforce that each stage completes within the allocated time.
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **You only need a text‑based chatbot without voice.** This family adds significant overhead for audio I/O. Use a simpler chat library like `@reaatech/agent-core` or a plain HTTP MCP client.
+- **Your task processes pre‑recorded audio files (batch mode).** The entire design assumes streaming, real‑time audio. For batch speech‑to‑text or text‑to‑speech, use the underlying cloud SDKs directly (e.g., `@google-cloud/speech` or `aws-sdk`'s `Transcribe`).
+- **You are building a full contact centre with routing, queuing, and analytics.** This family only handles the voice agent pipeline inside one call. For contact centre orchestration, consider a dedicated platform like Twilio Flex or Amazon Connect.
+- **The user request is about building a voice interface for a web app (
 
 ## Packages
 

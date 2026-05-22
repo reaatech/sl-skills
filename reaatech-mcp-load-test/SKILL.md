@@ -10,17 +10,39 @@ These packages provide a load testing framework designed to evaluate the perform
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Testing & Security** category. 9 packages live under `@reaatech/mcp-load-test-analysis` and siblings.
+Reach for the mcp-load-test family when the task involves evaluating the performance, scalability, or reliability of a Model Context Protocol (MCP) server under simulated concurrent load. This family provides a modular framework for running load, ramp, soak, and spike tests, collecting latency histograms and error rates, and automatically detecting breaking points. Use it when a user mentions "load testing an MCP server" or "performance benchmarking for MCP" – especially if they want to identify maximum concurrent sessions, find throughput bottlenecks, or validate that a server meets latency SLAs under stress.
+
+This family is also the right choice when the prompt contains "simulate multiple users with different tool-call sequences" or "generate a report card with letter grades for MCP performance". The packages are designed to work together: the client negotiates transports (stdio, SSE, StreamableHTTP), the engine orchestrates session pools with configurable concurrency profiles, the patterns executor runs stateful multi-step sequences, and the analysis package assigns grades based on latency, error rate, and recovery time. The CLI package wraps most of this into a single command for quick runs.
+
+Pick this family over general-purpose load test tools (like k6 or artillery) when the target is specifically an MCP server – these packages understand JSON-RPC handshakes, tool discovery, and MCP-specific error codes, and produce metrics and reports tailored to MCP use cases.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The most common usage is running a ramp test programmatically via the engine. The following snippet shows a ramp test that starts with 1 virtual user and ramps to 10 over 30 seconds, using a single tool call pattern.
+
+```typescript
+import { LoadEngine } from '@reaatech/mcp-load-test-engine';
+import { rampProfile } from '@reaatech/mcp-load-test-profiles';
+import { MetricsCollector } from '@reaatech/mcp-load-test-metrics';
+import { PatternExecutor } from '@reaatech/mcp-load-test-patterns';
+
+const engine = new LoadEngine({
+  clientFactory: () => createMcpClient({ transport: 'stdio', command: 'npx', args: ['my-mcp-server'] }),
+  profile: rampProfile({ startConcurrency: 1, endConcurrency: 10, durationSec: 30 }),
+  pattern: new PatternExecutor({ steps: [{ tool: 'get_weather', params: { city: '$city' } }] }),
+  metrics: new MetricsCollector()
+});
+
+const report = await engine.run();
+console.log(report.grade, report.breakingPoint?.description);
+```
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **You need to unit-test individual MCP tool handlers or server logic.** Use `@reaatech/mcp-testing` (if available) or a standard test framework with mocked transport. This family is for integration/load testing under concurrency, not for verifying correctness of tool implementations.
+- **You want to debug a single tool call or inspect JSON-RPC messages interactively.** Use the MCP Inspector or a direct client like `@modelcontextprotocol/sdk` with raw transport logging. The load test framework hides transport details and aggregates results.
+- **Your target is an HTTP API, gRPC service, or any non-MCP server.** Use general-purpose tools like k6, Artillery, or autocannon. The mcp-load-test packages are coupled to MCP's handshake and tool-discovery flow.
+- **You need to run a quick smoke test with a single request and no metrics.** Just use the MCP client directly or the `mcp-cli` tool from the SDK. Setting up the full load test engine is overkill for ad-hoc single-call verification.
 
 ## Packages
 

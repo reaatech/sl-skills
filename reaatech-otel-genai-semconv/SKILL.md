@@ -10,17 +10,40 @@ These packages provide instrumented wrappers for OpenAI, Anthropic, Vertex AI, a
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Observability & Cost** category. 9 packages live under `@reaatech/otel-genai-semconv-anthropic` and siblings.
+Reach for `otel-genai-semconv` when a task requires capturing standardized OpenTelemetry spans from LLM provider SDKs — OpenAI, Anthropic, Bedrock, or Vertex AI — and piping them into an existing OTel pipeline, Arize Phoenix, Langfuse, or Google Cloud Trace. Trigger phrases include: “instrument OpenAI with OpenTelemetry”, “track token usage and cost per LLM call”, “send gen_ai spans to Phoenix”, “redact PII from LLM request payloads”, “aggregate streaming metrics across providers”, or “add circuit breaking to Anthropic client”. The family solves the observability gap for LLM interactions by wrapping SDK clients with zero-config wrappers that emit semantically compliant spans, estimate token counts, calculate costs from provider pricing, and redact sensitive fields — all without changing existing application logic.
+
+Use these packages when you need a consistent, provider-agnostic telemetry layer across multiple AI models. The shared instrumentation framework in `@reaatech/otel-genai-semconv-instrumentation` handles lifecycle hooks, retries, and error classification, while the exporter package (`@reaatech/otel-genai-semconv-exporters`) transforms `gen_ai.*` spans into native formats for backend systems like Arize Phoenix and Langfuse. If your prompt involves “trace GPT-4 and Claude calls in one dashboard”, “estimate cost before billing run”, or “see streaming token rates per request”, this family is the intended solution.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The most common path is instrumenting the OpenAI client. After initializing the OpenTelemetry SDK, wrap an `OpenAI` instance with `OpenAIInstrumentation`. All subsequent `chat.completions.create` calls automatically emit spans with token usage and cost estimates.
 
-## Don't reach for this when
+```typescript
+import { OpenAI } from 'openai';
+import { OpenAIInstrumentation } from '@reaatech/otel-genai-semconv-openai';
+import { initObservability } from '@reaatech/otel-genai-semconv-observability';
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+initObservability({ serviceName: 'llm-app' }); // sets up OTel SDK, metrics, and logging
+
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const instrumented = new OpenAIInstrumentation(client);
+
+// Every completion call now emits a gen_ai span with token usage and latency
+const response = await instrumented.client.chat.completions.create({
+  model: 'gpt-4o',
+  messages: [{ role: 'user', content: 'Explain quantum computing like I’m 10.' }]
+});
+```
+
+For Anthropic, replace with `@reaatech/otel-genai-semconv-anthropic`; for Bedrock, call `instrument()` from `@reaatech/otel-genai-semconv-bedrock` on the `BedrockRuntimeClient`.
+
+## Don’t reach for this when
+
+- You only need to **log raw request/response payloads for debugging** without OpenTelemetry traces. Use a structured logger (e.g., Pino directly) or provider-specific logging hooks instead.
+- You want a **full vendor-specific dashboard** like OpenAI’s own Usage page or Anthropic’s Console — these packages emit OTel spans, not proprietary metrics endpoints. Use provider dashboards for provider-specific cost breakdowns.
+- You require **distributed tracing across a monolith without LLM focus** — this family concentrates on `gen_ai` semantic conventions. For generic HTTP or database tracing, use standard `@opentelemetry/instrumentation-http` or `@opentelemetry/instrumentation-pg`.
+- You need **real-time cost tracking inside a custom billing system** — the cost calculator (`@reaatech/otel-genai-semconv-utils`) estimates tokens and costs per call, but for exact billing-level aggregation use provider APIs or a dedicated cost management platform.
+- You are working with a **non-supported provider** (e.g., Cohere, Mistral, Hugging Face) — this family only wraps OpenAI, Anthropic, Bedrock, and Vertex AI. For other providers, implement a custom instrumentor using `@reaatech/otel-genai-semconv-core` and the shared instrumentation framework.
 
 ## Packages
 

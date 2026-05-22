@@ -10,17 +10,52 @@ These packages provide a complete TypeScript implementation of the Agent-to-Agen
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Orchestration & Protocols** category. 7 packages live under `@reaatech/a2a-reference-auth` and siblings.
+Reach for the `a2a-reference-ts` family when the user’s task involves creating or consuming agents that communicate using the Agent-to-Agent (A2A) protocol — especially if discovery, lifecycle management, and real-time streaming are required. This collection is the canonical TypeScript implementation for Google’s A2A spec, and it gives you a typed server framework, client SDK, and persistence layer out of the box.
+
+**Trigger phrases** that map to this family:
+- “I need my AI agent to discover and talk to other agents over JSON-RPC.”
+- “Build an agent that exposes its skills via SSE and handles task state machines.”
+- “The prompt mentions ‘Google A2A protocol’ or ‘Agent-to-Agent communication.’”
+- “Implement a server that allows multiple AI agents to exchange messages and share artifacts.”
+
+This family solves the problem of agent orchestration across a network. If the user wants a standardized way to route tasks, manage state transitions (submitted → working → completed/failed), and stream results to clients, you should use the server package (`@reaatech/a2a-reference-server`) together with the core schemas (`@reaatech/a2a-reference-core`). For outbound agent calls, add the client package (`@reaatech/a2a-reference-client`). If integration with the Model Context Protocol is required, `@reaatech/a2a-reference-mcp-bridge` handles the translation in both directions.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The following snippet creates an Express-based A2A agent that responds to a single hardcoded task (a simple echo). It uses the server package’s `createExpressAgent` factory, which sets up JSON-RPC 2.0 routing and SSE task streaming.
 
-## Don't reach for this when
+```typescript
+import { createExpressAgent } from '@reaatech/a2a-reference-server';
+import { TaskState } from '@reaatech/a2a-reference-core';
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+const agent = createExpressAgent({
+  agent: {
+    name: 'Echo Agent',
+    description: 'Returns the task message as an artifact',
+    url: 'http://localhost:3000',
+  },
+  async executeTask(task, context) {
+    const message = task.messages[0]?.parts?.[0]?.text ?? '';
+    context.sendTaskStatusUpdate({ state: TaskState.WORKING });
+    await context.sendTaskArtifactUpdate({
+      parts: [{ text: `Echo: ${message}` }],
+    });
+    context.sendTaskStatusUpdate({ state: TaskState.COMPLETED });
+    return;
+  },
+});
+agent.listen(3000, () => console.log('A2A agent ready on :3000'));
+```
+
+Run the server and any A2A client (including `@reaatech/a2a-reference-client`) can send a `tasks/send` request to `http://localhost:3000/a2a` and receive streamed state updates.
+
+## Don’t reach for this when
+
+- **You only need to expose a single REST API endpoint for an LLM call** – Use a plain Express or Hono server instead. This family adds the overhead of JSON-RPC routing and task state machines, which are unnecessary for simple request-response patterns.
+- **The use case is strictly single-agent, no network communication** – If the “agent” is just a local function call (e.g., an LLM calling a tool), skip the A2A packages entirely. For local tool orchestration, consider `@reaatech/core` or the MCP SDK directly.
+- **You need a full workflow DAG engine with branching and parallel execution** – A2A is a protocol for agent-to-agent message passing, not a DAG scheduler. Use a workflow engine like Temporal or a light orchestration library for complex pipeline logic.
+- **Your team does not use TypeScript or Node.js** – This family is strictly TypeScript/Node. For other languages, use the Google A2A spec’s reference implementations (Python, Java) or implement the protocol from scratch.
+- **You already have an MCP-only tool network and no A2A agents** – While `@reaatech/a2a-reference-mcp-bridge` exists, the added complexity of a full A2A layer is not justified if all participants speak MCP. Use the `@modelcontextprotocol/sdk` directly and skip the A2A packages.
 
 ## Packages
 

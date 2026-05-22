@@ -10,17 +10,41 @@ These packages provide a modular gateway framework for managing Model Context Pr
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **MCP Infrastructure** category. 10 packages live under `@reaatech/mcp-gateway-allowlist` and siblings.
+Reach for the **mcp-gateway** package family when the task involves exposing, securing, or scaling a Model Context Protocol (MCP) server behind an Express-based gateway. The user explicitly mentions “MCP gateway”, “MCP authentication”, “MCP rate limiting”, “MCP tool access control”, “MCP audit logging”, “MCP request fan-out”, or “MCP schema validation”. The collection solves the problem of composing authentication, rate limiting, caching, auditing, validation, and upstream routing middleware into a single HTTP endpoint that proxies JSON-RPC 2.0 MCP calls to one or more backend MCP servers.
+
+Use these packages when you need to enforce per-tenant allowlists for tool calls (`@reaatech/mcp-gateway-allowlist`), validate API keys or JWTs (`@reaatech/mcp-gateway-auth`), throttle requests with token buckets (`@reaatech/mcp-gateway-rate-limit`), cache responses per tool (`@reaatech/mcp-gateway-cache`), store tamper-evident audit logs (`@reaatech/mcp-gateway-audit`), or route calls across multiple upstream servers with strategies like first-success or majority-vote (`@reaatech/mcp-gateway-fanout`). The pre-configured `@reaatech/mcp-gateway-gateway` package ties everything together as a single server with a CLI, while the core package provides shared types and validation schemas.
+
+Common trigger patterns in a prompt: “build an MCP gateway that requires authentication”, “add rate limiting to our existing MCP proxy”, “log every MCP request for compliance”, “distribute MCP requests across multiple model providers”, or “validate MCP tool arguments before forwarding”.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The fastest path is to use the pre-configured gateway server from `@reaatech/mcp-gateway-gateway`. The following example creates an app with default auth, rate limiting, and observability, and listens on port 3000.
+
+```typescript
+import { createApp } from '@reaatech/mcp-gateway-gateway';
+import { createLogger } from '@reaatech/mcp-gateway-core';
+
+const logger = createLogger({ name: 'my-gateway' });
+
+const app = await createApp({
+  tenantRegistryPath: './tenants.yaml',
+  auth: { apiKeys: true },
+  rateLimit: { requestsPerMinute: 60 },
+  observability: { enabled: true },
+}, { logger });
+
+app.listen(3000, () => {
+  logger.info('MCP gateway listening on port 3000');
+});
+```
+
+For a modular setup, import individual middleware packages (e.g., `@reaatech/mcp-gateway-auth`, `@reaatech/mcp-gateway-rate-limit`) and mount them on an Express app directly. Each middleware adheres to the standard `(req, res, next)` signature and expects MCP JSON-RPC 2.0 request bodies.
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- You are building a non-MCP API gateway for REST or GraphQL. This family is tightly coupled to the MCP protocol (JSON-RPC 2.0 with tools/resources concepts). Use a general-purpose gateway like Express native middleware, `express-gateway`, or Envoy instead.
+- You need a client-side MCP library to call tools from an MCP server. The `mcp-gateway` packages are server-side only; look for MCP client SDKs (e.g., the official `@modelcontextprotocol/sdk`).
+- You require WebSocket
 
 ## Packages
 

@@ -10,17 +10,47 @@ These packages add idempotency to HTTP APIs by caching responses keyed to the `I
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Reliability & Ops** category. 6 packages live under `@reaatech/idempotency-middleware` and siblings.
+Reach for the `@reaatech/idempotency-middleware` family when an HTTP API must safely handle duplicate requests for mutating endpoints (`POST`, `PUT`, `PATCH`). The core use case is preventing double side effects—duplicate charges, repeated resource creation, state corruption—when clients cannot guarantee exactly-once delivery. The library solves this by caching the first response keyed to the `Idempotency-Key` header and replaying it for all subsequent requests with the same key, without re-executing the handler.
+
+Trigger phrases that map to this family include:
+
+- "Make POST/PUT/PATCH requests idempotent"
+- "Retry safety with Idempotency-Key header"
+- "Prevent duplicate side effects on network retries"
+- "Cache and replay responses for a given idempotency key"
+
+This family is also the right choice when you need distributed locking across replicas to guarantee that only one request with a given idempotency key is processed at a time. The built-in lock mechanism prevents race conditions during concurrent retries. The pluggable storage adapters (in-memory, Redis, DynamoDB, Firestore) allow you to match the persistence and scalability needs of your deployment—ephemeral for testing, Redis for latency-sensitive production, DynamoDB or Firestore for serverless or cloud-native stacks.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The most common setup is adding idempotency to an Express app using an in-memory store (for development or single-instance deployments). Import the core adapter and the Express middleware factory:
+
+```typescript
+import { InMemoryAdapter } from '@reaatech/idempotency-middleware';
+import { createExpressMiddleware } from '@reaatech/idempotency-middleware-express';
+
+const app = require('express')();
+
+const adapter = new InMemoryAdapter();
+
+app.post('/payments', createExpressMiddleware({ adapter }), async (req, res) => {
+  // This handler will only execute once per Idempotency-Key
+  const result = await processPayment(req.body);
+  res.json(result);
+});
+
+app.listen(3000);
+```
+
+For production, swap the `InMemoryAdapter` with a Redis, DynamoDB, or Firestore adapter. The middleware configuration remains the same.
 
 ## Don't reach for this when
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+- **You need idempotency across multiple independent services (e.g., a saga).** This library scopes idempotency to a single HTTP request/reply pair per service. For multi-step distributed transactions, use a saga pattern or the `@reaatech/outbox` family to coordinate state across services.
+
+- **Your use case is inherently idempotent at the database level** (e.g., `INSERT … ON CONFLICT DO NOTHING` or `SET x = x`). Adding an idempotency middleware adds unnecessary latency and storage overhead; rely on database constraints instead.
+
+- **You
 
 ## Packages
 

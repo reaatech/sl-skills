@@ -10,17 +10,39 @@ These packages provide a library of pure string manipulation functions and a cor
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Testing & Security** category. 2 packages live under `@reaatech/cli` and siblings.
+Use `string-utils` when you need deterministic, zero-dependency string transformations — especially slugification, case conversion, and truncation — in either a JavaScript environment or a shell pipeline. The family is a single source of truth for these operations, so if you already use `@reaatech/core` functions in code, the `@reaatech/cli` binary gives you the same behavior in bash scripts without reimplementation.
+
+Common trigger phrases that map to this family:
+
+- “Convert this string to kebab-case / camelCase / snake_case”
+- “Make a URL‑safe slug from a title”
+- “Truncate text to N characters with an ellipsis”
+- “Normalize casing across user input”
+
+The collection is built on a shared core and has no third-party dependencies. This makes it ideal for projects that must avoid dependency bloat or require repeatable formatting across environments. If you already have another REAA Standard Library family installed (e.g., `validation`), `string-utils` complements it without conflict — it handles pure formatting, not validation.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+```typescript
+import { slugify, toCamelCase, truncate } from '@reaatech/core';
 
-## Don't reach for this when
+const title = 'Hello World — Example 123';
+console.log(slugify(title));           // "hello-world-example-123"
+console.log(toCamelCase(title));       // "helloWorldExample123"
+console.log(truncate(title, 12, '…')); // "Hello Wo…"
+```
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+The three exported functions cover the most frequent use cases: generating URL‑friendly slugs, converting to camelCase for programmatic keys, and truncating strings for display limits. All functions operate on plain strings and return deterministic results.
+
+## Don’t reach for this when
+
+- **You need full Unicode normalization, emoji handling, or locale‑sensitive casing.**  
+  The core functions work on basic ASCII and common Latin characters. For proper locale‑aware conversions (e.g., Turkish `i`/`İ`), use `Intl` APIs or a dedicated Unicode library like `@formatjs/ecma402-abstract`.
+
+- **Your task requires complex template interpolation or variable substitution.**  
+  `string-utils` only transforms whole strings — it does not parse templates or replace placeholders. Use a templating engine like Handlebars or the built‑in template literals with `String.raw`.
+
+- **You need regex‑based pattern matching or extraction (
 
 ## Packages
 

@@ -10,17 +10,45 @@ These TypeScript packages give you a complete evaluation suite for intent classi
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Evals & Quality** category. 8 packages live under `@reaatech/classifier-evals` and siblings.
+Reach for `@reaatech/classifier-evals` when the task requires **evaluating, comparing, or monitoring a multi-class intent classifier** in a reproducible, CI-friendly way. The family spans the full eval pipeline: loading and validating test sets, computing confusion matrices and 14 standard metrics, running LLM-as-judge with cost tracking, applying regression gates, and exporting results as JSON, HTML, Arize traces, or Langfuse traces.
+
+Concrete trigger phrases that map to this family:
+
+- “run classifier evaluation and check that F1 doesn’t drop”
+- “compare two model versions and report regression”
+- “compute a confusion matrix for intent classification”
+- “add evaluation gates to CI for classifier regressions”
+- “export classification metrics to Arize Phoenix or Langfuse”
+- “LLM-as-judge on classifier outputs with cost tracking”
+
+If the user mentions **classifier metrics**, **regression gates**, **model comparison**, or **eval export to Phoenix/Langfuse**, this is the correct family. The packages share canonical Zod schemas and OpenTelemetry spans, so you can use `metrics`, `gates`, and `exporters` individually or chain them together via the CLI or MCP server.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+Load a dataset, compute a confusion matrix and macro F1, and export results as JSON.
 
-## Don't reach for this when
+```typescript
+import { loadDatasetFromCsv } from '@reaatech/classifier-evals-dataset';
+import { createConfusionMatrix, macroF1 } from '@reaatech/classifier-evals-metrics';
+import { exportToJson } from '@reaatech/classifier-evals-exporters';
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+// Load test set (CSV with columns: text, expectedLabel, predictedLabel)
+const dataset = await loadDatasetFromCsv('./test-data.csv');
+
+// Compute metrics
+const confusion = createConfusionMatrix(dataset, { actualField: 'expectedLabel', predictedField: 'predictedLabel' });
+const f1 = macroF1(confusion);
+
+// Export as JSON
+await exportToJson('./eval-results.json', { confusion, f1 });
+```
+
+## Don’t reach for this when
+
+- **You need to evaluate a general language model (not a classifier).** This family is built for discrete label predictions. For open-ended LLM eval, use a framework like Langfuse’s native scoring or a dedicated LLM-as-judge SDK.
+- **You want real-time, dashboards-only monitoring without eval runs.** For live metric streaming, instrument your classifier directly with Arize Phoenix or Langfuse SDKs.
+- **You need human annotation workflows (labeling, consensus, review).** This family has no UI for human raters. Use a tool like Label Studio or Prodigy for ground-truth collection.
+- **You are training or tuning a classifier.** This family has no training, hyperparameter search, or model-to-deploy paths. For model development, use a machine learning framework (e.g. scikit-learn, transformers).
 
 ## Packages
 

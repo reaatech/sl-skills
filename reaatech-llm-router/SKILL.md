@@ -10,17 +10,46 @@ These packages provide a centralized routing engine for managing LLM requests ac
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Orchestration & Protocols** category. 7 packages live under `@reaatech/llm-router-cli` and siblings.
+Reach for `llm-router` when the task involves sending LLM requests to multiple providers (e.g., OpenAI, Anthropic, Google, AWS Bedrock) and requires centralized control over *which* model handles each request. This family solves the “router or orchestrator” layer in an LLM-powered system: you define routing strategies, fallback chains, cost budgets, and observability hooks as configuration, and the engine handles execution.
+
+**Trigger phrases** that indicate this family is the right choice:
+- “Route this prompt to the cheapest model that can answer it.”
+- “If OpenAI fails, fall back to Anthropic with retries.”
+- “Set a monthly budget of $50 for all LLM calls.”
+- “Balance latency and cost across different providers.”
+
+The packages are designed for production workflows where you need resilience (circuit breakers, exponential backoff), cost enforcement (budget limits, per-request tracking), and strategic model selection (by cost, latency, capability, or judgment). The MCP package (`@reaatech/llm-router-mcp`) extends the router directly into AI agent tooling, letting agents decide which model to call via Model Context Protocol.
 
 ## Quick start example
 
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+```typescript
+import { LLMRouter } from '@reaatech/llm-router-engine';
+import { CostTrackingTelemetry } from '@reaatech/llm-router-telemetry';
+import { LatencyOptimizedStrategy } from '@reaatech/llm-router-strategies';
 
-## Don't reach for this when
+const router = new LLMRouter({
+  strategy: new LatencyOptimizedStrategy(),
+  telemetry: new CostTrackingTelemetry({ monthlyBudget: 100 }),
+  executeModel: async (model, prompt) => {
+    // Call the provider SDK for `model` (e.g., OpenAI, Anthropic)
+    return { text: '...', model, cost: 0.002, latencyMs: 450 };
+  },
+});
 
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+const result = await router.route({
+  prompt: 'Explain quantum computing in simple terms',
+  context: { maxCost: 0.01, preferredModels: ['gpt-4o', 'claude-3'] },
+});
+console.log(result.text, result.model, result.cost);
+```
+
+## Don’t reach for this when
+
+- **You only ever call one provider and one model.** The router adds configuration overhead and a dependency on `llm-router-core` schemas. Use the provider’s SDK directly.
+- **You need fine-grained per‑model features** (e.g., tool use schemas, image generation, streaming control beyond a simple callback). The router abstracts over providers; provider‑specific capabilities are not exposed — use the raw SDK for those.
+- **You’re building a multi‑step agentic system** that requires state management, tool calls, and memory. Consider a dedicated agent orchestration library (e.g., LangChain, Vercel AI SDK, or another @reaatech agent framework).
+- **You require real‑time streaming with backpressure or chunk‑based processing.** The `LLMRouter` returns a full response. For streaming, bypass the router and call the provider streaming API directly with your own middleware.
+- **You need to train or fine‑tune models.** This family handles *routing* existing models, not training new ones. Use a training framework (e.g., Hugging Face Transformers, fine‑tuning APIs) instead.
 
 ## Packages
 
