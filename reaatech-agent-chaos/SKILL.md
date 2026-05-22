@@ -14,7 +14,19 @@ These packages provide a fault injection toolkit for testing the resilience of L
 >
 > Reach for this family when working in the **Testing & Security** category. 6 packages live under `@reaatech/agent-chaos-cli` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/agent-chaos-cli @reaatech/agent-chaos-core @reaatech/agent-chaos-scenarios
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -24,18 +36,6 @@ These packages provide a fault injection toolkit for testing the resilience of L
 | `@reaatech/agent-chaos-adapters` | pending npm | Framework adapters that wrap agent tools for LangChain, LlamaIndex, Vercel AI SDK, or any custom tool-call interface, transparently injecting faults from |
 | `@reaatech/agent-chaos-e2e` | pending npm | End-to-end test suite that validates the full agent-chaos pipeline, including scenario loading, schema validation, fault injection, engine event recording, and CLI execution aga… |
 | `@reaatech/agent-chaos-observability` | pending npm | Structured logging, metrics collection, OpenTelemetry tracing, and report generation for agent-chaos fault injection experiments. It provides pluggable collectors and report gen… |
-
-## Quick start
-
-```bash
-npm install @reaatech/agent-chaos-cli @reaatech/agent-chaos-core @reaatech/agent-chaos-scenarios
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

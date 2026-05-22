@@ -14,7 +14,19 @@ These packages provide a framework for building, securing, and operating Model C
 >
 > Reach for this family when working in the **MCP Infrastructure** category. 6 packages live under `@reaatech/mcp-server-auth` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/mcp-server-auth @reaatech/mcp-server-core @reaatech/mcp-server-engine @reaatech/mcp-server-observability @reaatech/mcp-server-tools @reaatech/mcp-server-transport
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -24,18 +36,6 @@ These packages provide a framework for building, securing, and operating Model C
 | `@reaatech/mcp-server-observability` | published v1.0.0 | Provides structured logging, OpenTelemetry tracing, and Prometheus-compatible metrics for Model Context Protocol (MCP) servers. It exports a pre-configured Pino logger, span man… |
 | `@reaatech/mcp-server-tools` | published v1.0.0 | Provides a type-safe `defineTool` helper and an in-memory registry for managing Model Context Protocol (MCP) tools. It includes filesystem auto-discovery for `.tool.ts` files an… |
 | `@reaatech/mcp-server-transport` | published v1.0.0 | Mounts Model Context Protocol (MCP) transport handlers onto an Express application, providing session management and automatic cleanup for Streamable HTTP and SSE transports. It… |
-
-## Quick start
-
-```bash
-npm install @reaatech/mcp-server-auth @reaatech/mcp-server-core @reaatech/mcp-server-engine @reaatech/mcp-server-observability @reaatech/mcp-server-tools @reaatech/mcp-server-transport
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

@@ -14,24 +14,24 @@ These packages provide a pipeline to automatically fix malformed LLM outputs, su
 >
 > Reach for this family when working in the **Reliability & Ops** category. 2 packages live under `@reaatech/structured-repair-core` and siblings.
 
-## Packages
-
-| Package | Status | Purpose |
-| --- | --- | --- |
-| `@reaatech/structured-repair-core` | pending npm | Fixes malformed LLM JSON output by applying a configurable pipeline of repair strategies to ensure compatibility with a provided Zod schema. It exports utility functions that re… |
-| `@reaatech/structured-repair-mcp` | pending npm | Exposes tools for repairing malformed LLM outputs against JSON schemas via the Model Context Protocol. It provides an MCP server that can be run as a standalone process or integ… |
-
-## Quick start
-
-```bash
-# (no packages published to npm yet — install from source or wait for publish)
-```
+## Quick start example
 
 > _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Don't reach for this when
 
 > _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Packages
+
+```bash
+# (no packages published to npm yet — install from source or wait for publish)
+```
+
+| Package | Status | Purpose |
+| --- | --- | --- |
+| `@reaatech/structured-repair-core` | pending npm | Fixes malformed LLM JSON output by applying a configurable pipeline of repair strategies to ensure compatibility with a provided Zod schema. It exports utility functions that re… |
+| `@reaatech/structured-repair-mcp` | pending npm | Exposes tools for repairing malformed LLM outputs against JSON schemas via the Model Context Protocol. It provides an MCP server that can be run as a standalone process or integ… |
 
 ## Issue reporting
 

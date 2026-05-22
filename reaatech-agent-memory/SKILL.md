@@ -14,7 +14,19 @@ These packages provide a managed long-term memory layer for AI agents, handling 
 >
 > Reach for this family when working in the **Domain Pipelines** category. 9 packages live under `@reaatech/agent-memory` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/agent-memory @reaatech/agent-memory-core @reaatech/agent-memory-embedding @reaatech/agent-memory-events @reaatech/agent-memory-extraction @reaatech/agent-memory-llm @reaatech/agent-memory-policies @reaatech/agent-memory-retrieval @reaatech/agent-memory-storage
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -27,18 +39,6 @@ These packages provide a managed long-term memory layer for AI agents, handling 
 | `@reaatech/agent-memory-policies` | published v0.1.0 | Provides a `PolicyEngine` class to manage the lifecycle of agent memories through configurable rules for exponential decay, automated forgetting, and contradiction resolution. I… |
 | `@reaatech/agent-memory-retrieval` | published v0.1.0 | Provides a `MemoryRetriever` class to query and rank stored memories using semantic, temporal, and importance-based strategies, alongside a `ContextInjector` to format results f… |
 | `@reaatech/agent-memory-storage` | published v0.1.0 | Provides a unified interface for persisting and querying agent memories, offering both an in-memory implementation and a PostgreSQL adapter with pgvector support. It includes a… |
-
-## Quick start
-
-```bash
-npm install @reaatech/agent-memory @reaatech/agent-memory-core @reaatech/agent-memory-embedding @reaatech/agent-memory-events @reaatech/agent-memory-extraction @reaatech/agent-memory-llm @reaatech/agent-memory-policies @reaatech/agent-memory-retrieval @reaatech/agent-memory-storage
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

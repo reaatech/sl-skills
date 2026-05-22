@@ -14,24 +14,24 @@ These packages provide a deterministic engine for managing LLM context windows b
 >
 > Reach for this family when working in the **Domain Pipelines** category. 2 packages live under `@reaatech/context-window-planner` and siblings.
 
-## Packages
-
-| Package | Status | Purpose |
-| --- | --- | --- |
-| `@reaatech/context-window-planner` | published v0.1.0 | Manages LLM context windows by providing a builder class, packing strategies, and typed primitives for prioritizing, summarizing, or dropping content. It relies on `js-tiktoken`… |
-| `@reaatech/context-window-planner-cli` | published v0.1.0 | Provides a command-line interface for the `@reaatech/context-window-planner` library, accepting JSON via `stdin` to calculate token-aware packing plans for LLM context windows.… |
-
-## Quick start
-
-```bash
-npm install @reaatech/context-window-planner @reaatech/context-window-planner-cli
-```
+## Quick start example
 
 > _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Don't reach for this when
 
 > _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Packages
+
+```bash
+npm install @reaatech/context-window-planner @reaatech/context-window-planner-cli
+```
+
+| Package | Status | Purpose |
+| --- | --- | --- |
+| `@reaatech/context-window-planner` | published v0.1.0 | Manages LLM context windows by providing a builder class, packing strategies, and typed primitives for prioritizing, summarizing, or dropping content. It relies on `js-tiktoken`… |
+| `@reaatech/context-window-planner-cli` | published v0.1.0 | Provides a command-line interface for the `@reaatech/context-window-planner` library, accepting JSON via `stdin` to calculate token-aware packing plans for LLM context windows.… |
 
 ## Issue reporting
 

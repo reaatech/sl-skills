@@ -14,7 +14,19 @@ These packages convert GenAI semantic convention spans into real-time USD cost m
 >
 > Reach for this family when working in the **Observability & Cost** category. 5 packages live under `@reaatech/otel-cost-exporter` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/otel-cost-exporter @reaatech/otel-cost-exporter-calculator @reaatech/otel-cost-exporter-cli @reaatech/otel-cost-exporter-core @reaatech/otel-cost-exporter-pricing
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -23,18 +35,6 @@ These packages convert GenAI semantic convention spans into real-time USD cost m
 | `@reaatech/otel-cost-exporter-cli` | published v0.1.0 | @reaatech/otel-cost-exporter-cli is a CLI that provides commands to |
 | `@reaatech/otel-cost-exporter-core` | published v0.1.0 | Provides shared TypeScript types, Zod schemas, and GenAI semantic conventions for modeling and validating LLM cost data. It serves as the foundational library for the otel-cost-… |
 | `@reaatech/otel-cost-exporter-pricing` | published v0.1.0 | Provides a lookup interface for LLM token pricing across major providers using bundled, versioned YAML data. It exports functions to load these datasets and instantiate a `Prici… |
-
-## Quick start
-
-```bash
-npm install @reaatech/otel-cost-exporter @reaatech/otel-cost-exporter-calculator @reaatech/otel-cost-exporter-cli @reaatech/otel-cost-exporter-core @reaatech/otel-cost-exporter-pricing
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

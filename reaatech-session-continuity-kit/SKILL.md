@@ -14,7 +14,19 @@ These packages provide a framework for managing multi-turn AI agent conversation
 >
 > Reach for this family when working in the **Domain Pipelines** category. 6 packages live under `@reaatech/session-continuity` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+# (no packages published to npm yet — install from source or wait for publish)
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -24,18 +36,6 @@ These packages provide a framework for managing multi-turn AI agent conversation
 | `@reaatech/session-continuity-storage-memory` | pending npm | Provides an in-memory `IStorageAdapter` implementation for the `@reaatech/session-continuity` library. It exposes a `MemoryAdapter` class that uses a `Map` to store session data… |
 | `@reaatech/session-continuity-storage-redis` | pending npm | A Redis storage adapter implementing the ` |
 | `@reaatech/session-continuity-tokenizers` | pending npm | Provides classes for calculating exact or heuristic token counts for OpenAI and Anthropic models, implementing the `TokenCounter` interface from `@reaatech/session-continuity`.… |
-
-## Quick start
-
-```bash
-# (no packages published to npm yet — install from source or wait for publish)
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

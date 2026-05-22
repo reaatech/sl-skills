@@ -14,7 +14,19 @@ These packages provide a centralized system for managing the lifecycle of AI pro
 >
 > Reach for this family when working in the **Evals & Quality** category. 5 packages live under `@reaatech/prompt-version-control` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+# (no packages published to npm yet — install from source or wait for publish)
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -23,18 +35,6 @@ These packages provide a centralized system for managing the lifecycle of AI pro
 | `@reaatech/prompt-version-control-mcp` | pending npm | Exposes a Model Context Protocol server that provides a `prompt.get` tool for fetching and rendering version-controlled prompts via Handlebars. It requires a configured Prompt V… |
 | `@reaatech/prompt-version-control-server` | pending npm | A Hono app that exposes a REST API for Git-like version control of AI prompts, with eval-gated staging-to-production promotion, A/B traffic splitting, metrics ingestion, and web… |
 | `@reaatech/prompt-version-control-shared` | pending npm | Provides shared TypeScript types, Zod schemas, and utility functions for validating, checksumming, and rendering prompt templates within the Prompt Version Control ecosystem. It… |
-
-## Quick start
-
-```bash
-# (no packages published to npm yet — install from source or wait for publish)
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

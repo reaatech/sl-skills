@@ -14,7 +14,19 @@ These packages provide a modular orchestrator for routing user requests to multi
 >
 > Reach for this family when working in the **Orchestration & Protocols** category. 10 packages live under `@reaatech/agent-mesh` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/agent-mesh @reaatech/agent-mesh-classifier @reaatech/agent-mesh-confidence @reaatech/agent-mesh-gateway @reaatech/agent-mesh-mcp-server @reaatech/agent-mesh-observability @reaatech/agent-mesh-registry @reaatech/agent-mesh-router @reaatech/agent-mesh-session @reaatech/agent-mesh-utils
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -28,18 +40,6 @@ These packages provide a modular orchestrator for routing user requests to multi
 | `@reaatech/agent-mesh-router` | published v1.0.0 | Provides dispatch and validation functions for routing requests to MCP-based agents over |
 | `@reaatech/agent-mesh-session` | published v1.0.0 | Manages multi-turn conversation state and workflow context using Firestore as a persistence layer. It provides a set of asynchronous functions for session lifecycle management,… |
 | `@reaatech/agent-mesh-utils` | published v1.0.0 | Provides a three-state circuit breaker for managing agent health, featuring Firestore-backed persistence and leader election for cross-instance state synchronization. It exposes… |
-
-## Quick start
-
-```bash
-npm install @reaatech/agent-mesh @reaatech/agent-mesh-classifier @reaatech/agent-mesh-confidence @reaatech/agent-mesh-gateway @reaatech/agent-mesh-mcp-server @reaatech/agent-mesh-observability @reaatech/agent-mesh-registry @reaatech/agent-mesh-router @reaatech/agent-mesh-session @reaatech/agent-mesh-utils
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

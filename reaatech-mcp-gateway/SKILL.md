@@ -14,7 +14,19 @@ These packages provide a modular gateway framework for managing Model Context Pr
 >
 > Reach for this family when working in the **MCP Infrastructure** category. 10 packages live under `@reaatech/mcp-gateway-allowlist` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/mcp-gateway-allowlist @reaatech/mcp-gateway-audit @reaatech/mcp-gateway-auth @reaatech/mcp-gateway-cache @reaatech/mcp-gateway-core @reaatech/mcp-gateway-fanout @reaatech/mcp-gateway-gateway @reaatech/mcp-gateway-observability @reaatech/mcp-gateway-rate-limit @reaatech/mcp-gateway-validation
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -28,18 +40,6 @@ These packages provide a modular gateway framework for managing Model Context Pr
 | `@reaatech/mcp-gateway-observability` | published v1.0.0 | Provides OpenTelemetry instrumentation, pre-configured metrics, and health check utilities for the MCP Gateway. It exports functions for registering custom health probes and ini… |
 | `@reaatech/mcp-gateway-rate-limit` | published v1.0.0 | Enforces per-tenant rate limits using a token bucket algorithm with support for in-memory or Redis-backed storage. It provides an Express middleware function and a set of utilit… |
 | `@reaatech/mcp-gateway-validation` | published v1.0.0 | Validates MCP protocol messages and custom tool arguments against JSON Schemas using AJV. It provides an Express middleware for JSON-RPC 2.0 request validation and a schema mana… |
-
-## Quick start
-
-```bash
-npm install @reaatech/mcp-gateway-allowlist @reaatech/mcp-gateway-audit @reaatech/mcp-gateway-auth @reaatech/mcp-gateway-cache @reaatech/mcp-gateway-core @reaatech/mcp-gateway-fanout @reaatech/mcp-gateway-gateway @reaatech/mcp-gateway-observability @reaatech/mcp-gateway-rate-limit @reaatech/mcp-gateway-validation
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

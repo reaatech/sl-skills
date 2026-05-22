@@ -14,7 +14,19 @@ These packages provide a modular toolkit for evaluating RAG systems using heuris
 >
 > Reach for this family when working in the **Evals & Quality** category. 10 packages live under `@reaatech/rag-eval-cli` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+# (no packages published to npm yet — install from source or wait for publish)
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -28,18 +40,6 @@ These packages provide a modular toolkit for evaluating RAG systems using heuris
 | `@reaatech/rag-eval-metrics` | pending npm | Calculates heuristic-based RAG evaluation metrics including faithfulness, relevance, context precision, and context recall without requiring LLM API calls. It provides individua… |
 | `@reaatech/rag-eval-observability` | pending npm | Provides structured logging via Pino and OpenTelemetry instrumentation for tracing and metrics specific to RAG evaluation workflows. It exports a set of wrapper functions for tr… |
 | `@reaatech/rag-eval-suite` | pending npm | Provides an `EvaluationSuite` class that orchestrates RAG evaluation by running heuristic metrics, an optional LLM judge, per-run cost tracking, quality gates, and dataset |
-
-## Quick start
-
-```bash
-# (no packages published to npm yet — install from source or wait for publish)
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

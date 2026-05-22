@@ -14,7 +14,19 @@ These packages provide a load testing framework designed to evaluate the perform
 >
 > Reach for this family when working in the **Testing & Security** category. 9 packages live under `@reaatech/mcp-load-test-analysis` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/mcp-load-test-analysis @reaatech/mcp-load-test-cli @reaatech/mcp-load-test-client @reaatech/mcp-load-test-core @reaatech/mcp-load-test-engine @reaatech/mcp-load-test-metrics @reaatech/mcp-load-test-patterns @reaatech/mcp-load-test-profiles @reaatech/mcp-load-test-reporters
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -27,18 +39,6 @@ These packages provide a load testing framework designed to evaluate the perform
 | `@reaatech/mcp-load-test-patterns` | published v0.1.0 | Provides a `PatternExecutor` class to run stateful, multi-step MCP tool-call sequences for load testing. It requires an MCP client and a metrics collector to execute predefined… |
 | `@reaatech/mcp-load-test-profiles` | published v0.1.0 | Provides async generators that yield concurrency and phase metadata at one-second intervals to drive load testing session pools. It offers pre-built ramp, soak, spike, and custo… |
 | `@reaatech/mcp-load-test-reporters` | published v0.1.0 | Provides classes to format MCP load test results into ANSI-colored console output, GitHub-flavored markdown, or machine-readable JSON. These reporters consume `LoadTestReport` o… |
-
-## Quick start
-
-```bash
-npm install @reaatech/mcp-load-test-analysis @reaatech/mcp-load-test-cli @reaatech/mcp-load-test-client @reaatech/mcp-load-test-core @reaatech/mcp-load-test-engine @reaatech/mcp-load-test-metrics @reaatech/mcp-load-test-patterns @reaatech/mcp-load-test-profiles @reaatech/mcp-load-test-reporters
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

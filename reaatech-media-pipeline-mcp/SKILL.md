@@ -12,23 +12,44 @@ These packages provide a framework for building multi-step media processing work
 
 > _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 >
-> Reach for this family when working in the **Domain Pipelines** category. 20 packages live under `@reaatech/media-pipeline-mcp-anthropic` and siblings.
+> Reach for this family when working in the **Domain Pipelines** category. 29 packages live under `@reaatech/media-pipeline-mcp-anthropic` and siblings.
+
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Packages
+
+```bash
+npm install @reaatech/media-pipeline-mcp-anthropic @reaatech/media-pipeline-mcp-audio-gen @reaatech/media-pipeline-mcp-comfyui @reaatech/media-pipeline-mcp-core @reaatech/media-pipeline-mcp-cost @reaatech/media-pipeline-mcp-deepgram @reaatech/media-pipeline-mcp-doc-extraction @reaatech/media-pipeline-mcp-elevenlabs @reaatech/media-pipeline-mcp-fal @reaatech/media-pipeline-mcp-google @reaatech/media-pipeline-mcp-image-edit @reaatech/media-pipeline-mcp-keyvault @reaatech/media-pipeline-mcp-luma @reaatech/media-pipeline-mcp-meshy @reaatech/media-pipeline-mcp-observability @reaatech/media-pipeline-mcp-ollama @reaatech/media-pipeline-mcp-openai @reaatech/media-pipeline-mcp-persistence @reaatech/media-pipeline-mcp-pipeline @reaatech/media-pipeline-mcp-provenance @reaatech/media-pipeline-mcp-provider-core @reaatech/media-pipeline-mcp-replicate @reaatech/media-pipeline-mcp-resilience @reaatech/media-pipeline-mcp-security @reaatech/media-pipeline-mcp-server @reaatech/media-pipeline-mcp-stability @reaatech/media-pipeline-mcp-storage @reaatech/media-pipeline-mcp-video-gen
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
 | `@reaatech/media-pipeline-mcp-anthropic` | published v0.3.0 | Provides an Anthropic-backed implementation of the media pipeline framework for image analysis, OCR, and structured data extraction. It exposes an `AnthropicProvider` class that… |
 | `@reaatech/media-pipeline-mcp-audio-gen` | published v0.3.0 | Provides a set of operations for audio generation (text-to-speech, speech-to-text, diarization, source separation, music and sound effect generation) as a `create |
+| `@reaatech/media-pipeline-mcp-comfyui` | published v0.3.0 | A ComfyUI provider for the media pipeline framework that runs image generation, image editing, and video generation on your own GPU via local ComfyUI workflows, with zero API co… |
+| `@reaatech/media-pipeline-mcp-core` | published v0.3.0 | Core framework for media pipeline orchestration, providing a Zod-validated type system, pipeline execution engine with variable interpolation, quality gate evaluation, artifact… |
+| `@reaatech/media-pipeline-mcp-cost` | published v0.3.0 | A typed cost ledger for tracking per-operation expenses in a media pipeline, providing an `InMemoryCostLedger` class with `charge()`, `preflight()`, `totalForRun()`, and `totalF… |
 | `@reaatech/media-pipeline-mcp-deepgram` | published v0.3.0 | A Deepgram provider for the media pipeline framework that implements `audio.stt` and `audio.diarize` operations using the Nova-2 model, exposing a `DeepgramProvider` class usabl… |
 | `@reaatech/media-pipeline-mcp-doc-extraction` | published v0.3.0 | Provides an interface for performing OCR, table extraction, structured field parsing, and document summarization by delegating tasks to vision-capable LLMs. It exposes these cap… |
 | `@reaatech/media-pipeline-mcp-elevenlabs` | published v0.3.0 | An ElevenLabs provider for the media-pipeline MCP framework, exporting the `ElevenLabsProvider` class that executes `audio.tts` operations with voice selection, speed, and fine-… |
 | `@reaatech/media-pipeline-mcp-fal` | published v0.3.0 | A FalProvider class that implements the media pipeline provider interface, enabling image generation (Fast Flux Pro), upscaling, background removal, and video generation via the… |
 | `@reaatech/media-pipeline-mcp-google` | published v0.3.0 | A Google Cloud provider class that uses Document AI for OCR, table extraction, and field extraction, and Vertex AI Gemini |
 | `@reaatech/media-pipeline-mcp-image-edit` | published v0.3.0 | Provides local image editing (resize, crop, composite) via Sharp and delegates |
+| `@reaatech/media-pipeline-mcp-keyvault` | published v0.3.0 | Multi-tenant API key vault that resolves tenant-scoped provider credentials from AWS Secrets Manager, GCP Secret Manager, environment variables, or in-memory storage, exposing `… |
+| `@reaatech/media-pipeline-mcp-luma` | published v0.3.0 | A Luma AI provider for the media pipeline framework that generates 3D meshes from text descriptions via the Dream Machine API, exposing a `LumaProvider` class with `execute()`,… |
+| `@reaatech/media-pipeline-mcp-meshy` | published v0.3.0 | A Meshy-4 provider for the media-pipeline framework that generates 3D meshes from text prompts or reference images, supporting PBR textures and GLB/FBX/OBJ/USDZ output formats.… |
 | `@reaatech/media-pipeline-mcp-observability` | published v0.3.0 | A service facade (`createObservabilityService`) that bundles OpenTelemetry tracing, Prometheus metrics, structured JSON logging, |
+| `@reaatech/media-pipeline-mcp-ollama` | published v0.3.0 | A local Ollama provider for the media-pipeline framework that exposes text completion, embedding generation, and image description via any Ollama model. It provides an `OllamaPr… |
 | `@reaatech/media-pipeline-mcp-openai` | published v0.3.0 | An OpenAI provider class (`OpenAIProvider`) that integrates image generation (DALL·E 3), image description (GPT‑4o Vision), text‑to‑speech (TTS‑1), and speech‑to‑text (Whisper‑1… |
+| `@reaatech/media-pipeline-mcp-persistence` | published v0.3.0 | Provides in-memory and Redis-backed pipeline state store abstractions with optimistic locking, run lifecycle management, event log persistence, and tenant-scoped queries for mul… |
 | `@reaatech/media-pipeline-mcp-pipeline` | published v0.3.0 | Orchestrates multi-step media workflows through template management, variable interpolation, and step validation. It provides a `PipelineOperations` class that handles the insta… |
+| `@reaatech/media-pipeline-mcp-provenance` | published v0.3.0 | A C2PA content provenance signing library for AI-generated media that embeds tamper-evident manifests naming the model, pipeline DAG, and operator. Exports a `ProvenanceSigner`… |
 | `@reaatech/media-pipeline-mcp-provider-core` | published v0.3.0 | Provides an abstract `MediaProvider` base class and shared TypeScript interfaces to standardize the implementation of media generation backends. It includes built-in utilities f… |
 | `@reaatech/media-pipeline-mcp-replicate` | published v0.3.0 | Provides a Replicate-backed provider class for the media-pipeline framework, enabling image, audio, and video processing tasks like upscaling, background removal, and generation… |
 | `@reaatech/media-pipeline-mcp-resilience` | published v0.3.0 | Implements circuit breaker and exponential backoff retry patterns to protect downstream services from cascading failures. It provides factory functions for creating configurable… |
@@ -38,18 +59,6 @@ These packages provide a framework for building multi-step media processing work
 | `@reaatech/media-pipeline-mcp-storage` | published v0.3.0 | Provides a unified `ArtifactStore` interface for persisting and retrieving |
 | `@reaatech/media-pipeline-mcp-video-gen` | published v0.3.0 | Provides a `createVideoGenOperations` function that returns a class with methods for text-to-video and image-to-video generation via provider delegation (e.g., Kling), plus loca… |
 | `@reaatech/media-pipeline-mcp` | pending npm | Orchestrates media processing workflows through a `PipelineExecutor` class that handles sequential step execution, artifact tracking, and quality gate validation. It provides a… |
-
-## Quick start
-
-```bash
-npm install @reaatech/media-pipeline-mcp-anthropic @reaatech/media-pipeline-mcp-audio-gen @reaatech/media-pipeline-mcp-deepgram @reaatech/media-pipeline-mcp-doc-extraction @reaatech/media-pipeline-mcp-elevenlabs @reaatech/media-pipeline-mcp-fal @reaatech/media-pipeline-mcp-google @reaatech/media-pipeline-mcp-image-edit @reaatech/media-pipeline-mcp-observability @reaatech/media-pipeline-mcp-openai @reaatech/media-pipeline-mcp-pipeline @reaatech/media-pipeline-mcp-provider-core @reaatech/media-pipeline-mcp-replicate @reaatech/media-pipeline-mcp-resilience @reaatech/media-pipeline-mcp-security @reaatech/media-pipeline-mcp-server @reaatech/media-pipeline-mcp-stability @reaatech/media-pipeline-mcp-storage @reaatech/media-pipeline-mcp-video-gen
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

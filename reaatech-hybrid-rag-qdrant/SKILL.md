@@ -14,7 +14,19 @@ These packages give you a complete hybrid RAG system combining vector search (Qd
 >
 > Reach for this family when working in the **Domain Pipelines** category. 10 packages live under `@reaatech/hybrid-rag` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/hybrid-rag @reaatech/hybrid-rag-cli @reaatech/hybrid-rag-embedding @reaatech/hybrid-rag-evaluation @reaatech/hybrid-rag-ingestion @reaatech/hybrid-rag-mcp-server @reaatech/hybrid-rag-observability @reaatech/hybrid-rag-pipeline @reaatech/hybrid-rag-qdrant @reaatech/hybrid-rag-retrieval
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -28,18 +40,6 @@ These packages give you a complete hybrid RAG system combining vector search (Qd
 | `@reaatech/hybrid-rag-pipeline` | published v0.1.0 | A single `RAGPipeline` class that orchestrates document ingestion and hybrid (vector + BM25) retrieval with optional reranking, backed by Qdrant and configurable embedding provi… |
 | `@reaatech/hybrid-rag-qdrant` | published v0.1.0 | Provides a wrapper class for the Qdrant REST client that simplifies collection management, batch upserting, and metadata-filtered vector searches. It acts as an abstraction laye… |
 | `@reaatech/hybrid-rag-retrieval` | published v0.1.0 | Orchestrates hybrid RAG pipelines by combining Qdrant-based vector search, in-process BM25 keyword search, and cross-encoder reranking. It provides a `HybridRetriever` class tha… |
-
-## Quick start
-
-```bash
-npm install @reaatech/hybrid-rag @reaatech/hybrid-rag-cli @reaatech/hybrid-rag-embedding @reaatech/hybrid-rag-evaluation @reaatech/hybrid-rag-ingestion @reaatech/hybrid-rag-mcp-server @reaatech/hybrid-rag-observability @reaatech/hybrid-rag-pipeline @reaatech/hybrid-rag-qdrant @reaatech/hybrid-rag-retrieval
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

@@ -14,7 +14,19 @@ These packages provide a standardized lifecycle for transferring AI agent conver
 >
 > Reach for this family when working in the **Orchestration & Protocols** category. 6 packages live under `@reaatech/agent-handoff` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/agent-handoff @reaatech/agent-handoff-compression @reaatech/agent-handoff-protocol @reaatech/agent-handoff-routing @reaatech/agent-handoff-transport @reaatech/agent-handoff-validation
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -24,18 +36,6 @@ These packages provide a standardized lifecycle for transferring AI agent conver
 | `@reaatech/agent-handoff-routing` | published v0.1.0 | Selects the optimal agent for a handoff using a weighted scoring algorithm that evaluates skills, domain expertise, load, and language. It provides a `CapabilityBasedRouter` cla… |
 | `@reaatech/agent-handoff-transport` | published v0.1.0 | Provides transport layer implementations for agent-to-agent handoffs via MCP tool calls or HTTP POST requests. It includes a factory class that performs health checks and auto-s… |
 | `@reaatech/agent-handoff-validation` | published v0.1.0 | Validates Agent Handoff Protocol payloads and agent compatibility using a `HandoffValidator` class or standalone manual functions. It optionally integrates with Zod for schema e… |
-
-## Quick start
-
-```bash
-npm install @reaatech/agent-handoff @reaatech/agent-handoff-compression @reaatech/agent-handoff-protocol @reaatech/agent-handoff-routing @reaatech/agent-handoff-transport @reaatech/agent-handoff-validation
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

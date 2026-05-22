@@ -14,7 +14,19 @@ These packages provide a suite of modular primitives for implementing multi-tena
 >
 > Reach for this family when working in the **MCP Infrastructure** category. 9 packages live under `@reaatech/multi-tenant-mcp-artifact-store` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/multi-tenant-mcp-artifact-store @reaatech/multi-tenant-mcp-config-isolation @reaatech/multi-tenant-mcp-cost-accounting @reaatech/multi-tenant-mcp-middleware @reaatech/multi-tenant-mcp-observability @reaatech/multi-tenant-mcp-rate-limiter @reaatech/multi-tenant-mcp-tenant-resolver @reaatech/multi-tenant-mcp-tool-visibility @reaatech/multi-tenant-mcp-types
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -27,18 +39,6 @@ These packages provide a suite of modular primitives for implementing multi-tena
 | `@reaatech/multi-tenant-mcp-tenant-resolver` | published v0.1.0 | Resolve tenant identity from incoming MCP requests using headers, JWTs, or API keys, and propagate the resolved tenant context through `AsyncLocalStorage` via the provided resol… |
 | `@reaatech/multi-tenant-mcp-tool-visibility` | published v0.1.0 | Provides a `VisibilityEngineImpl` class to restrict access to Model Context Protocol (MCP) tools, resources, and prompts based on tenant-specific allow-lists, deny-lists, or cus… |
 | `@reaatech/multi-tenant-mcp-types` | published v0.1.0 | Shared |
-
-## Quick start
-
-```bash
-npm install @reaatech/multi-tenant-mcp-artifact-store @reaatech/multi-tenant-mcp-config-isolation @reaatech/multi-tenant-mcp-cost-accounting @reaatech/multi-tenant-mcp-middleware @reaatech/multi-tenant-mcp-observability @reaatech/multi-tenant-mcp-rate-limiter @reaatech/multi-tenant-mcp-tenant-resolver @reaatech/multi-tenant-mcp-tool-visibility @reaatech/multi-tenant-mcp-types
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

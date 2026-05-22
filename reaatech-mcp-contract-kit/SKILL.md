@@ -14,7 +14,19 @@ These packages provide a comprehensive suite for testing Model Context Protocol 
 >
 > Reach for this family when working in the **Testing & Security** category. 6 packages live under `@reaatech/mcp-contract-cli` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/mcp-contract-cli @reaatech/mcp-contract-client @reaatech/mcp-contract-core @reaatech/mcp-contract-observability @reaatech/mcp-contract-reporters @reaatech/mcp-contract-validators
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -24,18 +36,6 @@ These packages provide a comprehensive suite for testing Model Context Protocol 
 | `@reaatech/mcp-contract-observability` | published v0.1.0 | Provides structured logging via Pino, in-memory metrics collection, and W3C trace context propagation for Model Context Protocol (MCP) contract validation. It exports a suite of… |
 | `@reaatech/mcp-contract-reporters` | published v0.1.0 | Converts `TestReport` objects from `@reaatech/mcp-contract-core` into console, JSON, Markdown, or HTML strings. It provides a collection of formatting functions and a dispatcher… |
 | `@reaatech/mcp-contract-validators` | published v0.1.0 | Validates Model Context Protocol (MCP) server compliance, security, and performance through a collection of validator functions and suites. It provides individual validator obje… |
-
-## Quick start
-
-```bash
-npm install @reaatech/mcp-contract-cli @reaatech/mcp-contract-client @reaatech/mcp-contract-core @reaatech/mcp-contract-observability @reaatech/mcp-contract-reporters @reaatech/mcp-contract-validators
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

@@ -14,7 +14,19 @@ These packages provide a circuit breaker implementation designed for agent-to-to
 >
 > Reach for this family when working in the **Reliability & Ops** category. 7 packages live under `@reaatech/circuit-breaker-agents` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/circuit-breaker-agents @reaatech/circuit-breaker-core @reaatech/circuit-breaker-persistence
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -25,18 +37,6 @@ These packages provide a circuit breaker implementation designed for agent-to-to
 | `@reaatech/circuit-breaker-example-dynamodb` | pending npm | Description pending. |
 | `@reaatech/circuit-breaker-example-firestore` | pending npm | Description pending. |
 | `@reaatech/circuit-breaker-example-redis` | pending npm | Description pending. |
-
-## Quick start
-
-```bash
-npm install @reaatech/circuit-breaker-agents @reaatech/circuit-breaker-core @reaatech/circuit-breaker-persistence
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

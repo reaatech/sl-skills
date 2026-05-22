@@ -14,7 +14,19 @@ These packages provide instrumented wrappers for OpenAI, Anthropic, Vertex AI, a
 >
 > Reach for this family when working in the **Observability & Cost** category. 9 packages live under `@reaatech/otel-genai-semconv-anthropic` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/otel-genai-semconv-anthropic @reaatech/otel-genai-semconv-bedrock @reaatech/otel-genai-semconv-core @reaatech/otel-genai-semconv-exporters @reaatech/otel-genai-semconv-instrumentation @reaatech/otel-genai-semconv-observability @reaatech/otel-genai-semconv-openai @reaatech/otel-genai-semconv-utils @reaatech/otel-genai-semconv-vertexai
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -27,18 +39,6 @@ These packages provide instrumented wrappers for OpenAI, Anthropic, Vertex AI, a
 | `@reaatech/otel-genai-semconv-openai` | published v0.1.0 | Instruments the OpenAI Node.js SDK to automatically emit OpenTelemetry spans compliant with GenAI semantic conventions. It provides an `OpenAIInstrumentation` class that wraps t… |
 | `@reaatech/otel-genai-semconv-utils` | published v0.1.0 | Provides classes for estimating LLM token usage, calculating request costs based on provider-specific pricing, and recursively redacting PII from nested objects. It exposes `Tok… |
 | `@reaatech/otel-genai-semconv-vertexai` | published v0.1.0 | Instruments the Google Generative Language (Vertex AI) SDK to automatically emit OpenTelemetry spans following GenAI semantic conventions. It provides an `instrument` function t… |
-
-## Quick start
-
-```bash
-npm install @reaatech/otel-genai-semconv-anthropic @reaatech/otel-genai-semconv-bedrock @reaatech/otel-genai-semconv-core @reaatech/otel-genai-semconv-exporters @reaatech/otel-genai-semconv-instrumentation @reaatech/otel-genai-semconv-observability @reaatech/otel-genai-semconv-openai @reaatech/otel-genai-semconv-utils @reaatech/otel-genai-semconv-vertexai
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

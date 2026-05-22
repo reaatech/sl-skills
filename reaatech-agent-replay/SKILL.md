@@ -14,7 +14,19 @@ These packages let you record, replay, and debug AI agent interactions determini
 >
 > Reach for this family when working in the **Testing & Security** category. 7 packages live under `@reaatech/agent-replay` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/agent-replay @reaatech/agent-replay-cli @reaatech/agent-replay-core @reaatech/agent-replay-integrations @reaatech/agent-replay-interceptors @reaatech/agent-replay-shared
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -25,18 +37,6 @@ These packages let you record, replay, and debug AI agent interactions determini
 | `@reaatech/agent-replay-interceptors` | published v0.1.0 | Monkey-patches OpenAI and Anthropic SDK clients to transparently record all LLM API calls (including streaming responses) into Agent Replay traces, exposing installable intercep… |
 | `@reaatech/agent-replay-shared` | published v0.1.0 | Shared TypeScript types, interfaces, and error classes that define the trace data model, LLM provider abstractions, and storage contracts for the Agent Replay ecosystem. This pa… |
 | `@reaatech/agent-replay-web-ui` | pending npm | Provides a web-based interface for visualizing and inspecting recorded agent traces, including span timelines, event logs, and diff comparisons. It is designed to consume trace… |
-
-## Quick start
-
-```bash
-npm install @reaatech/agent-replay @reaatech/agent-replay-cli @reaatech/agent-replay-core @reaatech/agent-replay-integrations @reaatech/agent-replay-interceptors @reaatech/agent-replay-shared
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

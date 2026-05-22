@@ -14,7 +14,19 @@ These packages give you drop-in wrappers for OpenAI, Anthropic, and Google SDKs 
 >
 > Reach for this family when working in the **Observability & Cost** category. 8 packages live under `@reaatech/llm-cost-telemetry` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/llm-cost-telemetry @reaatech/llm-cost-telemetry-aggregation @reaatech/llm-cost-telemetry-calculator @reaatech/llm-cost-telemetry-cli @reaatech/llm-cost-telemetry-exporters @reaatech/llm-cost-telemetry-mcp @reaatech/llm-cost-telemetry-observability @reaatech/llm-cost-telemetry-providers
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -26,18 +38,6 @@ These packages give you drop-in wrappers for OpenAI, Anthropic, and Google SDKs 
 | `@reaatech/llm-cost-telemetry-mcp` | published v0.1.0 | Exposes LLM cost tracking, aggregation, and budget enforcement as a set of Model Context Protocol (MCP) tools. It provides a factory function that returns an MCP server instance… |
 | `@reaatech/llm-cost-telemetry-observability` | published v0.1.0 | Provides structured OpenTelemetry tracing and metrics for monitoring LLM costs, plus Pino-based logging with PII redaction, exposed as `TracingManager`, `MetricsManager`, and `g… |
 | `@reaatech/llm-cost-telemetry-providers` | published v0.1.0 | Wraps official OpenAI, Anthropic, and Google Generative AI SDK clients to automatically capture token usage, latency, and custom metadata for every API call. It provides wrapper… |
-
-## Quick start
-
-```bash
-npm install @reaatech/llm-cost-telemetry @reaatech/llm-cost-telemetry-aggregation @reaatech/llm-cost-telemetry-calculator @reaatech/llm-cost-telemetry-cli @reaatech/llm-cost-telemetry-exporters @reaatech/llm-cost-telemetry-mcp @reaatech/llm-cost-telemetry-observability @reaatech/llm-cost-telemetry-providers
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

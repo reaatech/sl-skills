@@ -14,7 +14,19 @@ These packages provide a diagnostic suite for validating and profiling Model Con
 >
 > Reach for this family when working in the **MCP Infrastructure** category. 6 packages live under `@reaatech/mcp-server-doctor-cli` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/mcp-server-doctor-cli @reaatech/mcp-server-doctor-client @reaatech/mcp-server-doctor-core @reaatech/mcp-server-doctor-engine @reaatech/mcp-server-doctor-observability @reaatech/mcp-server-doctor-reporters
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -24,18 +36,6 @@ These packages provide a diagnostic suite for validating and profiling Model Con
 | `@reaatech/mcp-server-doctor-engine` | published v1.0.0 | Executes a suite of eight diagnostic checks against an MCP server to generate a structured `DiagnosticReport` with a composite A–F grade. It provides a `DiagnosticEngine` class… |
 | `@reaatech/mcp-server-doctor-observability` | published v1.0.0 | Provides structured logging, OpenTelemetry metrics, and distributed tracing specifically for MCP server diagnostic checks. It exports a singleton Pino logger and a set of helper… |
 | `@reaatech/mcp-server-doctor-reporters` | published v1.0.0 | Converts `DiagnosticReport` objects into console, JSON, Markdown, or HTML strings. It provides a `formatReport` dispatch function and individual formatter exports for use with d… |
-
-## Quick start
-
-```bash
-npm install @reaatech/mcp-server-doctor-cli @reaatech/mcp-server-doctor-client @reaatech/mcp-server-doctor-core @reaatech/mcp-server-doctor-engine @reaatech/mcp-server-doctor-observability @reaatech/mcp-server-doctor-reporters
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

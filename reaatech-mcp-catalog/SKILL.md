@@ -14,23 +14,23 @@ These packages provide a centralized registry for discovering, monitoring, and m
 >
 > Reach for this family when working in the **MCP Infrastructure** category. 1 package live under `@reaatech/mcp-catalog-shared` and siblings.
 
-## Packages
-
-| Package | Status | Purpose |
-| --- | --- | --- |
-| `@reaatech/mcp-catalog-shared` | published v1.0.0 | Description pending. |
-
-## Quick start
-
-```bash
-npm install @reaatech/mcp-catalog-shared
-```
+## Quick start example
 
 > _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Don't reach for this when
 
 > _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Packages
+
+```bash
+npm install @reaatech/mcp-catalog-shared
+```
+
+| Package | Status | Purpose |
+| --- | --- | --- |
+| `@reaatech/mcp-catalog-shared` | published v1.0.0 | Description pending. |
 
 ## Issue reporting
 

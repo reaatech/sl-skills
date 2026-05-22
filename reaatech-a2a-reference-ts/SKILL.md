@@ -14,7 +14,19 @@ These packages provide a complete TypeScript implementation of the Agent-to-Agen
 >
 > Reach for this family when working in the **Orchestration & Protocols** category. 7 packages live under `@reaatech/a2a-reference-auth` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/a2a-reference-auth @reaatech/a2a-reference-client @reaatech/a2a-reference-core @reaatech/a2a-reference-mcp-bridge @reaatech/a2a-reference-observability @reaatech/a2a-reference-persistence @reaatech/a2a-reference-server
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -25,18 +37,6 @@ These packages provide a complete TypeScript implementation of the Agent-to-Agen
 | `@reaatech/a2a-reference-observability` | published v0.1.0 | Provides pre-configured Pino logger instances and utility functions for propagating correlation IDs across asynchronous boundaries. It exports a default logger and factory funct… |
 | `@reaatech/a2a-reference-persistence` | published v0.1.0 | Provides a standardized `TaskStore` interface for persisting A2A task state, offering implementations for in-memory, file-system, and Redis storage. It supports paginated listin… |
 | `@reaatech/a2a-reference-server` | published v0.1.0 | Provides Express and Hono adapters for building interoperable AI agents using JSON-RPC 2.0 routing, SSE streaming, and a task lifecycle state machine. It exposes factory functio… |
-
-## Quick start
-
-```bash
-npm install @reaatech/a2a-reference-auth @reaatech/a2a-reference-client @reaatech/a2a-reference-core @reaatech/a2a-reference-mcp-bridge @reaatech/a2a-reference-observability @reaatech/a2a-reference-persistence @reaatech/a2a-reference-server
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

@@ -14,7 +14,19 @@ These TypeScript packages give you a complete evaluation suite for intent classi
 >
 > Reach for this family when working in the **Evals & Quality** category. 8 packages live under `@reaatech/classifier-evals` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/classifier-evals @reaatech/classifier-evals-cli @reaatech/classifier-evals-dataset @reaatech/classifier-evals-exporters @reaatech/classifier-evals-gates @reaatech/classifier-evals-judge @reaatech/classifier-evals-mcp-server @reaatech/classifier-evals-metrics
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -26,18 +38,6 @@ These TypeScript packages give you a complete evaluation suite for intent classi
 | `@reaatech/classifier-evals-judge` | published v0.1.0 | Evaluates classification model outputs using LLM-as-a-judge with support for consensus voting, real-time cost tracking, and PII redaction. It provides a `createJudgeEngine` fact… |
 | `@reaatech/classifier-evals-mcp-server` | published v0.1.0 | Exposes classifier evaluation workflows—including running evaluations, checking regression gates, and performing LLM-as-judge comparisons—as a set of Model Context Protocol (MCP… |
 | `@reaatech/classifier-evals-metrics` | published v0.1.0 | Calculates classification performance metrics, including confusion matrices, multi-class F1 scores, and statistical model comparisons. It provides a collection of utility functi… |
-
-## Quick start
-
-```bash
-npm install @reaatech/classifier-evals @reaatech/classifier-evals-cli @reaatech/classifier-evals-dataset @reaatech/classifier-evals-exporters @reaatech/classifier-evals-gates @reaatech/classifier-evals-judge @reaatech/classifier-evals-mcp-server @reaatech/classifier-evals-metrics
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

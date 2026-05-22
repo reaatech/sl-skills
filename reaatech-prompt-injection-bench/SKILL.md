@@ -14,7 +14,19 @@ These packages provide a standardized framework for benchmarking and evaluating 
 >
 > Reach for this family when working in the **Testing & Security** category. 9 packages live under `@reaatech/pi-bench-adapters` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/pi-bench-adapters @reaatech/pi-bench-core @reaatech/pi-bench-corpus @reaatech/pi-bench-leaderboard @reaatech/pi-bench-mcp-server @reaatech/pi-bench-observability @reaatech/pi-bench-runner @reaatech/pi-bench-scoring prompt-injection-bench
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -27,18 +39,6 @@ These packages provide a standardized framework for benchmarking and evaluating 
 | `@reaatech/pi-bench-runner` | published v1.0.1 | Executes prompt injection benchmarks by running attack suites against defense adapters in parallel with configurable timeouts and progress tracking. It provides factory function… |
 | `@reaatech/pi-bench-scoring` | published v1.0.1 | Calculates weighted scores, statistical significance, and effect sizes for prompt injection defense benchmarks. It provides a collection of utility functions for computing metri… |
 | `prompt-injection-bench` | published v1.0.1 | A CLI and library for running standardized benchmarks of prompt-injection defense mechanisms, providing attack corpora, defense adapters, and commands to execute, compare, and r… |
-
-## Quick start
-
-```bash
-npm install @reaatech/pi-bench-adapters @reaatech/pi-bench-core @reaatech/pi-bench-corpus @reaatech/pi-bench-leaderboard @reaatech/pi-bench-mcp-server @reaatech/pi-bench-observability @reaatech/pi-bench-runner @reaatech/pi-bench-scoring prompt-injection-bench
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

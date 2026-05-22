@@ -14,7 +14,19 @@ These packages provide a modular toolkit for evaluating AI agent performance, co
 >
 > Reach for this family when working in the **Evals & Quality** category. 13 packages live under `@reaatech/agent-eval-harness-cli` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/agent-eval-harness-cli @reaatech/agent-eval-harness-cost @reaatech/agent-eval-harness-gate @reaatech/agent-eval-harness-golden @reaatech/agent-eval-harness-judge @reaatech/agent-eval-harness-latency @reaatech/agent-eval-harness-mcp-server @reaatech/agent-eval-harness-observability @reaatech/agent-eval-harness-suite @reaatech/agent-eval-harness-tool-use @reaatech/agent-eval-harness-trajectory @reaatech/agent-eval-harness-types
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -31,18 +43,6 @@ These packages provide a modular toolkit for evaluating AI agent performance, co
 | `@reaatech/agent-eval-harness-trajectory` | published v0.1.0 | Provides utilities for loading, validating, and evaluating agent conversation trajectories from JSONL files. It exports functions for parsing data, calculating coherence and goa… |
 | `@reaatech/agent-eval-harness-types` | published v0.1.0 | Provides TypeScript interfaces and Zod schemas for defining agent trajectories, evaluation results, latency budgets, and regression gates. It serves as a shared type library for… |
 | `@reaatech/agent-eval-harness-infra` | pending npm | Provides a collection of Terraform modules and environment configurations for deploying the agent-eval-harness across AWS, Azure, GCP, OCI, Vercel, and Netlify. It requires Terr… |
-
-## Quick start
-
-```bash
-npm install @reaatech/agent-eval-harness-cli @reaatech/agent-eval-harness-cost @reaatech/agent-eval-harness-gate @reaatech/agent-eval-harness-golden @reaatech/agent-eval-harness-judge @reaatech/agent-eval-harness-latency @reaatech/agent-eval-harness-mcp-server @reaatech/agent-eval-harness-observability @reaatech/agent-eval-harness-suite @reaatech/agent-eval-harness-tool-use @reaatech/agent-eval-harness-trajectory @reaatech/agent-eval-harness-types
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

@@ -14,7 +14,19 @@ These packages provide a unified framework for defining, validating, and executi
 >
 > Reach for this family when working in the **Orchestration & Protocols** category. 7 packages live under `@reaatech/structured-function-calling-ai-adapter-anthropic` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+# (no packages published to npm yet — install from source or wait for publish)
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -25,18 +37,6 @@ These packages provide a unified framework for defining, validating, and executi
 | `@reaatech/structured-function-calling-ai-core` | pending npm | Defines type-safe AI tool interfaces using Zod schemas and provides a `ToolRegistry` class to manage their execution. It includes a utility function to convert these Zod schemas… |
 | `@reaatech/structured-function-calling-ai-engine` | pending npm | Provides a `ToolExecutor` class that manages the lifecycle of AI tool calls, including Zod schema validation, retry logic, and circuit breaking via a composable middleware pipel… |
 | `@reaatech/structured-function-calling-ai-mcp-server` | pending npm | Exposes a `ToolRegistry` as a Model Context Protocol (MCP) server, allowing MCP clients to discover and execute registered functions. It provides an `McpToolServer` class that w… |
-
-## Quick start
-
-```bash
-# (no packages published to npm yet — install from source or wait for publish)
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

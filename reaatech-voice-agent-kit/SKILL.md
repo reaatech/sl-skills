@@ -14,7 +14,19 @@ These packages provide a transport layer for real-time voice AI, orchestrating t
 >
 > Reach for this family when working in the **Domain Pipelines** category. 5 packages live under `@reaatech/voice-agent-core` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+# (no packages published to npm yet — install from source or wait for publish)
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -23,18 +35,6 @@ These packages provide a transport layer for real-time voice AI, orchestrating t
 | `@reaatech/voice-agent-stt` | pending npm | Provides a unified interface for streaming audio to Deepgram, AWS Transcribe, or Google Cloud Speech-to-Text via provider-specific classes. It includes built-in utilities for au… |
 | `@reaatech/voice-agent-telephony` | pending npm | Provides a `TwilioMediaStreamHandler` class that manages the bidirectional Twilio Media Streams WebSocket protocol, including audio buffering, barge-in detection, and event life… |
 | `@reaatech/voice-agent-tts` | pending npm | Provider-agnostic text-to-speech interface using `AsyncIterable<AudioChunk>` for streaming audio, with built-in adapters for Deepgram Aura, AWS Polly, and Google Cloud TTS, plus… |
-
-## Quick start
-
-```bash
-# (no packages published to npm yet — install from source or wait for publish)
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

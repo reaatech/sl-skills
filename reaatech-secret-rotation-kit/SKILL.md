@@ -14,7 +14,19 @@ These packages provide a framework for automating secret rotation across AWS Sec
 >
 > Reach for this family when working in the **Reliability & Ops** category. 7 packages live under `@reaatech/secret-rotation-core` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+# (no packages published to npm yet — install from source or wait for publish)
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -25,18 +37,6 @@ These packages provide a framework for automating secret rotation across AWS Sec
 | `@reaatech/secret-rotation-provider-vault` | pending npm | Provides a `VaultProvider` class that implements the `SecretProvider` interface for HashiCorp Vault KV v2 engines. It requires the `node-vault` package at runtime to facilitate… |
 | `@reaatech/secret-rotation-sidecar` | pending npm | Exposes a REST API and SSE stream for managing secret rotations, health checks, and Prometheus metrics. It provides a `SidecarServer` class that wraps a `RotationManager` instan… |
 | `@reaatech/secret-rotation-types` | pending npm | Provides TypeScript interfaces, abstract base classes, and error definitions for building custom secret rotation providers and consumers. This package contains no runtime code a… |
-
-## Quick start
-
-```bash
-# (no packages published to npm yet — install from source or wait for publish)
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

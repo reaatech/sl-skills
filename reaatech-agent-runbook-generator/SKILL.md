@@ -14,7 +14,19 @@ These packages automate the creation of operator runbooks by scanning service re
 >
 > Reach for this family when working in the **Reliability & Ops** category. 15 packages live under `@reaatech/agent-runbook` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/agent-runbook @reaatech/agent-runbook-agent @reaatech/agent-runbook-alerts @reaatech/agent-runbook-analyzer @reaatech/agent-runbook-cli @reaatech/agent-runbook-dashboards @reaatech/agent-runbook-failure-modes @reaatech/agent-runbook-health-checks @reaatech/agent-runbook-incident @reaatech/agent-runbook-mcp @reaatech/agent-runbook-observability @reaatech/agent-runbook-rollback @reaatech/agent-runbook-runbook @reaatech/agent-runbook-service-map
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -33,18 +45,6 @@ These packages automate the creation of operator runbooks by scanning service re
 | `@reaatech/agent-runbook-runbook` | published v0.1.0 | Assembles and formats infrastructure runbooks from analysis data using a collection of pipeline functions, template utilities, and multi-format exporters. It provides tools to v… |
 | `@reaatech/agent-runbook-service-map` | published v0.1.0 | Analyzes inter-service dependencies from a repository path to generate directed graphs and perform critical path analysis. It provides a set of utility functions to export these… |
 | `@reaatech/agent-runbook-e2e` | pending npm |  |
-
-## Quick start
-
-```bash
-npm install @reaatech/agent-runbook @reaatech/agent-runbook-agent @reaatech/agent-runbook-alerts @reaatech/agent-runbook-analyzer @reaatech/agent-runbook-cli @reaatech/agent-runbook-dashboards @reaatech/agent-runbook-failure-modes @reaatech/agent-runbook-health-checks @reaatech/agent-runbook-incident @reaatech/agent-runbook-mcp @reaatech/agent-runbook-observability @reaatech/agent-runbook-rollback @reaatech/agent-runbook-runbook @reaatech/agent-runbook-service-map
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

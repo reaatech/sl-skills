@@ -14,7 +14,19 @@ These packages provide a centralized routing engine for managing LLM requests ac
 >
 > Reach for this family when working in the **Orchestration & Protocols** category. 7 packages live under `@reaatech/llm-router-cli` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/llm-router-cli @reaatech/llm-router-core @reaatech/llm-router-engine @reaatech/llm-router-fallback @reaatech/llm-router-mcp @reaatech/llm-router-strategies @reaatech/llm-router-telemetry
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -25,18 +37,6 @@ These packages provide a centralized routing engine for managing LLM requests ac
 | `@reaatech/llm-router-mcp` | published v1.0.0 | Exposes an MCP server (via `createMCPServer`) that provides three tools—`route_request`, `get_model_info`, and `get_cost_report`—allowing AI agents and orchestration frameworks… |
 | `@reaatech/llm-router-strategies` | published v1.0.0 | Provides a collection of routing strategies and an orchestrator class to select the optimal LLM for a request based on cost, latency, capability, or judgment. It exposes a `Stra… |
 | `@reaatech/llm-router-telemetry` | published v1.0.0 | Tracks LLM request costs and enforces budget limits through a set of utility classes for recording, aggregating, and reporting usage data. It provides an OpenTelemetry-compatibl… |
-
-## Quick start
-
-```bash
-npm install @reaatech/llm-router-cli @reaatech/llm-router-core @reaatech/llm-router-engine @reaatech/llm-router-fallback @reaatech/llm-router-mcp @reaatech/llm-router-strategies @reaatech/llm-router-telemetry
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

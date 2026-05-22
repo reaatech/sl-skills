@@ -10,11 +10,42 @@ These packages provide a real-time enforcement layer for LLM agent systems, allo
 
 ## When to use this
 
-> _Editorial copy pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
->
-> Reach for this family when working in the **Observability & Cost** category. 8 packages live under `@reaatech/agent-budget-cli` and siblings.
+Reach for `@reaatech/agent-budget-controller` packages when you need to enforce LLM spending limits in real time before every inference call. The primary trigger is a user request that mentions **"set a budget for this agent"**, **"cap spend per session"**, **"warn me if costs exceed $X"**, or **"block expensive model calls"**. This family solves the problem of preventing cost overruns in multi-tenant or multi-agent systems where manual monitoring is impractical. It is designed to intercept LLM calls, evaluate remaining budget, and take configurable actions — downgrade to a cheaper model, filter expensive tools, or deny the request outright — before the call is dispatched.
+
+The system is modular: you wire a `BudgetController` (from the engine) to a `SpendStore` (e.g., in-memory circular buffer from `spend-tracker`) and a `PricingEngine` (from the pricing package) that knows per-token costs. Integrations are provided as Express/Fastify middleware, a CLI for manual budget management, and an OpenTelemetry bridge that auto-records spend from GenAI span attributes. The types package gives you Zod schemas for policies and enforcement actions. You also get a plugin for LLM routers that filters candidates by remaining budget.
+
+## Quick start example
+
+```typescript
+import { PricingEngine } from '@reaatech/agent-budget-pricing';
+import { InMemorySpendStore } from '@reaatech/agent-budget-spend-tracker';
+import { BudgetController } from '@reaatech/agent-budget-engine';
+
+const pricing = new PricingEngine({ provider: 'openai' });
+const store = new InMemorySpendStore({ windowMs: 3600000 });
+const controller = new BudgetController({ pricing, store, maxSpend: 50 });
+
+// Before each LLM call, check budget and get action
+async function enforce(scope: string, model: string, inputTokens: number) {
+  const cost = pricing.estimateCost(model, inputTokens);
+  const action = controller.checkAndRecord(scope, cost);
+  // action can be 'allow' | 'downgrade' | 'warn' | 'block'
+  return action;
+}
+```
+
+## Don't reach for this when
+
+- **You only need passive cost tracking after the fact.** If the requirement is "log all LLM costs to a database for later analysis" without enforcement, use `@reaatech/otel-cost-exporter` (Observability & Cost family) or a custom OpenTelemetry exporter.
+- **You want to enforce spending limits across multiple services or languages.** This family is TypeScript-only for Node.js. For polyglot enforcement, consider a sidecar proxy or an external rate-limiter like Redis-based token bucket.
+- **You need fine-grained per-user budgets that require querying an external database.** The in-memory `SpendStore` is ephemeral. For persistent per-user spend, bring your own store (implement the `SpendStore` interface) backed by SQLite or PostgreSQL.
+- **You are working inside a serverless function with very short-lived execution context.** Budget state is held in memory; for cold-start-sensitive environments, pre-budget or rely on a managed API gateway rate limit.
 
 ## Packages
+
+```bash
+npm install @reaatech/agent-budget-cli @reaatech/agent-budget-engine @reaatech/agent-budget-llm-router-plugin @reaatech/agent-budget-middleware @reaatech/agent-budget-otel-bridge @reaatech/agent-budget-pricing @reaatech/agent-budget-spend-tracker @reaatech/agent-budget-types
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -26,18 +57,6 @@ These packages provide a real-time enforcement layer for LLM agent systems, allo
 | `@reaatech/agent-budget-pricing` | published v0.1.0 | Calculates LLM token costs and estimates budgets using a `PricingEngine` class that supports model name normalization and LRU-cached lookups. It includes built-in pricing tables… |
 | `@reaatech/agent-budget-spend-tracker` | published v0.1.0 | Tracks and analyzes real-time spend data using an in-memory circular buffer for O(1) lookups and sliding-window aggregations. It provides a `SpendStore` class that enables cost… |
 | `@reaatech/agent-budget-types` | published v0.1.0 | Provides TypeScript interfaces, Zod schemas, and error classes for defining and validating agent budget policies, enforcement actions, and spend tracking. It serves as the share… |
-
-## Quick start
-
-```bash
-npm install @reaatech/agent-budget-cli @reaatech/agent-budget-engine @reaatech/agent-budget-llm-router-plugin @reaatech/agent-budget-middleware @reaatech/agent-budget-otel-bridge @reaatech/agent-budget-pricing @reaatech/agent-budget-spend-tracker @reaatech/agent-budget-types
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

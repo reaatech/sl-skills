@@ -14,7 +14,19 @@ These packages provide a modular framework for evaluating LLM-generated text usi
 >
 > Reach for this family when working in the **Evals & Quality** category. 10 packages live under `@reaatech/llm-judge-bias` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/llm-judge-bias @reaatech/llm-judge-cache @reaatech/llm-judge-calibration @reaatech/llm-judge-cli @reaatech/llm-judge-consensus @reaatech/llm-judge-engine @reaatech/llm-judge-infra @reaatech/llm-judge-providers @reaatech/llm-judge-templates @reaatech/llm-judge-types
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -28,18 +40,6 @@ These packages provide a modular framework for evaluating LLM-generated text usi
 | `@reaatech/llm-judge-providers` | published v0.1.0 | Provides a unified interface and factory for interacting with OpenAI, Anthropic, and local OpenAI-compatible LLM APIs. It includes built-in cost calculation and health checks, l… |
 | `@reaatech/llm-judge-templates` | published v0.1.0 | Provides a set of TypeScript classes implementing a `JudgmentTemplate` interface to generate LLM evaluation prompts and parse their structured JSON responses. Each template incl… |
 | `@reaatech/llm-judge-types` | published v0.1.0 | Shared TypeScript types, Zod schemas, and error classes used across the LLM Judge Toolkit ecosystem; requires only `zod` at runtime. Exports 70+ types, 6 error classes, and |
-
-## Quick start
-
-```bash
-npm install @reaatech/llm-judge-bias @reaatech/llm-judge-cache @reaatech/llm-judge-calibration @reaatech/llm-judge-cli @reaatech/llm-judge-consensus @reaatech/llm-judge-engine @reaatech/llm-judge-infra @reaatech/llm-judge-providers @reaatech/llm-judge-templates @reaatech/llm-judge-types
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 

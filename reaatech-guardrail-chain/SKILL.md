@@ -14,7 +14,19 @@ These packages provide a framework for building safety pipelines that validate a
 >
 > Reach for this family when working in the **Testing & Security** category. 4 packages live under `@reaatech/guardrail-chain` and siblings.
 
+## Quick start example
+
+> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
+## Don't reach for this when
+
+> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
+
 ## Packages
+
+```bash
+npm install @reaatech/guardrail-chain @reaatech/guardrail-chain-config @reaatech/guardrail-chain-guardrails @reaatech/guardrail-chain-observability
+```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
@@ -22,18 +34,6 @@ These packages provide a framework for building safety pipelines that validate a
 | `@reaatech/guardrail-chain-config` | published v0.1.0 | Loads and validates Guardrail Chain configurations by merging JSON or YAML files with environment variable overrides. It provides utility functions that return validated configu… |
 | `@reaatech/guardrail-chain-guardrails` | published v0.1.0 | Provides thirteen built-in guardrail implementations—covering input validation, output filtering, and caching—as classes that implement the `Guardrail<TInput, TOutput>` interfac… |
 | `@reaatech/guardrail-chain-observability` | published v0.1.0 | Provides pluggable interfaces for structured logging, metrics collection, and distributed tracing within the Guardrail Chain framework. It exposes global getter and setter funct… |
-
-## Quick start
-
-```bash
-npm install @reaatech/guardrail-chain @reaatech/guardrail-chain-config @reaatech/guardrail-chain-guardrails @reaatech/guardrail-chain-observability
-```
-
-> _Code example pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
-
-## Don't reach for this when
-
-> _Pending — see [`SL_DISTRIBUTION.md`](https://github.com/reaatech/website/blob/main/docs/SL_DISTRIBUTION.md) Phase 3.5 for the hybrid AI-draft + admin review flow._
 
 ## Issue reporting
 
