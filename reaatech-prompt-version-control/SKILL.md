@@ -52,16 +52,16 @@ The client automatically applies exponential backoff on rate limits and respects
 ## Packages
 
 ```bash
-# (no packages published to npm yet — install from source or wait for publish)
+npm install @reaatech/prompt-version-control @reaatech/prompt-version-control-cli @reaatech/prompt-version-control-mcp @reaatech/prompt-version-control-server @reaatech/prompt-version-control-shared
 ```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/prompt-version-control` | pending npm | Provides a typed client class for interacting with the Prompt Version Control API, featuring built-in exponential backoff retries, request timeouts, and optional in-memory respo… |
-| `@reaatech/prompt-version-control-cli` | pending npm | Manages prompt templates, versioning, and lifecycle tagging via a CLI that interacts with a remote prompt-version-control API. It provides a suite of commands for CRUD operation… |
-| `@reaatech/prompt-version-control-mcp` | pending npm | Exposes a Model Context Protocol server that provides a `prompt.get` tool for fetching and rendering version-controlled prompts via Handlebars. It requires a configured Prompt V… |
-| `@reaatech/prompt-version-control-server` | pending npm | A Hono app that exposes a REST API for Git-like version control of AI prompts, with eval-gated staging-to-production promotion, A/B traffic splitting, metrics ingestion, and web… |
-| `@reaatech/prompt-version-control-shared` | pending npm | Provides shared TypeScript types, Zod schemas, and utility functions for validating, checksumming, and rendering prompt templates within the Prompt Version Control ecosystem. It… |
+| `@reaatech/prompt-version-control` | published v0.1.0 | Provides a typed client class for interacting with the Prompt Version Control API, featuring built-in exponential backoff retries, request timeouts, and optional in-memory respo… |
+| `@reaatech/prompt-version-control-cli` | published v0.1.0 | Manages prompt templates, versioning, and lifecycle tagging via a CLI that interacts with a remote prompt-version-control API. It provides a suite of commands for CRUD operation… |
+| `@reaatech/prompt-version-control-mcp` | published v0.1.0 | Exposes a Model Context Protocol server that provides a `prompt.get` tool for fetching and rendering version-controlled prompts via Handlebars. It requires a configured Prompt V… |
+| `@reaatech/prompt-version-control-server` | published v0.1.0 | A Hono app that exposes a REST API for Git-like version control of AI prompts, with eval-gated staging-to-production promotion, A/B traffic splitting, metrics ingestion, and web… |
+| `@reaatech/prompt-version-control-shared` | published v0.1.0 | Provides shared TypeScript types, Zod schemas, and utility functions for validating, checksumming, and rendering prompt templates within the Prompt Version Control ecosystem. It… |
 
 ## Issue reporting
 

@@ -59,18 +59,18 @@ The `rotate()` method creates a new version (AWSPENDING), waits for the deployme
 ## Packages
 
 ```bash
-# (no packages published to npm yet — install from source or wait for publish)
+npm install @reaatech/secret-rotation-core @reaatech/secret-rotation-observability @reaatech/secret-rotation-provider-aws @reaatech/secret-rotation-provider-gcp @reaatech/secret-rotation-provider-vault @reaatech/secret-rotation-sidecar @reaatech/secret-rotation-types
 ```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/secret-rotation-core` | pending npm | Orchestrates zero-downtime secret rotation lifecycles, including propagation verification, rollback logic, and state management. It provides a `RotationManager` class that requi… |
-| `@reaatech/secret-rotation-observability` | pending npm | Provides structured JSON logging and a Prometheus-compatible metrics registry for the Secret Rotation Kit. It exports `LoggerService` and `MetricsService` classes that generate… |
-| `@reaatech/secret-rotation-provider-aws` | pending npm | AWS Secrets Manager adapter for the Secret Rotation Kit, providing a `SecretProvider` implementation as a class (`AWSProvider`) that handles CRUD, version management (AWSCURRENT… |
-| `@reaatech/secret-rotation-provider-gcp` | pending npm | A class (`GCPProvider`) that implements the `SecretProvider` interface from the Secret Rotation Kit, backed by the ` |
-| `@reaatech/secret-rotation-provider-vault` | pending npm | Provides a `VaultProvider` class that implements the `SecretProvider` interface for HashiCorp Vault KV v2 engines. It requires the `node-vault` package at runtime to facilitate… |
-| `@reaatech/secret-rotation-sidecar` | pending npm | Exposes a REST API and SSE stream for managing secret rotations, health checks, and Prometheus metrics. It provides a `SidecarServer` class that wraps a `RotationManager` instan… |
-| `@reaatech/secret-rotation-types` | pending npm | Provides TypeScript interfaces, abstract base classes, and error definitions for building custom secret rotation providers and consumers. This package contains no runtime code a… |
+| `@reaatech/secret-rotation-core` | published v0.1.0 | Orchestrates zero-downtime secret rotation lifecycles, including propagation verification, rollback logic, and state management. It provides a `RotationManager` class that requi… |
+| `@reaatech/secret-rotation-observability` | published v0.1.0 | Provides structured JSON logging and a Prometheus-compatible metrics registry for the Secret Rotation Kit. It exports `LoggerService` and `MetricsService` classes that generate… |
+| `@reaatech/secret-rotation-provider-aws` | published v0.1.0 | AWS Secrets Manager adapter for the Secret Rotation Kit, providing a `SecretProvider` implementation as a class (`AWSProvider`) that handles CRUD, version management (AWSCURRENT… |
+| `@reaatech/secret-rotation-provider-gcp` | published v0.1.0 | A class (`GCPProvider`) that implements the `SecretProvider` interface from the Secret Rotation Kit, backed by the ` |
+| `@reaatech/secret-rotation-provider-vault` | published v0.1.0 | Provides a `VaultProvider` class that implements the `SecretProvider` interface for HashiCorp Vault KV v2 engines. It requires the `node-vault` package at runtime to facilitate… |
+| `@reaatech/secret-rotation-sidecar` | published v0.1.0 | Exposes a REST API and SSE stream for managing secret rotations, health checks, and Prometheus metrics. It provides a `SidecarServer` class that wraps a `RotationManager` instan… |
+| `@reaatech/secret-rotation-types` | published v0.1.0 | Provides TypeScript interfaces, abstract base classes, and error definitions for building custom secret rotation providers and consumers. This package contains no runtime code a… |
 
 ## Issue reporting
 
