@@ -1,12 +1,12 @@
 ---
 name: reaatech-mcp-gateway
-description: "These packages provide a modular gateway framework for managing Model Context Protocol (MCP) infrastructure, including authentication, rate limiting, schema validation, and fan-out routing. They allow you to secure, observe, and scale co…"
+description: "These packages give you a full-featured gateway for MCP (Model Context Protocol) servers, handling authentication, rate limiting, caching, schema validation, tool access control, and fan-out routing to multiple upstreams. You would adopt…"
 license: MIT
 ---
 
 # REAA mcp-gateway
 
-These packages provide a modular gateway framework for managing Model Context Protocol (MCP) infrastructure, including authentication, rate limiting, schema validation, and fan-out routing. They allow you to secure, observe, and scale connections to upstream MCP servers by composing individual Express-compatible middleware components. The collection is designed as a set of independently versioned packages that share a unified configuration schema and core type system, enabling you to build a custom gateway or deploy the pre-configured server.
+These packages give you a full-featured gateway for MCP (Model Context Protocol) servers, handling authentication, rate limiting, caching, schema validation, tool access control, and fan-out routing to multiple upstreams. You would adopt them to add production middleware—like Kong or Envoy—in front of your MCP servers without building each piece from scratch. The ten packages are independently versioned and composable, so you can install only the middleware you need (e.g., just auth and rate limiting) or wire them all together through the provided Express 5 server with a CLI.
 
 ## When to use this
 
@@ -54,16 +54,16 @@ npm install @reaatech/mcp-gateway-allowlist @reaatech/mcp-gateway-audit @reaatec
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/mcp-gateway-allowlist` | published v1.0.0 | Enforces per-tenant tool access control for MCP gateways using wildcard pattern matching and versioned allowlists. It provides a utility function for access checks and an Expres… |
-| `@reaatech/mcp-gateway-audit` | published v1.0.0 | Captures and stores security-relevant audit events for the MCP Gateway using a set of logger classes and a query service. It provides structured JSON output, tamper-evident SHA-… |
-| `@reaatech/mcp-gateway-auth` | published v1.0.0 | Provides Express middleware that validates API keys, JWTs, OAuth2 introspection, or OIDC tokens to secure MCP Gateway requests. It attaches a typed `AuthContext` to the request… |
-| `@reaatech/mcp-gateway-cache` | published v1.0.0 | Provides response caching for MCP gateways using either an in-memory LRU or Redis backend. It exports an Express middleware and a `CacheManager` class that supports per-tool TTL… |
-| `@reaatech/mcp-gateway-core` | published v1.0.0 | Provides shared TypeScript interfaces, Zod validation schemas, and configuration management utilities for the MCP Gateway ecosystem. It includes SSRF-protected URL validation, Y… |
-| `@reaatech/mcp-gateway-fanout` | published v1.0.0 | Orchestrate requests across multiple MCP server upstreams using fan-out strategies like first-success, all-wait, or majority-vote. This library provides functions for weighted u… |
-| `@reaatech/mcp-gateway-gateway` | published v1.0.0 | Provides a full-featured Model Context Protocol (MCP) gateway server as an Express 5 application, complete with built-in authentication, rate limiting, schema validation, and Op… |
-| `@reaatech/mcp-gateway-observability` | published v1.0.0 | Provides OpenTelemetry instrumentation, pre-configured metrics, and health check utilities for the MCP Gateway. It exports functions for registering custom health probes and ini… |
-| `@reaatech/mcp-gateway-rate-limit` | published v1.0.0 | Enforces per-tenant rate limits using a token bucket algorithm with support for in-memory or Redis-backed storage. It provides an Express middleware function and a set of utilit… |
-| `@reaatech/mcp-gateway-validation` | published v1.0.0 | Validates MCP protocol messages and custom tool arguments against JSON Schemas using AJV. It provides an Express middleware for JSON-RPC 2.0 request validation and a schema mana… |
+| `@reaatech/mcp-gateway-allowlist` | published v1.0.0 | A per-tenant tool access control library for MCP gateways, providing Express middleware that enforces allow/deny rules with wildcard pattern matching and versioned allowlist sto… |
+| `@reaatech/mcp-gateway-audit` | published v1.0.0 | A structured audit logging library for the MCP Gateway that captures security-relevant events (auth, rate limiting, tool execution, cache operations) with configurable severity,… |
+| `@reaatech/mcp-gateway-auth` | published v1.0.0 | Pluggable Express middleware that authenticates requests via API key, JWT (with JWKS), OAuth2 token introspection (RFC 7662), or OIDC ID token validation, attaching a typed `Aut… |
+| `@reaatech/mcp-gateway-cache` | published v1.0.0 | An Express middleware and cache manager for MCP Gateway responses, providing in-memory LRU or Redis backends with per-tool TTL strategies, `Cache-Control` bypass support, and st… |
+| `@reaatech/mcp-gateway-core` | published v1.0.0 | Core types, Zod schemas, configuration loading, and structured logging for the MCP Gateway ecosystem. It provides domain interfaces, runtime validation, YAML-based config loadin… |
+| `@reaatech/mcp-gateway-fanout` | published v1.0.0 | A function that fans out a single MCP request to multiple upstream servers, then aggregates responses using strategies like first-success, all-wait, or majority-vote. It provide… |
+| `@reaatech/mcp-gateway-gateway` | published v1.0.0 | An Express 5-based MCP Gateway server factory (`createApp()`) that wires together authentication, rate limiting, schema validation, tool allowlists, fan-out routing, response ca… |
+| `@reaatech/mcp-gateway-observability` | published v1.0.0 | OpenTelemetry tracing, metrics, health checks, and structured logging for the MCP Gateway, providing auto-configured OTel SDK initialization, pre-built gateway metrics (counters… |
+| `@reaatech/mcp-gateway-rate-limit` | published v1.0.0 | A per-tenant rate limiter for MCP gateways using a token bucket algorithm, providing Express middleware that enforces configurable per-minute and per-day request limits and sets… |
+| `@reaatech/mcp-gateway-validation` | published v1.0.0 | JSON Schema validation for MCP protocol messages, providing an Express middleware that validates JSON-RPC 2.0 request structure and MCP method payloads, plus a `SchemaValidator`… |
 
 ## Issue reporting
 

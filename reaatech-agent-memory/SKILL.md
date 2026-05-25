@@ -1,12 +1,12 @@
 ---
 name: reaatech-agent-memory
-description: "These packages provide a managed long-term memory layer for AI agents, handling the extraction, storage, and retrieval of facts and preferences. You would adopt them to move beyond simple vector search by implementing active lifecycle ma…"
+description: "These packages give AI agents a long-term memory layer that persists information across sessions, not just within a single conversation. You'd adopt them to solve the problem of agents forgetting user preferences, contradicting themselve…"
 license: MIT
 ---
 
 # REAA agent-memory
 
-These packages provide a managed long-term memory layer for AI agents, handling the extraction, storage, and retrieval of facts and preferences. You would adopt them to move beyond simple vector search by implementing active lifecycle management, including automated decay, contradiction resolution, and importance-based retention. The system is built as a modular set of providers and policies, allowing you to swap storage backends like PostgreSQL or integrate custom retention rules while maintaining a unified interface for agent state.
+These packages give AI agents a long-term memory layer that persists information across sessions, not just within a single conversation. You'd adopt them to solve the problem of agents forgetting user preferences, contradicting themselves, or accumulating irrelevant information over time. The most distinctive thing is that memory is treated as a managed asset with an explicit lifecycle—extraction, decay, forgetting, and contradiction resolution—rather than a fire-and-forget vector store.
 
 ## When to use this
 
@@ -53,15 +53,15 @@ npm install @reaatech/agent-memory @reaatech/agent-memory-core @reaatech/agent-m
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/agent-memory` | published v0.1.0 | Provides a unified interface for managing AI agent long-term memory, including automated fact extraction, semantic retrieval, and lifecycle policies. It exposes an `AgentMemory`… |
-| `@reaatech/agent-memory-core` | published v0.1.0 | Provides the canonical TypeScript interfaces, enums, and utility functions for the agent-memory ecosystem, including vector similarity calculations and retry logic. It serves as… |
-| `@reaatech/agent-memory-embedding` | published v0.1.0 | Provides a unified interface for generating text embeddings using OpenAI, Cohere, or HuggingFace providers. It includes a decorator class for transparently caching results in me… |
-| `@reaatech/agent-memory-events` | published v0.1.0 | Provides an in-memory event bus and a set of TypeScript interfaces for hooking into agent memory lifecycle events like storage, retrieval, and contradiction resolution. It expos… |
-| `@reaatech/agent-memory-extraction` | published v0.1.0 | Extracts structured facts, preferences, and decisions from conversation logs using LLMs and generates corresponding vector embeddings. It provides a `MemoryExtractor` class that… |
-| `@reaatech/agent-memory-llm` | published v0.1.0 | Provides a unified interface for LLM text completion and structured JSON output. It includes a pre-built class for OpenAI-compatible APIs and allows custom implementations via t… |
-| `@reaatech/agent-memory-policies` | published v0.1.0 | Provides a `PolicyEngine` class to manage the lifecycle of agent memories through configurable rules for exponential decay, automated forgetting, and contradiction resolution. I… |
-| `@reaatech/agent-memory-retrieval` | published v0.1.0 | Provides a `MemoryRetriever` class to query and rank stored memories using semantic, temporal, and importance-based strategies, alongside a `ContextInjector` to format results f… |
-| `@reaatech/agent-memory-storage` | published v0.1.0 | Provides a unified interface for persisting and querying agent memories, offering both an in-memory implementation and a PostgreSQL adapter with pgvector support. It includes a… |
+| `@reaatech/agent-memory` | published v0.1.0 | A class that provides a long-term memory layer for AI agents, combining LLM-powered extraction, semantic search, configurable storage (in-memory or PostgreSQL pgvector), and lif… |
+| `@reaatech/agent-memory-core` | published v0.1.0 | Canonical TypeScript types, enums, and utilities for the agent-memory ecosystem, providing the `Memory` data structure, lifecycle states, importance levels, contradiction strate… |
+| `@reaatech/agent-memory-embedding` | published v0.1.0 | An embedding provider abstraction that exposes a unified `EmbeddingProvider` interface with `embed()` and `embedBatch()` methods, shipping adapters for OpenAI, Cohere, and Huggi… |
+| `@reaatech/agent-memory-events` | published v0.1.0 | An event bus and typed event types for agent-memory lifecycle hooks, providing `InMemoryEventBus` (a class with `on`, `off`, `once`, and `emit` methods) and nine event type cons… |
+| `@reaatech/agent-memory-extraction` | published v0.1.0 | An LLM-powered memory extraction engine that analyzes conversation turns to identify and classify memorable facts, preferences, decisions, and corrections, returning structured… |
+| `@reaatech/agent-memory-llm` | published v0.1.0 | An `LLMProvider` interface and `OpenAILLMProvider` class that expose `complete()` for freeform text generation and `completeStructured<T>()` for JSON-schema-constrained structur… |
+| `@reaatech/agent-memory-policies` | published v0.1.0 | A policy engine for memory lifecycle management that provides decay scoring, forgetting decisions, and contradiction resolution, exposed as a `PolicyEngine` class that composes… |
+| `@reaatech/agent-memory-retrieval` | published v0.1.0 | A semantic memory retriever for LLM agents that combines embedding similarity with recency, importance, and topic diversification, exposing a `MemoryRetriever` class with plugga… |
+| `@reaatech/agent-memory-storage` | published v0.1.0 | A `MemoryStorage` interface (class) with 14 methods for CRUD, batch operations, similarity search, metadata filtering, health checks, and backup/restore of agent memories, plus… |
 
 ## Issue reporting
 

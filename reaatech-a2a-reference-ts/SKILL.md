@@ -1,12 +1,12 @@
 ---
 name: reaatech-a2a-reference-ts
-description: "These packages provide a complete TypeScript implementation of the Agent-to-Agent (A2A) protocol, including a server framework, client SDK, and a bidirectional bridge to the Model Context Protocol (MCP). You would adopt these to build in…"
+description: "These packages give you a full TypeScript implementation of the Agent-to-Agent (A2A) protocol — server framework, client SDK, authentication, persistence, observability, and a bidirectional bridge to MCP — so you can build interoperable…"
 license: MIT
 ---
 
 # REAA a2a-reference-ts
 
-These packages provide a complete TypeScript implementation of the Agent-to-Agent (A2A) protocol, including a server framework, client SDK, and a bidirectional bridge to the Model Context Protocol (MCP). You would adopt these to build interoperable AI agents that need to discover each other, manage task lifecycles, and exchange messages using standardized JSON-RPC and SSE streaming. The collection is built around a shared core of Zod schemas and pluggable adapters, allowing you to swap persistence layers, authentication strategies, and HTTP frameworks while maintaining strict type safety across the entire agent communication stack.
+These packages give you a full TypeScript implementation of the Agent-to-Agent (A2A) protocol — server framework, client SDK, authentication, persistence, observability, and a bidirectional bridge to MCP — so you can build interoperable AI agents without writing protocol boilerplate. You'd adopt them to connect agents across different systems, frameworks, and runtimes, handling discovery, task lifecycle, streaming, and auth out of the box. The most distinctive thing is how the packages snap together around a shared Zod-schema core and pluggable interfaces (Express or Hono adapters, Redis or in-memory stores, API key or JWT auth), with the MCP bridge letting A2A agents call MCP tools and vice versa.
 
 ## When to use this
 
@@ -65,13 +65,13 @@ npm install @reaatech/a2a-reference-auth @reaatech/a2a-reference-client @reaatec
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/a2a-reference-auth` | published v0.1.0 | Provides a set of interchangeable authentication strategies—including API key, JWT, and no-op—that implement a unified `authenticate` method. Each strategy is exported as a clas… |
-| `@reaatech/a2a-reference-client` | published v0.1.0 | Provides a TypeScript client class for interacting with A2A agents via JSON-RPC 2.0 and Server-Sent Events. It includes built-in agent discovery, automatic retry logic, and an `… |
-| `@reaatech/a2a-reference-core` | published v0.1.0 | Provides canonical TypeScript types, Zod schemas, and custom error classes for the Agent-to-Agent (A2A) protocol. It serves as a shared library for validating agent cards, tasks… |
-| `@reaatech/a2a-reference-mcp-bridge` | published v0.1.0 | Exposes A2A agent skills as MCP tools and wraps MCP tools as A2A skills to enable interoperability between the two ecosystems. It provides classes for bidirectional protocol tra… |
-| `@reaatech/a2a-reference-observability` | published v0.1.0 | Provides pre-configured Pino logger instances and utility functions for propagating correlation IDs across asynchronous boundaries. It exports a default logger and factory funct… |
-| `@reaatech/a2a-reference-persistence` | published v0.1.0 | Provides a standardized `TaskStore` interface for persisting A2A task state, offering implementations for in-memory, file-system, and Redis storage. It supports paginated listin… |
-| `@reaatech/a2a-reference-server` | published v0.1.0 | Provides Express and Hono adapters for building interoperable AI agents using JSON-RPC 2.0 routing, SSE streaming, and a task lifecycle state machine. It exposes factory functio… |
+| `@reaatech/a2a-reference-auth` | published v0.1.0 | Pluggable authentication strategies for A2A agents, providing `ApiKeyStrategy`, `JwtStrategy`, and `NoneStrategy` classes that all implement a single `authenticate(ctx): Promise… |
+| `@reaatech/a2a-reference-client` | published v0.1.0 | A TypeScript client class for discovering A2A agents, submitting JSON-RPC 2.0 tasks, and consuming SSE streams as `AsyncGenerator`s, built on the standard `fetch` API with plugg… |
+| `@reaatech/a2a-reference-core` | published v0.1.0 | Canonical TypeScript types, Zod schemas, and error classes for the Agent-to-Agent (A2A) protocol. Exports 70+ types, 35 Zod schemas for runtime validation of agent cards, tasks,… |
+| `@reaatech/a2a-reference-mcp-bridge` | published v0.1.0 | A bidirectional protocol adapter that exposes A2A agent skills as MCP tools and MCP tools as A2A skills, provided as a class (`A2aAsMcpServer` and `McpToolAdapter`). Requires th… |
+| `@reaatech/a2a-reference-observability` | published v0.1.0 | A Pino-based structured logging utility for A2A agents that provides a zero-config default logger and factory functions for creating context-aware loggers with automatic correla… |
+| `@reaatech/a2a-reference-persistence` | published v0.1.0 | A `TaskStore` interface with in-memory, file-system, and Redis implementations for persisting A2A task state, providing create, get, update, list, cancel, and history/artifact m… |
+| `@reaatech/a2a-reference-server` | published v0.1.0 | An Express 5 or Hono 4 server framework for building interoperable AI agents, providing JSON-RPC 2.0 routing, SSE streaming, and task lifecycle management with pluggable persist… |
 
 ## Issue reporting
 

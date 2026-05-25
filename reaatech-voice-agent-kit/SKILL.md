@@ -1,12 +1,12 @@
 ---
 name: reaatech-voice-agent-kit
-description: "These packages provide a transport layer for real-time voice AI, orchestrating the pipeline between telephony streams, speech-to-text, text-to-speech, and MCP-based agent logic. They solve the challenge of maintaining sub-second latency…"
+description: "These packages give you the full pipeline to turn microphone or phone audio into an AI agent response and back — speech-to-text, MCP tool calls, text-to-speech, and telephony or WebRTC transport, all orchestrated with per-stage latency b…"
 license: MIT
 ---
 
 # REAA voice-agent-kit
 
-These packages provide a transport layer for real-time voice AI, orchestrating the pipeline between telephony streams, speech-to-text, text-to-speech, and MCP-based agent logic. They solve the challenge of maintaining sub-second latency in conversational systems by enforcing strict timing budgets and providing provider-agnostic adapters for services like Deepgram, AWS, and Google Cloud. The architecture centers on an event-driven pipeline that decouples telephony handling from agent decision-making, allowing you to swap providers or integrate custom MCP servers without modifying core orchestration logic.
+These packages give you the full pipeline to turn microphone or phone audio into an AI agent response and back — speech-to-text, MCP tool calls, text-to-speech, and telephony or WebRTC transport, all orchestrated with per-stage latency budgets. You'd adopt them to build a production voice agent without writing the audio plumbing, provider switching, or session management yourself. The most distinctive thing is that the agent logic lives entirely in an external MCP server, so the pipeline is a pure transport layer that can be swapped between Twilio, WebRTC, or a local simulator without changing the agent.
 
 ## When to use this
 
@@ -48,16 +48,19 @@ The example sets up a voice pipeline that accepts a Twilio Media Stream, routes 
 ## Packages
 
 ```bash
-# (no packages published to npm yet — install from source or wait for publish)
+npm install @reaatech/create-voice-agent @reaatech/voice-agent-core @reaatech/voice-agent-mcp-client @reaatech/voice-agent-simulator @reaatech/voice-agent-stt @reaatech/voice-agent-telephony @reaatech/voice-agent-tts @reaatech/voice-agent-webrtc
 ```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/voice-agent-core` | pending npm | Orchestrates an end-to-end STT→MCP→TTS voice agent pipeline with session management, per-stage latency enforcement, and OpenTelemetry observability, exposing an event-emitting `… |
-| `@reaatech/voice-agent-mcp-client` | pending npm | Connects to Model Context Protocol (MCP) servers via JSON-RPC 2.0 to manage tool discovery, conversation history, and request retries. It provides an `MCPClient` class that retu… |
-| `@reaatech/voice-agent-stt` | pending npm | Provides a unified interface for streaming audio to Deepgram, AWS Transcribe, or Google Cloud Speech-to-Text via provider-specific classes. It includes built-in utilities for au… |
-| `@reaatech/voice-agent-telephony` | pending npm | Provides a `TwilioMediaStreamHandler` class that manages the bidirectional Twilio Media Streams WebSocket protocol, including audio buffering, barge-in detection, and event life… |
-| `@reaatech/voice-agent-tts` | pending npm | Provider-agnostic text-to-speech interface using `AsyncIterable<AudioChunk>` for streaming audio, with built-in adapters for Deepgram Aura, AWS Polly, and Google Cloud TTS, plus… |
+| `@reaatech/create-voice-agent` | published v0.1.0 | A scaffolding CLI that generates a complete voice-agent-kit project with pipeline configuration, STT/TTS provider setup, telephony or WebRTC transport, an MCP client, and a read… |
+| `@reaatech/voice-agent-core` | published v0.1.0 | A Zod-validated configuration system and pipeline orchestrator for building voice-enabled AI agents, providing a `createPipeline()` function that coordinates STT, MCP, and TTS s… |
+| `@reaatech/voice-agent-mcp-client` | published v0.1.0 | A JSON-RPC 2.0 client that connects to any MCP server endpoint, providing tool discovery, conversation history management, retry with backoff, and TTS-safe response sanitization… |
+| `@reaatech/voice-agent-simulator` | published v0.1.0 | A CLI and programmatic simulator that runs a voice agent pipeline (STT → MCP → TTS) locally from a WAV file or live microphone, reporting per-turn latency without requiring Twil… |
+| `@reaatech/voice-agent-stt` | published v0.1.0 | Provider-agnostic speech-to-text interface with a unified `STTProvider` class and seven adapter implementations (Deepgram, AWS Transcribe, Google Cloud Speech-to-Text, OpenAI Re… |
+| `@reaatech/voice-agent-telephony` | published v0.1.0 | A WebSocket handler for voice AI agents that normalizes bidirectional streaming protocols (start/media/stop/mark/DTMF) across Twilio, Telnyx, SignalWire, and Vonage, providing b… |
+| `@reaatech/voice-agent-tts` | published v0.1.0 | Provider-agnostic text-to-speech interface with five adapter implementations (Deepgram Aura, AWS Polly, Google Cloud TTS, ElevenLabs, Cartesia), returning streaming audio as `As… |
+| `@reaatech/voice-agent-webrtc` | published v0.1.0 | A WebSocket-based transport class (`WebRTCTransport`) for browser voice AI agents that handles Opus encode/decode, PCM resampling, and barge-in detection, paired with standalone… |
 
 ## Issue reporting
 

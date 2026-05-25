@@ -1,12 +1,12 @@
 ---
 name: reaatech-confidence-router
-description: "These packages provide a decision engine that routes, clarifies, or triggers fallbacks based on the confidence scores of classification results. They solve the problem of managing ambiguity in automated systems by allowing you to chain c…"
+description: "These packages give you a decision engine that turns classifier confidence scores into one of three actions: route to a handler, ask the user for clarification, or fall back to a default. You'd adopt them to handle ambiguous or low-confi…"
 license: MIT
 ---
 
 # REAA confidence-router
 
-These packages provide a decision engine that routes, clarifies, or triggers fallbacks based on the confidence scores of classification results. They solve the problem of managing ambiguity in automated systems by allowing you to chain classifiers—such as keyword, embedding, or LLM-based models—and optimize decision thresholds against labeled datasets. The system is built as a modular, dependency-free architecture where classifiers and language-specific prompts are registered as pluggable components within a unified routing pipeline.
+These packages give you a decision engine that turns classifier confidence scores into one of three actions: route to a handler, ask the user for clarification, or fall back to a default. You'd adopt them to handle ambiguous or low-confidence predictions in a conversational or routing system without hard-coding every edge case. The most distinctive thing is the threshold-based triage model—you set two confidence boundaries and the engine automatically decides whether to proceed, ask, or bail, with pluggable classifiers (keyword, embedding, LLM) that chain in priority order.
 
 ## When to use this
 
@@ -58,11 +58,11 @@ npm install @reaatech/confidence-router @reaatech/confidence-router-classifiers 
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/confidence-router` | published v0.1.0 | Evaluates classification results against configurable confidence thresholds to determine whether to route to a specific target, request clarification, or trigger a fallback. It… |
-| `@reaatech/confidence-router-classifiers` | published v0.1.0 | Pluggable classifier implementations for confidence-router, providing keyword |
-| `@reaatech/confidence-router-core` | published v0.1.0 | Provides the core type definitions (`Prediction`, `RoutingDecision`, `RouterConfig`), a `DecisionEngine` class that thresholds predictions into route/clarify/fallback decisions,… |
-| `@reaatech/confidence-router-evaluation` | published v0.1.0 | A `ThresholdOptimizer` class that performs grid search across confidence thresholds to maximize F1 score against labeled datasets, then reports accuracy, precision, recall, and… |
-| `@reaatech/confidence-router-languages` | published v0.1.0 | Provides `LanguageManager` and `PromptGenerator` classes that inject 47 built-in locale configurations (including RTL |
+| `@reaatech/confidence-router` | published v0.1.0 | A threshold-based decision engine that takes a classification result with confidence scores and returns a `RoutingDecision` indicating whether to **route** (high confidence), **… |
+| `@reaatech/confidence-router-classifiers` | published v0.1.0 | A pluggable classifier system for confidence-router, providing keyword matching, embedding similarity, and LLM-based classification as classes conforming to the `Classifier` int… |
+| `@reaatech/confidence-router-core` | published v0.1.0 | Core type definitions, error classes, configuration utilities, and the `DecisionEngine` for the confidence-router ecosystem. Exports TypeScript types (`Prediction`, `RoutingDeci… |
+| `@reaatech/confidence-router-evaluation` | published v0.1.0 | A grid search optimizer that tunes `routeThreshold` and `fallbackThreshold` on any `RouterInterface` object to maximize F1 score against a labeled dataset, returning `OptimizedT… |
+| `@reaatech/confidence-router-languages` | published v0.1.0 | Provides locale-aware clarification prompt generation for confidence-router, exposing `LanguageManager` and `PromptGenerator` classes that handle 47 built-in languages with RTL… |
 
 ## Issue reporting
 

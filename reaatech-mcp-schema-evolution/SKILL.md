@@ -1,12 +1,12 @@
 ---
 name: reaatech-mcp-schema-evolution
-description: "These packages provide tools to diff, classify, and validate changes between Model Context Protocol (MCP) tool snapshots. They help teams prevent breaking changes in their tool definitions by automating schema comparison and enforcing ev…"
+description: "These packages give you a diff engine and CI policy for MCP tool schemas, classifying every change between two `Tool[]` snapshots as breaking, non-breaking, or patch. You'd adopt them to prevent breaking MCP consumers when you add, remov…"
 license: MIT
 ---
 
 # REAA mcp-schema-evolution
 
-These packages provide tools to diff, classify, and validate changes between Model Context Protocol (MCP) tool snapshots. They help teams prevent breaking changes in their tool definitions by automating schema comparison and enforcing evolution policies within CI pipelines. The collection is built around a core library that returns result objects instead of throwing errors, allowing for consistent integration across CLI commands, CI checks, and custom validation scripts.
+These packages give you a diff engine and CI policy for MCP tool schemas, classifying every change between two `Tool[]` snapshots as breaking, non-breaking, or patch. You'd adopt them to prevent breaking MCP consumers when you add, remove, or rename tool fields, catching unintended changes before a release. The core library returns `Result<T>` objects instead of throwing, and the CI package enforces policy through a pipe-delimited acknowledgment file that lets you explicitly allow intentional breaking changes.
 
 ## When to use this
 
@@ -53,9 +53,9 @@ npm install @reaatech/mcp-schema-evolution @reaatech/mcp-schema-evolution-ci @re
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/mcp-schema-evolution` | published v0.0.0 | Compare two MCP `Tool[]` snapshots and receive a fully classified |
-| `@reaatech/mcp-schema-evolution-ci` | published v0.0.0 | Validates Model Context Protocol (MCP) tool schemas by comparing snapshots between branches to detect breaking changes. It provides both a CLI for CI pipelines and a programmati… |
-| `@reaatech/mcp-schema-evolution-cli` | published v0.0.0 | Compare Model Context Protocol (MCP) tool snapshots to detect breaking schema changes via a CLI. It outputs human-readable reports or machine-readable JSON and uses exit codes t… |
+| `@reaatech/mcp-schema-evolution` | published v0.0.0 | A function that compares two MCP `Tool[]` snapshots and returns a classified list of schema changes (breaking, non-breaking, or patch) with migration guidance, including heurist… |
+| `@reaatech/mcp-schema-evolution-ci` | published v0.0.0 | A CLI and programmatic API that validates MCP schema snapshots against a policy, failing CI on unacknowledged breaking changes and generating formatted reports for pull request… |
+| `@reaatech/mcp-schema-evolution-cli` | published v0.0.0 | A CLI that compares two MCP tool snapshot JSON files, detects breaking and non-breaking schema changes, and outputs results as either human-readable text with migration suggesti… |
 
 ## Issue reporting
 

@@ -1,12 +1,12 @@
 ---
 name: reaatech-session-continuity-kit
-description: "These packages provide a framework for managing multi-turn AI agent conversations, including token budget enforcement, context compression, and session persistence. They solve the complexity of maintaining consistent conversation state a…"
+description: "These packages give you a complete session management layer for multi-turn AI agent conversations, handling conversation history windowing, token budget enforcement, context compression, and agent handoff. You'd adopt them to avoid rebui…"
 license: MIT
 ---
 
 # REAA session-continuity-kit
 
-These packages provide a framework for managing multi-turn AI agent conversations, including token budget enforcement, context compression, and session persistence. They solve the complexity of maintaining consistent conversation state across agent handoffs and varying LLM context windows. The system is built around a pluggable architecture where a central `SessionManager` coordinates with interchangeable storage adapters and model-specific tokenizers to handle session lifecycles.
+These packages give you a complete session management layer for multi-turn AI agent conversations, handling conversation history windowing, token budget enforcement, context compression, and agent handoff. You'd adopt them to avoid rebuilding the same session lifecycle logic—create, update, end, delete, and list sessions with participants and messages—that every agent system needs. The most distinctive thing is the pluggable storage adapter interface with production backends for Firestore, DynamoDB, and Redis, each implementing optimistic concurrency with version-checked writes and deterministic message ordering, plus three compression strategies (sliding window, summarization, hybrid) with cached summaries so the summarizer isn't re-invoked on every fetch.
 
 ## When to use this
 
@@ -44,17 +44,17 @@ console.log(history.messages);
 ## Packages
 
 ```bash
-# (no packages published to npm yet — install from source or wait for publish)
+npm install @reaatech/session-continuity @reaatech/session-continuity-storage-dynamodb @reaatech/session-continuity-storage-firestore @reaatech/session-continuity-storage-memory @reaatech/session-continuity-storage-redis @reaatech/session-continuity-tokenizers
 ```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/session-continuity` | pending npm | Manages multi-turn AI conversation state, token budgets, and context compression through a `SessionManager` class. It requires an implementation of `IStorageAdapter` and a `Toke… |
-| `@reaatech/session-continuity-storage-dynamodb` | pending npm | Provides a DynamoDB storage adapter for the `@reaatech/session-continuity` library, implementing the `IStorageAdapter` interface for session and message persistence. It requires… |
-| `@reaatech/session-continuity-storage-firestore` | pending npm | `FirestoreAdapter` is a class implementing `I |
-| `@reaatech/session-continuity-storage-memory` | pending npm | Provides an in-memory `IStorageAdapter` implementation for the `@reaatech/session-continuity` library. It exposes a `MemoryAdapter` class that uses a `Map` to store session data… |
-| `@reaatech/session-continuity-storage-redis` | pending npm | A Redis storage adapter implementing the ` |
-| `@reaatech/session-continuity-tokenizers` | pending npm | Provides classes for calculating exact or heuristic token counts for OpenAI and Anthropic models, implementing the `TokenCounter` interface from `@reaatech/session-continuity`.… |
+| `@reaatech/session-continuity` | published v0.1.0 | A typed session lifecycle manager for multi-turn AI conversations, providing `SessionManager` with token budget enforcement, configurable context compression (sliding window, su… |
+| `@reaatech/session-continuity-storage-dynamodb` | published v0.1.0 | A DynamoDB storage adapter implementing `IStorageAdapter` from `@reaatech/session-continuity`, providing session and message persistence using a single-table design with composi… |
+| `@reaatech/session-continuity-storage-firestore` | published v0.1.0 | A Firestore storage adapter implementing `IStorageAdapter` from `@reaatech/session-continuity`, providing session and message persistence in Firestore collections with TTL suppo… |
+| `@reaatech/session-continuity-storage-memory` | published v0.1.0 | An in-memory storage adapter implementing `IStorageAdapter` from `@reaatech/session-continuity`, using `Map`-based storage with optional simulated TTL expiration for development… |
+| `@reaatech/session-continuity-storage-redis` | published v0.1.0 | A Redis storage adapter implementing `IStorageAdapter` from `@reaatech/session-continuity`, providing session and message persistence using Redis hashes, sorted sets, and native… |
+| `@reaatech/session-continuity-tokenizers` | published v0.1.0 | A set of token counter implementations (exact WASM-based tiktoken for OpenAI, exact Anthropic, and a fast heuristic estimator) that implement the `TokenCounter` interface from `… |
 
 ## Issue reporting
 
@@ -63,6 +63,6 @@ Failures while using this skill should be reported via the `report_issue` tool o
 ## More
 
 - Repo: https://github.com/reaatech/session-continuity-kit
-- Browse packages: https://reaatech.com/products/domain-pipelines/session-continuity-kit/packages
+- Browse packages: https://reaatech.com/products/reliability-ops/session-continuity-kit/packages
 - npm scope: https://www.npmjs.com/~reaatech
 - tags: agentic-ai, ai, ai-agents, developer-tools, llm, mcp, rag, typescript

@@ -1,12 +1,12 @@
 ---
 name: reaatech-agents-md-kit
-description: "These packages provide a toolkit for managing `AGENTS.md` and `SKILL.md` files, which define the behavior and capabilities of AI agents. You would use them to automate the scaffolding, linting, and schema validation of these instruction…"
+description: "These packages give you a linter, validator, and scaffolder for AGENTS.md and SKILL.md files — the markdown documents that define how AI agents behave and what skills they have. You would adopt them to enforce a consistent, machine-reada…"
 license: MIT
 ---
 
 # REAA agents-md-kit
 
-These packages provide a toolkit for managing `AGENTS.md` and `SKILL.md` files, which define the behavior and capabilities of AI agents. You would use them to automate the scaffolding, linting, and schema validation of these instruction artifacts within your development or CI/CD pipelines. The collection is built around a shared set of Zod schemas and domain types, ensuring consistent data structures across the parser, linter, and MCP server components.
+These packages give you a linter, validator, and scaffolder for AGENTS.md and SKILL.md files — the markdown documents that define how AI agents behave and what skills they have. You would adopt them to enforce a consistent, machine-readable structure across agent definitions in a multi-agent system, catching formatting errors, missing sections, and broken skill references before they cause runtime issues. The toolkit is built as a pipeline of independent packages (parser → validator → linter → reporter) that share canonical Zod schemas, with an MCP server exposing the same tools directly to AI agents over Stdio or HTTP.
 
 ## When to use this
 
@@ -50,15 +50,15 @@ npm install @reaatech/agents-markdown @reaatech/agents-markdown-cli @reaatech/ag
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/agents-markdown` | published v1.0.0 | Provides shared TypeScript interfaces, Zod validation schemas, and utility functions for the AGENTS.md ecosystem. It serves as the central type definition library for document s… |
-| `@reaatech/agents-markdown-cli` | published v1.0.0 | Provides a CLI and a set of utility functions for linting, validating, scaffolding, and formatting `AGENTS.md` and `SKILL.md` files. It supports recursive directory traversal, m… |
-| `@reaatech/agents-markdown-linter` | published v1.0.0 | Enforces style, content, and best-practice standards for AGENTS.md and SKILL.md files through a set of exported functions for linting and auto-fixing. It requires a document obj… |
-| `@reaatech/agents-markdown-mcp-server` | published v1.0.0 | Provides an MCP server that exposes tools for linting, validating, and scaffolding agent-related markdown files. It exports a factory function to create a configured MCP `Server… |
-| `@reaatech/agents-markdown-observability` | published v1.0.0 | Provides structured Pino logging, OpenTelemetry metrics, and dashboard generation utilities for the `@reaatech/agents-markdown-*` ecosystem. It exports a collection of logging f… |
-| `@reaatech/agents-markdown-parser` | published v1.0.0 | A Markdown AST parser that produces typed `Agents |
-| `@reaatech/agents-markdown-reporter` | published v1.0.0 | Output reporters for lint and validation results that produce console, JSON, HTML, and GitHub-flavored Markdown reports. Exports a set of functions (`reportLintResult`, `reportJ… |
-| `@reaatech/agents-markdown-scaffold` | published v1.0.0 | Generates `AGENTS.md` and `SKILL.md` documentation files for agent projects using Handlebars templates. It provides functions to scaffold directories based on a configuration ob… |
-| `@reaatech/agents-markdown-validator` | published v1.0.0 | Validates AGENTS.md and SKILL.md files against the AGENTS.md specification, providing a set of functions (`validate`, `validateAgentsMd`, `validateSkillMd`) that accept parsed d… |
+| `@reaatech/agents-markdown` | published v1.0.0 | Core domain types (`AgentsMdDocument`, `SkillMdDocument`, `Finding`, `LintResult`, `ValidationResult`), Zod validation schemas, and shared utilities for the `@reaatech/agents-ma… |
+| `@reaatech/agents-markdown-cli` | published v1.0.0 | A CLI for linting, validating, scaffolding, and formatting AGENTS.md and SKILL.md files, providing five subcommands (`lint`, `validate`, `scaffold`, `format`, `examples`) with m… |
+| `@reaatech/agents-markdown-linter` | published v1.0.0 | A linting engine for AGENTS.md and SKILL.md files that provides 18 built-in rules across style, content, and best-practice categories, exposed as `runLintRules`, `registerRule`,… |
+| `@reaatech/agents-markdown-mcp-server` | published v1.0.0 | An MCP server that exposes five tools—`lint_agents_md`, `validate_agents_md`, `validate_skill_md`, `scaffold_agent`, and `get_examples`—for working with agent markdown files via… |
+| `@reaatech/agents-markdown-observability` | published v1.0.0 | Pino-based structured logging, OpenTelemetry metrics and tracing, and dashboard aggregation for the `@reaatech/agents-markdown-*` ecosystem, exposed as functions (`info`, `error… |
+| `@reaatech/agents-markdown-parser` | published v1.0.0 | Parses AGENTS.md and SKILL.md markdown files into typed documents with YAML frontmatter extraction, section hierarchy, table parsing, and code block extraction. Exports async fu… |
+| `@reaatech/agents-markdown-reporter` | published v1.0.0 | Exports a set of reporter functions (`reportLintResult`, `reportJsonLintResult`, `reportHtmlLintResult`, `reportMarkdownLintResult`, and their validation counterparts) that form… |
+| `@reaatech/agents-markdown-scaffold` | published v1.0.0 | A function that generates AGENTS.md and SKILL.md files from Handlebars templates, creating a complete agent directory structure with one skill file per listed skill ID. |
+| `@reaatech/agents-markdown-validator` | published v1.0.0 | A Zod-based validation engine for AGENTS.md and SKILL.md files that checks frontmatter structure, required sections, section ordering, skill references, MCP tools tables, and co… |
 
 ## Issue reporting
 

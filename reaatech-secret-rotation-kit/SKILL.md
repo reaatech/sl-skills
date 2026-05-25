@@ -1,12 +1,12 @@
 ---
 name: reaatech-secret-rotation-kit
-description: "These packages provide a framework for automating secret rotation across AWS Secrets Manager, GCP Secret Manager, and HashiCorp Vault. They solve the risk of service outages during credential updates by orchestrating overlapping key vali…"
+description: "These packages give you a zero-downtime secret rotation engine that orchestrates the full lifecycle—generate, propagate, verify, activate, and revoke—across AWS Secrets Manager, GCP Secret Manager, HashiCorp Vault, and Vercel environment…"
 license: MIT
 ---
 
 # REAA secret-rotation-kit
 
-These packages provide a framework for automating secret rotation across AWS Secrets Manager, GCP Secret Manager, and HashiCorp Vault. They solve the risk of service outages during credential updates by orchestrating overlapping key validity windows, propagation verification, and automatic rollbacks. The system uses a modular architecture where a core engine consumes provider-specific adapters and an optional HTTP sidecar to manage the full secret lifecycle.
+These packages give you a zero-downtime secret rotation engine that orchestrates the full lifecycle—generate, propagate, verify, activate, and revoke—across AWS Secrets Manager, GCP Secret Manager, HashiCorp Vault, and Vercel environment variables. You'd adopt them to solve the operational problem of rotating secrets in production without causing outages when consumers haven't picked up the new key yet. The most distinctive thing is the overlapping key window design combined with dual verification strategies (provider-level polling and consumer-level active verification), all exposed through a pluggable provider interface and an optional HTTP sidecar that runs with zero code.
 
 ## When to use this
 
@@ -59,18 +59,19 @@ The `rotate()` method creates a new version (AWSPENDING), waits for the deployme
 ## Packages
 
 ```bash
-npm install @reaatech/secret-rotation-core @reaatech/secret-rotation-observability @reaatech/secret-rotation-provider-aws @reaatech/secret-rotation-provider-gcp @reaatech/secret-rotation-provider-vault @reaatech/secret-rotation-sidecar @reaatech/secret-rotation-types
+npm install @reaatech/secret-rotation-core @reaatech/secret-rotation-observability @reaatech/secret-rotation-provider-aws @reaatech/secret-rotation-provider-gcp @reaatech/secret-rotation-provider-vault @reaatech/secret-rotation-provider-vercel @reaatech/secret-rotation-sidecar @reaatech/secret-rotation-types
 ```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/secret-rotation-core` | published v0.1.0 | Orchestrates zero-downtime secret rotation lifecycles, including propagation verification, rollback logic, and state management. It provides a `RotationManager` class that requi… |
-| `@reaatech/secret-rotation-observability` | published v0.1.0 | Provides structured JSON logging and a Prometheus-compatible metrics registry for the Secret Rotation Kit. It exports `LoggerService` and `MetricsService` classes that generate… |
-| `@reaatech/secret-rotation-provider-aws` | published v0.1.0 | AWS Secrets Manager adapter for the Secret Rotation Kit, providing a `SecretProvider` implementation as a class (`AWSProvider`) that handles CRUD, version management (AWSCURRENT… |
-| `@reaatech/secret-rotation-provider-gcp` | published v0.1.0 | A class (`GCPProvider`) that implements the `SecretProvider` interface from the Secret Rotation Kit, backed by the ` |
-| `@reaatech/secret-rotation-provider-vault` | published v0.1.0 | Provides a `VaultProvider` class that implements the `SecretProvider` interface for HashiCorp Vault KV v2 engines. It requires the `node-vault` package at runtime to facilitate… |
-| `@reaatech/secret-rotation-sidecar` | published v0.1.0 | Exposes a REST API and SSE stream for managing secret rotations, health checks, and Prometheus metrics. It provides a `SidecarServer` class that wraps a `RotationManager` instan… |
-| `@reaatech/secret-rotation-types` | published v0.1.0 | Provides TypeScript interfaces, abstract base classes, and error definitions for building custom secret rotation providers and consumers. This package contains no runtime code a… |
+| `@reaatech/secret-rotation-core` | published v0.1.0 | A zero-downtime secret rotation engine that orchestrates the full lifecycle (generate → propagate → verify → activate → revoke) with overlapping key windows, dual verification s… |
+| `@reaatech/secret-rotation-observability` | published v0.1.0 | A structured JSON logger and Prometheus-format metrics registry with zero runtime dependencies, providing `LoggerService` and `MetricsService` classes that implement the `Logger… |
+| `@reaatech/secret-rotation-provider-aws` | published v0.1.0 | An AWS Secrets Manager adapter for the Secret Rotation Kit, implementing the `SecretProvider` interface with CRUD operations, version stage management (`AWSCURRENT`, `AWSPENDING… |
+| `@reaatech/secret-rotation-provider-gcp` | published v0.1.0 | GCP Secret Manager adapter for the Secret Rotation Kit, implementing the `SecretProvider` interface with CRUD, versioning, rotation sessions, and health checks via the `@google-… |
+| `@reaatech/secret-rotation-provider-vault` | published v0.1.0 | A HashiCorp Vault KV v2 adapter for the Secret Rotation Kit, implementing the `SecretProvider` interface with CRUD, versioning, rotation sessions, and health checks. It provides… |
+| `@reaatech/secret-rotation-provider-vercel` | published v0.1.0 | A Vercel-specific `SecretProvider` implementation for the Secret Rotation Kit that manages environment variables via the Vercel REST API using only the global `fetch`. It provid… |
+| `@reaatech/secret-rotation-sidecar` | published v0.1.0 | HTTP sidecar server that exposes secret rotation operations, health checks, Prometheus metrics, and SSE event streaming over a REST API, built on Node.js's built-in `http` modul… |
+| `@reaatech/secret-rotation-types` | published v0.1.0 | Type definitions, abstract interfaces, and error classes for the Secret Rotation Kit ecosystem, providing shared types like `SecretKey`, `RotationState`, `SecretProvider`, and `… |
 
 ## Issue reporting
 

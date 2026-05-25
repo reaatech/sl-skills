@@ -1,12 +1,12 @@
 ---
 name: reaatech-media-pipeline-mcp
-description: "These packages provide a framework for building multi-step media processing workflows, such as image generation, audio transcription, and document extraction, as chainable tools within an MCP server. You would adopt them to automate comp…"
+description: "These packages give you a set of MCP tools for generating and processing images, audio, video, documents, and 3D models, then chaining those operations into pipelines with artifact passing between steps. You would adopt them to avoid wir…"
 license: MIT
 ---
 
 # REAA media-pipeline-mcp
 
-These packages provide a framework for building multi-step media processing workflows, such as image generation, audio transcription, and document extraction, as chainable tools within an MCP server. You would adopt them to automate complex media pipelines that require artifact passing, quality validation, and multi-provider orchestration. The system is designed around a unified pipeline engine that uses variable interpolation to pass outputs between steps while enforcing quality gates and resilience patterns like circuit breakers.
+These packages give you a set of MCP tools for generating and processing images, audio, video, documents, and 3D models, then chaining those operations into pipelines with artifact passing between steps. You would adopt them to avoid wiring together multiple provider SDKs, retry logic, cost tracking, and caching yourself when building AI agents that produce media as output. The most distinctive thing is that every operation is a composable pipeline step with built-in quality gates, budget enforcement, content-addressed caching, and multi-provider routing, so you can define a multi-step workflow once and have it handle provider fallback, cost caps, and resumable execution automatically.
 
 ## When to use this
 
@@ -84,7 +84,6 @@ npm install @reaatech/media-pipeline-mcp-anthropic @reaatech/media-pipeline-mcp-
 | `@reaatech/media-pipeline-mcp-stability` | published v0.3.0 | A Stability AI provider for the media pipeline framework that generates images via the Stable Image v2beta REST API using SD3, SDXL, and SD1.5 models, exposing a `StabilityProvi… |
 | `@reaatech/media-pipeline-mcp-storage` | published v0.3.0 | A unified `ArtifactStore` interface (`put`, `get`, `getSignedUrl`, `delete`, `list`, `healthCheck`) backed by local filesystem, AWS S3, or Google Cloud Storage, selected via a t… |
 | `@reaatech/media-pipeline-mcp-video-gen` | published v0.3.0 | A factory function (`createVideoGenOperations`) that returns a `VideoGenOperations` instance for text-to-video and image-to-video generation via pluggable providers (e.g., Repli… |
-| `@reaatech/media-pipeline-mcp` | pending npm | Orchestrates media processing workflows through a `PipelineExecutor` class that handles sequential step execution, artifact tracking, and quality gate validation. It provides a… |
 
 ## Issue reporting
 

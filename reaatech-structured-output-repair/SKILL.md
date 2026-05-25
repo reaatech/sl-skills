@@ -1,12 +1,12 @@
 ---
 name: reaatech-structured-output-repair
-description: "These packages provide a pipeline to automatically fix malformed LLM outputs, such as invalid JSON, markdown fences, or type mismatches, to ensure they conform to your defined schemas. You would adopt them to prevent agent system crashes…"
+description: "These packages give you a repair engine that takes a Zod schema and malformed LLM output, then runs it through six graduated strategies—stripping markdown fences, extracting JSON from prose, fixing syntax errors, coercing types, fuzzy-ma…"
 license: MIT
 ---
 
 # REAA structured-output-repair
 
-These packages provide a pipeline to automatically fix malformed LLM outputs, such as invalid JSON, markdown fences, or type mismatches, to ensure they conform to your defined schemas. You would adopt them to prevent agent system crashes caused by unreliable model responses. The system uses a graduated, multi-strategy repair engine that can be integrated directly into your TypeScript code via `@reaatech/structured-repair-core` or exposed as an MCP server for use in tools like Claude Desktop.
+These packages give you a repair engine that takes a Zod schema and malformed LLM output, then runs it through six graduated strategies—stripping markdown fences, extracting JSON from prose, fixing syntax errors, coercing types, fuzzy-matching keys, and removing extra fields—to return valid, schema-conforming data instead of crashing. You'd adopt them to handle the common failure modes of LLM structured output generation: trailing commas, truncated streams, Python literals, hallucinated field names, and JSON buried in conversational wrappers. The most distinctive thing is the graduated pipeline approach—each strategy runs in sequence, the engine validates after each step, and it returns as soon as the data conforms, giving you detailed diagnostics including per-field errors and best-effort partial data when full repair fails.
 
 ## When to use this
 
@@ -50,13 +50,13 @@ The returned `result` also contains `metadata` with the number of strategies att
 ## Packages
 
 ```bash
-# (no packages published to npm yet — install from source or wait for publish)
+npm install @reaatech/structured-repair-core @reaatech/structured-repair-mcp
 ```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/structured-repair-core` | pending npm | Fixes malformed LLM JSON output by applying a configurable pipeline of repair strategies to ensure compatibility with a provided Zod schema. It exports utility functions that re… |
-| `@reaatech/structured-repair-mcp` | pending npm | Exposes tools for repairing malformed LLM outputs against JSON schemas via the Model Context Protocol. It provides an MCP server that can be run as a standalone process or integ… |
+| `@reaatech/structured-repair-core` | published v1.0.0 | A Zod schema–driven repair engine that applies six graduated strategies (prose extraction, truncation repair, type coercion, fuzzy key matching, extra field removal, and input a… |
+| `@reaatech/structured-repair-mcp` | published v1.0.0 | An MCP server that exposes `structured.repair` and `structured.analyze` as tools, letting MCP-compatible clients (Claude Desktop, Cursor) repair malformed LLM structured outputs… |
 
 ## Issue reporting
 

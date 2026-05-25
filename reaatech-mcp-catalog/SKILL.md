@@ -1,12 +1,12 @@
 ---
 name: reaatech-mcp-catalog
-description: "These packages provide a centralized registry for discovering, monitoring, and managing access to Model Context Protocol (MCP) servers across an organization. They solve the problem of fragmented tool availability by aggregating server s…"
+description: "These packages let you run an internal registry where MCP servers can register themselves, be discovered by capability, and have their health monitored automatically. You'd adopt them to solve the problem of finding and managing MCP serv…"
 license: MIT
 ---
 
 # REAA mcp-catalog
 
-These packages provide a centralized registry for discovering, monitoring, and managing access to Model Context Protocol (MCP) servers across an organization. They solve the problem of fragmented tool availability by aggregating server schemas and health status into a single searchable interface. The system is designed as a self-referential MCP server, allowing LLM agents to query the catalog for new tools using the same protocol they use to execute them.
+These packages let you run an internal registry where MCP servers can register themselves, be discovered by capability, and have their health monitored automatically. You'd adopt them to solve the problem of finding and managing MCP servers across a team or organization without relying on a public directory or ad‑hoc documentation. The most distinctive thing is that the catalog itself is exposed as an MCP server, so any MCP client can query it using the same protocol the registered servers speak.
 
 ## When to use this
 

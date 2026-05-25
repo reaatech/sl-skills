@@ -1,12 +1,12 @@
 ---
 name: reaatech-hybrid-rag-qdrant
-description: "These packages give you a complete hybrid RAG system combining vector search (Qdrant), BM25 keyword search, and cross-encoder reranking with four chunking strategies. They solve the problem of building a production RAG stack that include…"
+description: "These packages give you a complete, modular RAG stack built around Qdrant, with hybrid retrieval that combines vector search, BM25 keyword search, and cross-encoder reranking. You'd adopt them to avoid assembling and integrating a dozen…"
 license: MIT
 ---
 
 # REAA hybrid-rag-qdrant
 
-These packages give you a complete hybrid RAG system combining vector search (Qdrant), BM25 keyword search, and cross-encoder reranking with four chunking strategies. They solve the problem of building a production RAG stack that includes retrieval, evaluation, benchmarking, and agent integration without stitching together disparate tools.
+These packages give you a complete, modular RAG stack built around Qdrant, with hybrid retrieval that combines vector search, BM25 keyword search, and cross-encoder reranking. You'd adopt them to avoid assembling and integrating a dozen separate tools for document ingestion, chunking, retrieval, reranking, evaluation, and observability into a coherent pipeline. The most distinctive thing is that every component—from four chunking strategies to ablation studies to an MCP server with 41 tools—is a separate, independently installable package sharing core types and Zod schemas, so you can use only what you need while keeping everything type-safe and composable.
 
 ## When to use this
 
@@ -57,16 +57,16 @@ npm install @reaatech/hybrid-rag @reaatech/hybrid-rag-cli @reaatech/hybrid-rag-e
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/hybrid-rag` | published v0.1.0 | Shared TypeScript types and Zod schemas for documents, chunks, retrieval, evaluation, and benchmarking in a hybrid RAG system; requires only `zod` at runtime. |
-| `@reaatech/hybrid-rag-cli` | published v0.1.0 | Command-line interface for hybrid RAG systems that provides commands for document ingestion, querying, evaluation, ablation studies, benchmarking, and MCP server startup, with a… |
-| `@reaatech/hybrid-rag-embedding` | published v0.1.0 | Provides a unified `EmbeddingService` class that generates embeddings for hybrid RAG systems across multiple providers (OpenAI, with extension points for Vertex AI and local mod… |
-| `@reaatech/hybrid-rag-evaluation` | published v0.1.0 | Evaluates and benchmarks hybrid RAG systems using standard IR metrics (Precision@K, NDCG, MAP, MRR), generation quality scores, and configurable ablation studies with delta comp… |
-| `@reaatech/hybrid-rag-ingestion` | published v0.1.0 | Provides a suite of classes and functions for loading, normalizing, validating, and chunking documents into formats suitable for RAG pipelines. It supports four distinct chunkin… |
-| `@reaatech/hybrid-rag-mcp-server` | published v0.1.0 | Exposes over 40 Model Context Protocol (MCP) tools for managing RAG lifecycles, including retrieval, ingestion, evaluation, and observability. It provides a `createMCPServer` fu… |
-| `@reaatech/hybrid-rag-observability` | published v0.1.0 | Provides structured logging, OpenTelemetry tracing, and metrics collection specifically for hybrid RAG pipelines. It exports a set of utility functions and managers that wrap Pi… |
-| `@reaatech/hybrid-rag-pipeline` | published v0.1.0 | A single `RAGPipeline` class that orchestrates document ingestion and hybrid (vector + BM25) retrieval with optional reranking, backed by Qdrant and configurable embedding provi… |
-| `@reaatech/hybrid-rag-qdrant` | published v0.1.0 | Provides a wrapper class for the Qdrant REST client that simplifies collection management, batch upserting, and metadata-filtered vector searches. It acts as an abstraction laye… |
-| `@reaatech/hybrid-rag-retrieval` | published v0.1.0 | Orchestrates hybrid RAG pipelines by combining Qdrant-based vector search, in-process BM25 keyword search, and cross-encoder reranking. It provides a `HybridRetriever` class tha… |
+| `@reaatech/hybrid-rag` | published v0.1.0 | Zod schemas, TypeScript types, and enums for documents, chunks, retrieval results, evaluation samples, ablation configs, and benchmarking metrics that serve as the shared type f… |
+| `@reaatech/hybrid-rag-cli` | published v0.1.0 | A CLI tool for hybrid RAG (Retrieval-Augmented Generation) workflows, providing commands for document ingestion, querying, evaluation, ablation studies, benchmarking, chunking p… |
+| `@reaatech/hybrid-rag-embedding` | published v0.1.0 | A class that generates text embeddings through a provider-agnostic interface, currently supporting OpenAI models with built-in batch processing, rate limiting, and cost tracking. |
+| `@reaatech/hybrid-rag-evaluation` | published v0.1.0 | An evaluation runner for hybrid RAG systems that provides standard IR metrics (Precision@K, Recall@K, NDCG@K, MAP, MRR), generation quality scoring, ablation studies with YAML-c… |
+| `@reaatech/hybrid-rag-ingestion` | published v0.1.0 | A set of classes (`DocumentLoader`, `TextPreprocessor`, `DocumentValidator`) and a `chunkDocument` function for loading, preprocessing, validating, and chunking documents from P… |
+| `@reaatech/hybrid-rag-mcp-server` | published v0.1.0 | An MCP server that exposes 41+ tools for hybrid RAG (vector + BM25) operations, including retrieval, ingestion, evaluation, query analysis, session management, and agent integra… |
+| `@reaatech/hybrid-rag-observability` | published v0.1.0 | A Pino-based structured logger and OpenTelemetry tracing/metrics collector for hybrid RAG pipelines, providing pre-built helpers for logging query lifecycles, recording span dur… |
+| `@reaatech/hybrid-rag-pipeline` | published v0.1.0 | A single `RAGPipeline` class that orchestrates document ingestion and hybrid retrieval (vector + BM25) against a Qdrant vector store, with optional reranking via Cohere, Jina, O… |
+| `@reaatech/hybrid-rag-qdrant` | published v0.1.0 | A Qdrant vector database adapter that wraps `@qdrant/js-client-rest` with collection management, batch upsert, vector search with automatic metadata filtering, and health checks… |
+| `@reaatech/hybrid-rag-retrieval` | published v0.1.0 | A hybrid retrieval engine that combines Qdrant vector search, in-process BM25 keyword search, cross-encoder reranking, and configurable score fusion (RRF, weighted sum, normaliz… |
 
 ## Issue reporting
 

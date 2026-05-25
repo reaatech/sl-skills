@@ -1,7 +1,7 @@
 [
   {
     "name": "reaatech-a2a-reference-ts",
-    "description": "These packages provide a complete TypeScript implementation of the Agent-to-Agent (A2A) protocol, including a server framework, client SDK, and a bidirectional bridge to the Model Context Protocol (MCP). You would adopt these to build in…",
+    "description": "These packages give you a full TypeScript implementation of the Agent-to-Agent (A2A) protocol — server framework, client SDK, authentication, persistence, observability, and a bidirectional bridge to MCP — so you can build interoperable…",
     "path": "reaatech-a2a-reference-ts/SKILL.md",
     "repo": {
       "slug": "a2a-reference-ts",
@@ -15,7 +15,7 @@
   },
   {
     "name": "reaatech-agent-auth-proxy",
-    "description": "These packages provide a stateful identity-aware reverse proxy that manages OAuth2 flows, API key injection, and scope enforcement for AI agents. You would adopt them to secure agent-to-service communication by centralizing credential ma…",
+    "description": "These packages give you an identity-aware reverse proxy that sits between AI agents and downstream APIs like Google or GitHub, handling OAuth2 token management, API key vaulting, and scope enforcement. You would adopt them to solve the p…",
     "path": "reaatech-agent-auth-proxy/SKILL.md",
     "repo": {
       "slug": "agent-auth-proxy",
@@ -29,7 +29,7 @@
   },
   {
     "name": "reaatech-agent-budget-controller",
-    "description": "These packages provide a real-time enforcement layer for LLM agent systems, allowing you to define and monitor spending limits across users, sessions, and organizations. You would adopt them to prevent runaway costs by automatically trig…",
+    "description": "These packages give you a real-time budget enforcement layer for LLM-powered agents that checks every request against per-task, per-user, per-session, or per-organization spend limits before it executes. You'd adopt them to prevent runaw…",
     "path": "reaatech-agent-budget-controller/SKILL.md",
     "repo": {
       "slug": "agent-budget-controller",
@@ -43,7 +43,7 @@
   },
   {
     "name": "reaatech-agent-chaos",
-    "description": "These packages provide a fault injection toolkit for testing the resilience of LLM agent systems against real-world failures like latency, rate limits, and malformed tool outputs. You would adopt these to validate that your circuit break…",
+    "description": "These packages give you a middleware-based fault injection engine that sits between your agent and its tools, injecting failures like latency spikes, rate limits, and malformed output to test whether your circuit breakers, confidence gat…",
     "path": "reaatech-agent-chaos/SKILL.md",
     "repo": {
       "slug": "agent-chaos",
@@ -57,7 +57,7 @@
   },
   {
     "name": "reaatech-agent-eval-harness",
-    "description": "These packages provide a modular toolkit for evaluating AI agent performance, covering trajectory analysis, tool-use validation, cost tracking, and latency monitoring. You would adopt them to implement automated regression testing, CI/CD…",
+    "description": "These packages give you a full evaluation pipeline for AI agent trajectories—loading multi-turn conversations, scoring them on quality, tool correctness, cost, and latency, then running those scores through CI/CD regression gates. You'd…",
     "path": "reaatech-agent-eval-harness/SKILL.md",
     "repo": {
       "slug": "agent-eval-harness",
@@ -71,7 +71,7 @@
   },
   {
     "name": "reaatech-agent-handoff-protocol",
-    "description": "These packages provide a standardized lifecycle for transferring AI agent conversations, including context compression, intelligent routing, and transport delivery. You would adopt them to manage complex multi-agent workflows where sessi…",
+    "description": "These packages give you a complete lifecycle for transferring a conversation from one AI agent to another mid-session, including compressing the conversation history, scoring and selecting the best target agent, validating payload compat…",
     "path": "reaatech-agent-handoff-protocol/SKILL.md",
     "repo": {
       "slug": "agent-handoff-protocol",
@@ -85,7 +85,7 @@
   },
   {
     "name": "reaatech-agent-memory",
-    "description": "These packages provide a managed long-term memory layer for AI agents, handling the extraction, storage, and retrieval of facts and preferences. You would adopt them to move beyond simple vector search by implementing active lifecycle ma…",
+    "description": "These packages give AI agents a long-term memory layer that persists information across sessions, not just within a single conversation. You'd adopt them to solve the problem of agents forgetting user preferences, contradicting themselve…",
     "path": "reaatech-agent-memory/SKILL.md",
     "repo": {
       "slug": "agent-memory",
@@ -99,7 +99,7 @@
   },
   {
     "name": "reaatech-agent-mesh",
-    "description": "These packages provide a modular orchestrator for routing user requests to multiple AI agents using the Model Context Protocol. You would use them to build a resilient gateway that handles intent classification, session persistence, and…",
+    "description": "These packages give you a complete multi-agent orchestrator that routes user requests to the right agent based on intent confidence, manages multi-turn sessions, and isolates failing agents with circuit breakers. You would adopt them to…",
     "path": "reaatech-agent-mesh/SKILL.md",
     "repo": {
       "slug": "agent-mesh",
@@ -113,21 +113,21 @@
   },
   {
     "name": "reaatech-agent-replay",
-    "description": "These packages let you record, replay, and debug AI agent interactions deterministically, using a trace-based model inspired by distributed tracing. You’d adopt them to decouple agent debugging from live LLM calls—so you can iterate with…",
+    "description": "These packages give you a deterministic recording and replay system for AI agent interactions. You'd adopt them to debug agent behavior without burning LLM tokens on every iteration — record a trace once, then replay it in stubbed, parti…",
     "path": "reaatech-agent-replay/SKILL.md",
     "repo": {
       "slug": "agent-replay",
       "fullName": "reaatech/agent-replay"
     },
     "category": {
-      "slug": "testing-security",
-      "name": "Testing & Security"
+      "slug": "evals-quality",
+      "name": "Evals & Quality"
     },
     "packageCount": 7
   },
   {
     "name": "reaatech-agent-runbook-generator",
-    "description": "These packages automate the creation of operator runbooks by scanning service repositories to generate alerts, dashboards, failure modes, and incident response workflows. They solve the problem of maintaining outdated or missing document…",
+    "description": "These packages give you a CLI, library, and MCP server that scan a service repository and produce a complete operator runbook—alerts, dashboards, failure modes, rollback steps, incident workflows, health checks, and dependency maps. You…",
     "path": "reaatech-agent-runbook-generator/SKILL.md",
     "repo": {
       "slug": "agent-runbook-generator",
@@ -141,7 +141,7 @@
   },
   {
     "name": "reaatech-agents-md-kit",
-    "description": "These packages provide a toolkit for managing `AGENTS.md` and `SKILL.md` files, which define the behavior and capabilities of AI agents. You would use them to automate the scaffolding, linting, and schema validation of these instruction…",
+    "description": "These packages give you a linter, validator, and scaffolder for AGENTS.md and SKILL.md files — the markdown documents that define how AI agents behave and what skills they have. You would adopt them to enforce a consistent, machine-reada…",
     "path": "reaatech-agents-md-kit/SKILL.md",
     "repo": {
       "slug": "agents-md-kit",
@@ -155,7 +155,7 @@
   },
   {
     "name": "reaatech-circuit-breaker-agents",
-    "description": "These packages provide a circuit breaker implementation designed for agent-to-tool and agent-to-agent communication, supporting confidence-based and cost-based tripping alongside standard error thresholds. You would adopt them to manage…",
+    "description": "These packages give you a circuit breaker designed specifically for agent-to-tool and agent-to-agent communication, with per-tool circuit isolation, confidence-aware tripping, and cost-based rate limiting. You would adopt them to prevent…",
     "path": "reaatech-circuit-breaker-agents/SKILL.md",
     "repo": {
       "slug": "circuit-breaker-agents",
@@ -169,7 +169,7 @@
   },
   {
     "name": "reaatech-classifier-evals",
-    "description": "These TypeScript packages give you a complete evaluation suite for intent classifiers — from confusion matrices and 14 classification metrics to LLM-as-judge with cost tracking, regression quality gates, and exporters for Phoenix and Lan…",
+    "description": "These packages give you a complete offline evaluation harness for intent classification systems, covering dataset loading, metrics calculation, LLM-as-judge evaluation, regression quality gates, and result export. You would adopt them to…",
     "path": "reaatech-classifier-evals/SKILL.md",
     "repo": {
       "slug": "classifier-evals",
@@ -183,7 +183,7 @@
   },
   {
     "name": "reaatech-confidence-router",
-    "description": "These packages provide a decision engine that routes, clarifies, or triggers fallbacks based on the confidence scores of classification results. They solve the problem of managing ambiguity in automated systems by allowing you to chain c…",
+    "description": "These packages give you a decision engine that turns classifier confidence scores into one of three actions: route to a handler, ask the user for clarification, or fall back to a default. You'd adopt them to handle ambiguous or low-confi…",
     "path": "reaatech-confidence-router/SKILL.md",
     "repo": {
       "slug": "confidence-router",
@@ -197,21 +197,21 @@
   },
   {
     "name": "reaatech-context-window-planner",
-    "description": "These packages provide a deterministic engine for managing LLM context windows by deciding which data to include, summarize, or drop based on token budgets. They solve the problem of prompt overflow in complex agentic workflows where inp…",
+    "description": "These packages give you a deterministic engine for deciding what content to include, summarize, or drop when packing prompts into an LLM's context window. You'd adopt them to solve the problem of overflowing a model's token budget—replac…",
     "path": "reaatech-context-window-planner/SKILL.md",
     "repo": {
       "slug": "context-window-planner",
       "fullName": "reaatech/context-window-planner"
     },
     "category": {
-      "slug": "domain-pipelines",
-      "name": "Domain Pipelines"
+      "slug": "evals-quality",
+      "name": "Evals & Quality"
     },
     "packageCount": 2
   },
   {
     "name": "reaatech-guardrail-chain",
-    "description": "These packages provide a framework for building safety pipelines that validate and filter LLM inputs and outputs. You would use them to manage complex security requirements, such as PII redaction or prompt injection detection, while stri…",
+    "description": "These packages give you a composable pipeline of input and output guardrails for LLM calls, with built-in budget management that can skip non-essential checks under latency or token pressure. You'd adopt them to add safety layers—PII red…",
     "path": "reaatech-guardrail-chain/SKILL.md",
     "repo": {
       "slug": "guardrail-chain",
@@ -225,7 +225,7 @@
   },
   {
     "name": "reaatech-hybrid-rag-qdrant",
-    "description": "These packages give you a complete hybrid RAG system combining vector search (Qdrant), BM25 keyword search, and cross-encoder reranking with four chunking strategies. They solve the problem of building a production RAG stack that include…",
+    "description": "These packages give you a complete, modular RAG stack built around Qdrant, with hybrid retrieval that combines vector search, BM25 keyword search, and cross-encoder reranking. You'd adopt them to avoid assembling and integrating a dozen…",
     "path": "reaatech-hybrid-rag-qdrant/SKILL.md",
     "repo": {
       "slug": "hybrid-rag-qdrant",
@@ -239,7 +239,7 @@
   },
   {
     "name": "reaatech-idempotency-middleware",
-    "description": "These packages add idempotency to HTTP APIs by caching responses keyed to the `Idempotency-Key` header, so retrying a `POST`, `PUT`, or `PATCH` request returns the original result instead of re-executing side effects. You’d adopt them to…",
+    "description": "These packages give you idempotency middleware for POST, PUT, and PATCH requests — duplicate requests with the same `Idempotency-Key` header return the cached original response instead of re-executing side effects. You'd adopt them to sa…",
     "path": "reaatech-idempotency-middleware/SKILL.md",
     "repo": {
       "slug": "idempotency-middleware",
@@ -253,7 +253,7 @@
   },
   {
     "name": "reaatech-llm-cache",
-    "description": "These packages provide a semantic and exact-match caching layer for LLM interactions, including support for embedding-based similarity, model-aware fingerprinting, and cost tracking. You would adopt them to reduce latency and API expense…",
+    "description": "These packages give you a semantic caching layer for LLM calls that returns cached responses for both exact prompt matches and semantically similar prompts above a configurable cosine similarity threshold. You'd adopt them to reduce API…",
     "path": "reaatech-llm-cache/SKILL.md",
     "repo": {
       "slug": "llm-cache",
@@ -267,7 +267,7 @@
   },
   {
     "name": "reaatech-llm-cost-telemetry",
-    "description": "These packages give you drop-in wrappers for OpenAI, Anthropic, and Google SDKs that automatically capture token usage and cost, along with a cost calculation engine, multi-tenant aggregation,",
+    "description": "These packages give you drop-in wrappers for OpenAI, Anthropic, and Google Generative AI SDKs that automatically capture token usage and cost from every API call, plus a cost calculation engine, multi-tenant aggregation and budget enforc…",
     "path": "reaatech-llm-cost-telemetry/SKILL.md",
     "repo": {
       "slug": "llm-cost-telemetry",
@@ -281,7 +281,7 @@
   },
   {
     "name": "reaatech-llm-judge-toolkit",
-    "description": "These packages provide a modular framework for evaluating LLM-generated text using other LLMs as judges. You would adopt them to automate quality assessment, detect model bias, and calibrate evaluation scores against human-labeled datase…",
+    "description": "These packages give you a complete system for using LLMs to evaluate generated text, with built-in prompt templates for five criteria (faithfulness, relevance, coherence, safety, tool-use), multi-provider support (OpenAI, Anthropic, loca…",
     "path": "reaatech-llm-judge-toolkit/SKILL.md",
     "repo": {
       "slug": "llm-judge-toolkit",
@@ -295,7 +295,7 @@
   },
   {
     "name": "reaatech-llm-router",
-    "description": "These packages provide a centralized routing engine for managing LLM requests across multiple providers, balancing cost, latency, and model capabilities. They allow you to implement complex fallback chains, enforce strict budget limits,…",
+    "description": "These packages give you a config-driven LLM routing engine that selects models based on cost, latency, capability, or a two-tier judgment strategy, with automatic fallback chains and circuit breakers when models fail. You would adopt the…",
     "path": "reaatech-llm-router/SKILL.md",
     "repo": {
       "slug": "llm-router",
@@ -309,7 +309,7 @@
   },
   {
     "name": "reaatech-mcp-catalog",
-    "description": "These packages provide a centralized registry for discovering, monitoring, and managing access to Model Context Protocol (MCP) servers across an organization. They solve the problem of fragmented tool availability by aggregating server s…",
+    "description": "These packages let you run an internal registry where MCP servers can register themselves, be discovered by capability, and have their health monitored automatically. You'd adopt them to solve the problem of finding and managing MCP serv…",
     "path": "reaatech-mcp-catalog/SKILL.md",
     "repo": {
       "slug": "mcp-catalog",
@@ -323,7 +323,7 @@
   },
   {
     "name": "reaatech-mcp-contract-kit",
-    "description": "These packages provide a comprehensive suite for testing Model Context Protocol (MCP) server implementations against the official specification. You would adopt them to automate conformance, security, and performance validation of your M…",
+    "description": "These packages give you a CLI tool and programmatic API for testing Model Context Protocol (MCP) servers against the MCP specification. You'd adopt them to validate that an MCP server correctly implements protocol conformance, registry Y…",
     "path": "reaatech-mcp-contract-kit/SKILL.md",
     "repo": {
       "slug": "mcp-contract-kit",
@@ -337,7 +337,7 @@
   },
   {
     "name": "reaatech-mcp-gateway",
-    "description": "These packages provide a modular gateway framework for managing Model Context Protocol (MCP) infrastructure, including authentication, rate limiting, schema validation, and fan-out routing. They allow you to secure, observe, and scale co…",
+    "description": "These packages give you a full-featured gateway for MCP (Model Context Protocol) servers, handling authentication, rate limiting, caching, schema validation, tool access control, and fan-out routing to multiple upstreams. You would adopt…",
     "path": "reaatech-mcp-gateway/SKILL.md",
     "repo": {
       "slug": "mcp-gateway",
@@ -351,7 +351,7 @@
   },
   {
     "name": "reaatech-mcp-load-test",
-    "description": "These packages provide a load testing framework designed to evaluate the performance and reliability of Model Context Protocol (MCP) servers. You would use them to simulate concurrent user behavior, identify breaking points, and generate…",
+    "description": "These packages give you a purpose-built load testing framework for MCP (Model Context Protocol) servers, with a CLI, orchestration engine, transport clients, and analysis tooling. You would adopt them to stress-test MCP servers under rea…",
     "path": "reaatech-mcp-load-test/SKILL.md",
     "repo": {
       "slug": "mcp-load-test",
@@ -365,7 +365,7 @@
   },
   {
     "name": "reaatech-mcp-schema-evolution",
-    "description": "These packages provide tools to diff, classify, and validate changes between Model Context Protocol (MCP) tool snapshots. They help teams prevent breaking changes in their tool definitions by automating schema comparison and enforcing ev…",
+    "description": "These packages give you a diff engine and CI policy for MCP tool schemas, classifying every change between two `Tool[]` snapshots as breaking, non-breaking, or patch. You'd adopt them to prevent breaking MCP consumers when you add, remov…",
     "path": "reaatech-mcp-schema-evolution/SKILL.md",
     "repo": {
       "slug": "mcp-schema-evolution",
@@ -379,21 +379,21 @@
   },
   {
     "name": "reaatech-mcp-server-doctor",
-    "description": "These packages provide a diagnostic suite for validating and profiling Model Context Protocol (MCP) servers. They allow you to automate health checks—covering transport negotiation, latency, and concurrency—to ensure your servers meet sp…",
+    "description": "These packages give you a CLI tool and programmatic library that runs eight health checks against any MCP server endpoint, grades the results A–F, and outputs reports in console, JSON, markdown, or HTML formats. You would adopt them to c…",
     "path": "reaatech-mcp-server-doctor/SKILL.md",
     "repo": {
       "slug": "mcp-server-doctor",
       "fullName": "reaatech/mcp-server-doctor"
     },
     "category": {
-      "slug": "mcp-infrastructure",
-      "name": "MCP Infrastructure"
+      "slug": "testing-security",
+      "name": "Testing & Security"
     },
     "packageCount": 6
   },
   {
     "name": "reaatech-mcp-server-starter-ts",
-    "description": "These packages provide a framework for building, securing, and operating Model Context Protocol (MCP) servers in TypeScript. They solve the complexity of implementing transport layers, authentication, and observability by offering a pre-…",
+    "description": "These packages give you a full MCP server—core types, an Express 5 framework with a composable middleware pipeline, tool registration and auto-discovery, dual Streamable HTTP and SSE transports, and built-in observability with Pino loggi…",
     "path": "reaatech-mcp-server-starter-ts/SKILL.md",
     "repo": {
       "slug": "mcp-server-starter-ts",
@@ -407,7 +407,7 @@
   },
   {
     "name": "reaatech-media-pipeline-mcp",
-    "description": "These packages provide a framework for building multi-step media processing workflows, such as image generation, audio transcription, and document extraction, as chainable tools within an MCP server. You would adopt them to automate comp…",
+    "description": "These packages give you a set of MCP tools for generating and processing images, audio, video, documents, and 3D models, then chaining those operations into pipelines with artifact passing between steps. You would adopt them to avoid wir…",
     "path": "reaatech-media-pipeline-mcp/SKILL.md",
     "repo": {
       "slug": "media-pipeline-mcp",
@@ -417,11 +417,11 @@
       "slug": "domain-pipelines",
       "name": "Domain Pipelines"
     },
-    "packageCount": 29
+    "packageCount": 28
   },
   {
     "name": "reaatech-multi-tenant-mcp",
-    "description": "These packages provide a suite of modular primitives for implementing multi-tenancy within Model Context Protocol (MCP) servers. They solve the challenge of isolating resources, enforcing rate limits, tracking costs, and managing configu…",
+    "description": "These packages let you run a single MCP server that serves multiple tenants, with each tenant getting its own rate limits, tool visibility, cost tracking, and isolated artifact storage. You'd adopt them to avoid standing up a separate MC…",
     "path": "reaatech-multi-tenant-mcp/SKILL.md",
     "repo": {
       "slug": "multi-tenant-mcp",
@@ -435,7 +435,7 @@
   },
   {
     "name": "reaatech-otel-cost-exporter",
-    "description": "These packages convert GenAI semantic convention spans into real-time USD cost metrics and export them via Prometheus, OTLP, or JSON. They solve the problem of tracking LLM spend without maintaining pricing data, shipping with pre‑valida…",
+    "description": "These packages convert GenAI semantic convention spans into real-time USD cost metrics, exporting them via Prometheus, OTLP, or JSON. You would adopt them to track LLM spend per model and provider without manually maintaining pricing tab…",
     "path": "reaatech-otel-cost-exporter/SKILL.md",
     "repo": {
       "slug": "otel-cost-exporter",
@@ -449,7 +449,7 @@
   },
   {
     "name": "reaatech-otel-genai-semconv",
-    "description": "These packages provide instrumented wrappers for OpenAI, Anthropic, Vertex AI, and AWS Bedrock that emit OpenTelemetry-compliant spans for LLM interactions. You would adopt them to gain standardized observability into token usage, costs,…",
+    "description": "These packages give you instrumented wrappers for OpenAI, Anthropic, Vertex AI, and AWS Bedrock that emit OpenTelemetry GenAI semantic convention spans, plus deployable dashboards for Phoenix, Langfuse, and Cloud Trace. You would adopt t…",
     "path": "reaatech-otel-genai-semconv/SKILL.md",
     "repo": {
       "slug": "otel-genai-semconv",
@@ -463,7 +463,7 @@
   },
   {
     "name": "reaatech-prompt-injection-bench",
-    "description": "These packages provide a standardized framework for benchmarking and evaluating the effectiveness of prompt-injection defenses in AI agent systems. They allow you to measure security posture by running a diverse corpus of adversarial att…",
+    "description": "These packages give you a reproducible benchmark for evaluating prompt-injection defenses in AI agent systems, including an attack corpus with 300+ templates across 8 categories, pluggable defense adapters (Rebuff, Lakera Guard, LLM Guar…",
     "path": "reaatech-prompt-injection-bench/SKILL.md",
     "repo": {
       "slug": "prompt-injection-bench",
@@ -477,7 +477,7 @@
   },
   {
     "name": "reaatech-prompt-version-control",
-    "description": "These packages provide a centralized system for managing the lifecycle of AI prompts, including version tracking, A/B testing, and evaluation-gated promotions. You would adopt them to move prompt management out of application code and in…",
+    "description": "These packages give you Git-like version control for AI prompts — an API server, TypeScript SDK, CLI, and MCP server that let you track prompt changes, gate promotions on eval results, and serve A/B deployments. You'd adopt them to solve…",
     "path": "reaatech-prompt-version-control/SKILL.md",
     "repo": {
       "slug": "prompt-version-control",
@@ -491,7 +491,7 @@
   },
   {
     "name": "reaatech-rag-eval-pack",
-    "description": "These packages provide a modular toolkit for evaluating RAG systems using heuristic scorers, LLM-as-judge, and automated quality gates. They help teams measure retrieval and generation performance while enforcing cost budgets and CI/CD r…",
+    "description": "These packages give you a full RAG evaluation pipeline—heuristic scorers for faithfulness, relevance, context precision, and context recall, plus an LLM-as-judge with multi-provider support, cost tracking with budget enforcement, and CI…",
     "path": "reaatech-rag-eval-pack/SKILL.md",
     "repo": {
       "slug": "rag-eval-pack",
@@ -505,7 +505,7 @@
   },
   {
     "name": "reaatech-secret-rotation-kit",
-    "description": "These packages provide a framework for automating secret rotation across AWS Secrets Manager, GCP Secret Manager, and HashiCorp Vault. They solve the risk of service outages during credential updates by orchestrating overlapping key vali…",
+    "description": "These packages give you a zero-downtime secret rotation engine that orchestrates the full lifecycle—generate, propagate, verify, activate, and revoke—across AWS Secrets Manager, GCP Secret Manager, HashiCorp Vault, and Vercel environment…",
     "path": "reaatech-secret-rotation-kit/SKILL.md",
     "repo": {
       "slug": "secret-rotation-kit",
@@ -515,53 +515,25 @@
       "slug": "reliability-ops",
       "name": "Reliability & Ops"
     },
-    "packageCount": 7
+    "packageCount": 8
   },
   {
     "name": "reaatech-session-continuity-kit",
-    "description": "These packages provide a framework for managing multi-turn AI agent conversations, including token budget enforcement, context compression, and session persistence. They solve the complexity of maintaining consistent conversation state a…",
+    "description": "These packages give you a complete session management layer for multi-turn AI agent conversations, handling conversation history windowing, token budget enforcement, context compression, and agent handoff. You'd adopt them to avoid rebui…",
     "path": "reaatech-session-continuity-kit/SKILL.md",
     "repo": {
       "slug": "session-continuity-kit",
       "fullName": "reaatech/session-continuity-kit"
     },
     "category": {
-      "slug": "domain-pipelines",
-      "name": "Domain Pipelines"
+      "slug": "reliability-ops",
+      "name": "Reliability & Ops"
     },
     "packageCount": 6
   },
   {
-    "name": "reaatech-string-utils",
-    "description": "These packages provide a library of pure string manipulation functions and a corresponding CLI wrapper for text transformation. They are designed for projects requiring deterministic string formatting, such as slugification or casing con…",
-    "path": "reaatech-string-utils/SKILL.md",
-    "repo": {
-      "slug": "string-utils",
-      "fullName": "reaatech/string-utils"
-    },
-    "category": {
-      "slug": "testing-security",
-      "name": "Testing & Security"
-    },
-    "packageCount": 2
-  },
-  {
-    "name": "reaatech-structured-function-calling-ai",
-    "description": "These packages provide a unified framework for defining, validating, and executing LLM-compatible tools using Zod schemas. They allow you to standardize tool definitions once and deploy them across multiple LLM providers or MCP-compliant…",
-    "path": "reaatech-structured-function-calling-ai/SKILL.md",
-    "repo": {
-      "slug": "structured-function-calling-ai",
-      "fullName": "reaatech/structured-function-calling-ai"
-    },
-    "category": {
-      "slug": "orchestration-protocols",
-      "name": "Orchestration & Protocols"
-    },
-    "packageCount": 7
-  },
-  {
     "name": "reaatech-structured-output-repair",
-    "description": "These packages provide a pipeline to automatically fix malformed LLM outputs, such as invalid JSON, markdown fences, or type mismatches, to ensure they conform to your defined schemas. You would adopt them to prevent agent system crashes…",
+    "description": "These packages give you a repair engine that takes a Zod schema and malformed LLM output, then runs it through six graduated strategies—stripping markdown fences, extracting JSON from prose, fixing syntax errors, coercing types, fuzzy-ma…",
     "path": "reaatech-structured-output-repair/SKILL.md",
     "repo": {
       "slug": "structured-output-repair",
@@ -574,8 +546,22 @@
     "packageCount": 2
   },
   {
+    "name": "reaatech-tool-use-firewall",
+    "description": "These packages give you a policy enforcement layer that sits between an AI agent and its MCP servers, intercepting every `tools/call` to validate, rate-limit, and audit tool invocations before they reach the upstream. You'd adopt them to…",
+    "path": "reaatech-tool-use-firewall/SKILL.md",
+    "repo": {
+      "slug": "tool-use-firewall",
+      "fullName": "reaatech/tool-use-firewall"
+    },
+    "category": {
+      "slug": "testing-security",
+      "name": "Testing & Security"
+    },
+    "packageCount": 7
+  },
+  {
     "name": "reaatech-voice-agent-kit",
-    "description": "These packages provide a transport layer for real-time voice AI, orchestrating the pipeline between telephony streams, speech-to-text, text-to-speech, and MCP-based agent logic. They solve the challenge of maintaining sub-second latency…",
+    "description": "These packages give you the full pipeline to turn microphone or phone audio into an AI agent response and back — speech-to-text, MCP tool calls, text-to-speech, and telephony or WebRTC transport, all orchestrated with per-stage latency b…",
     "path": "reaatech-voice-agent-kit/SKILL.md",
     "repo": {
       "slug": "voice-agent-kit",
@@ -584,6 +570,20 @@
     "category": {
       "slug": "domain-pipelines",
       "name": "Domain Pipelines"
+    },
+    "packageCount": 8
+  },
+  {
+    "name": "reaatech-webhook-relay-mcp",
+    "description": "These packages give you an MCP server that receives webhooks from services like Stripe, GitHub, and Twilio, normalizes them into a consistent event format, and exposes them to AI agents through subscription-based polling. You would adopt…",
+    "path": "reaatech-webhook-relay-mcp/SKILL.md",
+    "repo": {
+      "slug": "webhook-relay-mcp",
+      "fullName": "reaatech/webhook-relay-mcp"
+    },
+    "category": {
+      "slug": "mcp-infrastructure",
+      "name": "MCP Infrastructure"
     },
     "packageCount": 5
   }

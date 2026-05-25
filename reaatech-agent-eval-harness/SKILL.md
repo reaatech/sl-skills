@@ -1,12 +1,12 @@
 ---
 name: reaatech-agent-eval-harness
-description: "These packages provide a modular toolkit for evaluating AI agent performance, covering trajectory analysis, tool-use validation, cost tracking, and latency monitoring. You would adopt them to implement automated regression testing, CI/CD…"
+description: "These packages give you a full evaluation pipeline for AI agent trajectories—loading multi-turn conversations, scoring them on quality, tool correctness, cost, and latency, then running those scores through CI/CD regression gates. You'd…"
 license: MIT
 ---
 
 # REAA agent-eval-harness
 
-These packages provide a modular toolkit for evaluating AI agent performance, covering trajectory analysis, tool-use validation, cost tracking, and latency monitoring. You would adopt them to implement automated regression testing, CI/CD quality gates, and LLM-as-judge scoring for your agent workflows. The collection is built as a set of independent, composable TypeScript packages that can be used via a CLI, integrated into test suites, or exposed through an MCP server for AI-assisted development.
+These packages give you a full evaluation pipeline for AI agent trajectories—loading multi-turn conversations, scoring them on quality, tool correctness, cost, and latency, then running those scores through CI/CD regression gates. You'd adopt them to catch regressions in agent behavior before deploying, replacing ad-hoc manual review or single-metric checks with structured, repeatable evaluation. The monorepo is organized as independent packages (trajectory loading, tool-use validation, cost tracking, LLM-as-judge, golden comparisons, suite orchestration, CI gates, MCP server, observability) that each export plain TypeScript functions and Zod schemas, so you compose exactly the pieces you need without a framework lock-in.
 
 ## When to use this
 
@@ -72,19 +72,19 @@ npm install @reaatech/agent-eval-harness-cli @reaatech/agent-eval-harness-cost @
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/agent-eval-harness-cli` | published v0.1.0 | This CLI provides a suite of commands for executing agent evaluation pipelines, managing golden trajectories, and enforcing CI quality gates. It also functions as an MCP server… |
-| `@reaatech/agent-eval-harness-cost` | published v0.1.0 | Calculates and enforces spending limits for AI agent trajectories by providing functions to compute token-based costs, compare performance, and trigger budget alerts. It exports… |
-| `@reaatech/agent-eval-harness-gate` | published v0.1.0 | Enforces CI/CD regression thresholds for AI agent performance, cost, and quality metrics. It provides a `GateEngine` class to evaluate agent results against configurable gates a… |
-| `@reaatech/agent-eval-harness-golden` | published v0.1.0 | Manages reference agent trajectories for regression testing through a collection of utility functions and a `GoldenCurator` class. It provides tools to create, annotate, and val… |
-| `@reaatech/agent-eval-harness-judge` | published v0.1.0 | Evaluates agent responses using LLM-as-a-judge patterns with support for multi-model consensus, automated calibration, and cost tracking. It provides a `JudgeEngine` class that… |
-| `@reaatech/agent-eval-harness-latency` | published v0.1.0 | Computes latency metrics, enforces SLA budgets, and identifies performance bottlenecks for AI agent trajectories. It provides a suite of utility functions and a `LatencyTracker`… |
-| `@reaatech/agent-eval-harness-mcp-server` | published v0.1.0 | Exposes 13 evaluation tools for AI agents via the Model Context Protocol (MCP) using stdio transport. It provides a factory function to instantiate a server that handles atomic… |
-| `@reaatech/agent-eval-harness-observability` | published v0.1.0 | Provides OpenTelemetry instrumentation, Pino-based structured logging with PII redaction, and an in-memory dashboard manager for tracking agent evaluation pipelines. It exposes… |
-| `@reaatech/agent-eval-harness-suite` | published v0.1.0 | Executes batch evaluations of agent trajectories using a YAML-configured runner class that aggregates multi-metric scores and performs statistical regression analysis between ru… |
-| `@reaatech/agent-eval-harness-tool-use` | published v0.1.0 | Validates agent tool-use trajectories by checking schema compliance, argument accuracy, and result integration. It provides a set of utility functions to evaluate individual too… |
-| `@reaatech/agent-eval-harness-trajectory` | published v0.1.0 | Provides utilities for loading, validating, and evaluating agent conversation trajectories from JSONL files. It exports functions for parsing data, calculating coherence and goa… |
-| `@reaatech/agent-eval-harness-types` | published v0.1.0 | Provides TypeScript interfaces and Zod schemas for defining agent trajectories, evaluation results, latency budgets, and regression gates. It serves as a shared type library for… |
-| `@reaatech/agent-eval-harness-infra` | pending npm | Provides a collection of Terraform modules and environment configurations for deploying the agent-eval-harness across AWS, Azure, GCP, OCI, Vercel, and Netlify. It requires Terr… |
+| `@reaatech/agent-eval-harness-cli` | published v0.1.0 | A CLI providing 7 subcommands (`eval`, `judge`, `compare`, `gate`, `golden`, `report`, `serve`) for running and managing LLM agent evaluations, including trajectory loading, mul… |
+| `@reaatech/agent-eval-harness-cost` | published v0.1.0 | Calculates per-task LLM token and tool invocation costs for AI agent trajectories, with budget enforcement and cost reporting. Exports functions like `calculateTrajectoryCost`,… |
+| `@reaatech/agent-eval-harness-gate` | published v0.1.0 | A function that evaluates AI agent evaluation results against configurable quality, cost, latency, and correctness thresholds, returning a pass/fail summary for CI/CD gating. |
+| `@reaatech/agent-eval-harness-golden` | published v0.1.0 | A library for creating, managing, and comparing golden reference trajectories against candidate agent runs to detect regressions. It provides functions (`createGolden`, `compare… |
+| `@reaatech/agent-eval-harness-judge` | published v0.1.0 | A provider-agnostic LLM-as-judge engine that scores agent responses on faithfulness, relevance, tool correctness, and overall quality using Claude, GPT-4, Gemini, or any OpenAI-… |
+| `@reaatech/agent-eval-harness-latency` | published v0.1.0 | A latency monitoring and SLA enforcement toolkit for AI agent evaluation, providing functions to compute P50/P90/P99 percentiles per turn and trajectory, detect anomalous turns,… |
+| `@reaatech/agent-eval-harness-mcp-server` | published v0.1.0 | An MCP (Model Context Protocol) server that exposes 13 evaluation tools across three layers—atomic judge operations, orchestrated suite runs, and CI gate operations—via stdio tr… |
+| `@reaatech/agent-eval-harness-observability` | published v0.1.0 | Provides OpenTelemetry tracing, 7 pre-configured metrics, Pino-based structured logging with automatic PII redaction, and an in-memory dashboard manager with trend analysis and… |
+| `@reaatech/agent-eval-harness-suite` | published v0.1.0 | A YAML-driven batch evaluation runner that executes multi-metric assessments across trajectory collections with configurable concurrency, then aggregates results into JSON, JUni… |
+| `@reaatech/agent-eval-harness-tool-use` | published v0.1.0 | Validates tool selection, argument schema compliance, result hallucination, and integration for agent tool calls across trajectories, exporting functions like `validateToolCall`… |
+| `@reaatech/agent-eval-harness-trajectory` | published v0.1.0 | Parses JSONL turn files into validated trajectories, then scores them for coherence, goal completion, and conversation flow, and diffs candidate trajectories against golden refe… |
+| `@reaatech/agent-eval-harness-types` | published v0.1.0 | Canonical TypeScript domain types, Zod schemas, and interfaces for the agent-eval-harness ecosystem. Exports 19 interfaces (`Turn`, `Trajectory`, `EvalResult`, `JudgeScore`, `Co… |
+| `@reaatech/agent-eval-harness-infra` | pending npm | Terraform modules and environment configurations for deploying the agent-eval-harness application to AWS, Azure, GCP, OCI, Netlify, and Vercel, providing reusable infrastructure… |
 
 ## Issue reporting
 

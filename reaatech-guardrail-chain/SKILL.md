@@ -1,12 +1,12 @@
 ---
 name: reaatech-guardrail-chain
-description: "These packages provide a framework for building safety pipelines that validate and filter LLM inputs and outputs. You would use them to manage complex security requirements, such as PII redaction or prompt injection detection, while stri…"
+description: "These packages give you a composable pipeline of input and output guardrails for LLM calls, with built-in budget management that can skip non-essential checks under latency or token pressure. You'd adopt them to add safety layers—PII red…"
 license: MIT
 ---
 
 # REAA guardrail-chain
 
-These packages provide a framework for building safety pipelines that validate and filter LLM inputs and outputs. You would use them to manage complex security requirements, such as PII redaction or prompt injection detection, while strictly enforcing latency and token budgets per request. The system uses a fluent `ChainBuilder` to compose guardrails into a single execution pipeline, allowing for short-circuit logic and dynamic scheduling based on remaining budget.
+These packages give you a composable pipeline of input and output guardrails for LLM calls, with built-in budget management that can skip non-essential checks under latency or token pressure. You'd adopt them to add safety layers—PII redaction, prompt injection detection, toxicity filtering, hallucination detection, and others—without wiring each guardrail from scratch or guessing how they interact under load. The most distinctive thing is that guardrails are scheduled and prioritized by a budget-aware orchestrator, so the chain can short-circuit on failure and degrade gracefully when resources are tight, rather than running every check unconditionally.
 
 ## When to use this
 
@@ -58,10 +58,10 @@ npm install @reaatech/guardrail-chain @reaatech/guardrail-chain-config @reaatech
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/guardrail-chain` | published v0.1.0 | Provides a framework for orchestrating sequences of LLM guardrails with built-in budget management, circuit breaking, and retry logic. It exports the `GuardrailChain` orchestrat… |
-| `@reaatech/guardrail-chain-config` | published v0.1.0 | Loads and validates Guardrail Chain configurations by merging JSON or YAML files with environment variable overrides. It provides utility functions that return validated configu… |
-| `@reaatech/guardrail-chain-guardrails` | published v0.1.0 | Provides thirteen built-in guardrail implementations—covering input validation, output filtering, and caching—as classes that implement the `Guardrail<TInput, TOutput>` interfac… |
-| `@reaatech/guardrail-chain-observability` | published v0.1.0 | Provides pluggable interfaces for structured logging, metrics collection, and distributed tracing within the Guardrail Chain framework. It exposes global getter and setter funct… |
+| `@reaatech/guardrail-chain` | published v0.1.0 | Core types, chain orchestration, budget management, and utilities for the Guardrail Chain framework, providing the `Guardrail` interface and `GuardrailChain` orchestrator that e… |
+| `@reaatech/guardrail-chain-config` | published v0.1.0 | Loads and validates Guardrail Chain configuration from JSON, YAML, and environment variables, providing functions like `loadConfig`, `validateConfig`, and `validateConfigSafe` t… |
+| `@reaatech/guardrail-chain-guardrails` | published v0.1.0 | Thirteen built-in guardrail implementations for the Guardrail Chain framework, covering input validation, output filtering, and result caching. Each guardrail is a class impleme… |
+| `@reaatech/guardrail-chain-observability` | published v0.1.0 | Pluggable observability interfaces for the Guardrail Chain framework providing structured logging, metrics collection, and distributed tracing via module-level singletons (`getL… |
 
 ## Issue reporting
 

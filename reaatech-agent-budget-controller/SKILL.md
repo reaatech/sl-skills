@@ -1,12 +1,12 @@
 ---
 name: reaatech-agent-budget-controller
-description: "These packages provide a real-time enforcement layer for LLM agent systems, allowing you to define and monitor spending limits across users, sessions, and organizations. You would adopt them to prevent runaway costs by automatically trig…"
+description: "These packages give you a real-time budget enforcement layer for LLM-powered agents that checks every request against per-task, per-user, per-session, or per-organization spend limits before it executes. You'd adopt them to prevent runaw…"
 license: MIT
 ---
 
 # REAA agent-budget-controller
 
-These packages provide a real-time enforcement layer for LLM agent systems, allowing you to define and monitor spending limits across users, sessions, and organizations. You would adopt them to prevent runaway costs by automatically triggering warnings, downgrading models, or blocking requests before they execute. The system functions as a modular pipeline where a central engine coordinates state, pricing tables, and observability bridges to intercept and validate every LLM call.
+These packages give you a real-time budget enforcement layer for LLM-powered agents that checks every request against per-task, per-user, per-session, or per-organization spend limits before it executes. You'd adopt them to prevent runaway agent loops from exhausting your LLM budget in minutes, with graceful degradation like model downgrades and tool filtering before a hard stop. The system is built as a set of composable packages—a core engine with a state machine, a circular-buffer spend tracker, pricing tables, and optional integrations for Express/Fastify middleware, an LLM Router plugin, and an OpenTelemetry bridge that automatically records GenAI spans as spend entries.
 
 ## When to use this
 
@@ -49,14 +49,14 @@ npm install @reaatech/agent-budget-cli @reaatech/agent-budget-engine @reaatech/a
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/agent-budget-cli` | published v0.1.0 | Manages agent spending limits and budget configurations via a command-line interface. It provides commands to define budget caps, generate spend reports, and perform pre-flight… |
-| `@reaatech/agent-budget-engine` | published v0.1.0 | Enforces LLM spending limits by providing a `BudgetController` class that manages state, performs pre-flight cost checks, and dynamically filters tools or downgrades models. It… |
-| `@reaatech/agent-budget-llm-router-plugin` | published v0.1.0 | Filters LLM model candidates by remaining budget and blocks requests when limits are exceeded. It provides a `BudgetAwareStrategy` class that integrates with the LLM Router patt… |
-| `@reaatech/agent-budget-middleware` | published v0.1.0 | Enforces LLM spending limits by providing Express/Fastify middleware and a `BudgetInterceptor` class that dynamically filters tools, downgrades models, and records token usage.… |
-| `@reaatech/agent-budget-otel-bridge` | published v0.1.0 | Extracts GenAI usage metrics from OpenTelemetry span attributes to automatically record spend entries against budget scopes. It provides a `SpanListener` class that integrates w… |
-| `@reaatech/agent-budget-pricing` | published v0.1.0 | Calculates LLM token costs and estimates budgets using a `PricingEngine` class that supports model name normalization and LRU-cached lookups. It includes built-in pricing tables… |
-| `@reaatech/agent-budget-spend-tracker` | published v0.1.0 | Tracks and analyzes real-time spend data using an in-memory circular buffer for O(1) lookups and sliding-window aggregations. It provides a `SpendStore` class that enables cost… |
-| `@reaatech/agent-budget-types` | published v0.1.0 | Provides TypeScript interfaces, Zod schemas, and error classes for defining and validating agent budget policies, enforcement actions, and spend tracking. It serves as the share… |
+| `@reaatech/agent-budget-cli` | published v0.1.0 | A CLI that installs a global `agent-budget` binary for managing agent budgets — defining budgets, checking remaining spend, listing active scopes, generating spend reports, simu… |
+| `@reaatech/agent-budget-engine` | published v0.1.0 | A budget enforcement engine that provides pre-flight cost checks, real-time spend recording, and per-scope state machine transitions (Active → Warned → Degraded → Stopped) with… |
+| `@reaatech/agent-budget-llm-router-plugin` | published v0.1.0 | A Fastify plugin that adds budget-aware routing to LLM Router, filtering model candidates by remaining budget and blocking requests when budgets are exhausted. It installs as th… |
+| `@reaatech/agent-budget-middleware` | published v0.1.0 | Express/Fastify middleware and a direct SDK (`BudgetInterceptor`) that enforces per-scope budgets on agent requests by checking estimated cost, auto-downgrading models, filterin… |
+| `@reaatech/agent-budget-otel-bridge` | published v0.1.0 | Converts OpenTelemetry GenAI spans into budget-tracked spend entries in real time by feeding span attributes to a `BudgetController`. Provides a `SpanListener` class that you ca… |
+| `@reaatech/agent-budget-pricing` | published v0.1.0 | A pricing engine that computes LLM token costs using built-in or custom pricing tables, with LRU-cached lookups and model name normalization. Exports a `PricingEngine` class wit… |
+| `@reaatech/agent-budget-spend-tracker` | published v0.1.0 | A circular-buffer-based in-memory spend tracker that records cost events and provides O(1) per-scope spend lookups, sliding-window rate calculations, cost projections, and anoma… |
+| `@reaatech/agent-budget-types` | published v0.1.0 | Zod-validated TypeScript types, enums, and error classes defining budget scopes, policies, enforcement actions, spend entries, and state transitions for the agent-budget-control… |
 
 ## Issue reporting
 

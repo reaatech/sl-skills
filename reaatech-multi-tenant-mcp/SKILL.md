@@ -1,12 +1,12 @@
 ---
 name: reaatech-multi-tenant-mcp
-description: "These packages provide a suite of modular primitives for implementing multi-tenancy within Model Context Protocol (MCP) servers. They solve the challenge of isolating resources, enforcing rate limits, tracking costs, and managing configu…"
+description: "These packages let you run a single MCP server that serves multiple tenants, with each tenant getting its own rate limits, tool visibility, cost tracking, and isolated artifact storage. You'd adopt them to avoid standing up a separate MC…"
 license: MIT
 ---
 
 # REAA multi-tenant-mcp
 
-These packages provide a suite of modular primitives for implementing multi-tenancy within Model Context Protocol (MCP) servers. They solve the challenge of isolating resources, enforcing rate limits, tracking costs, and managing configuration for different users within a single server instance. The collection is designed as a composable middleware pipeline, allowing you to wrap standard MCP request handlers with specific cross-cutting concerns like tenant resolution and visibility policies.
+These packages let you run a single MCP server that serves multiple tenants, with each tenant getting its own rate limits, tool visibility, cost tracking, and isolated artifact storage. You'd adopt them to avoid standing up a separate MCP server per customer while still enforcing per-tenant boundaries on usage, access, and billing. The distinctive thing is that every concern—tenant resolution, rate limiting, visibility, cost accounting, artifact storage, config isolation, and observability—is a separate package you compose into a single middleware function that wraps any MCP server's request handlers.
 
 ## When to use this
 
@@ -56,15 +56,15 @@ npm install @reaatech/multi-tenant-mcp-artifact-store @reaatech/multi-tenant-mcp
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/multi-tenant-mcp-artifact-store` | published v0.1.0 | Provides tenant-isolated artifact and file storage via `FileSystemArtifactStore` and `S3ArtifactStore` classes that implement the `ArtifactStore` interface (`put`, `get`, `list`, |
-| `@reaatech/multi-tenant-mcp-config-isolation` | published v0.1.0 | Per-tenant configuration management with Zod schema validation, base-config merging, and versioned migrations; exports a `TenantConfigManager` facade backed by pluggable stores… |
-| `@reaatech/multi-tenant-mcp-cost-accounting` | published v0.1.0 | Track per-tenant usage costs in a multi-tenant MCP server with per-call, per-token, and tiered pricing models. It provides `CostCalculator`, `CostTracker`, and `UsageEventEmitte… |
-| `@reaatech/multi-tenant-mcp-middleware` | published v0.1.0 | Enforces multi-tenancy, rate limiting, and access control for Model Context Protocol (MCP) servers by providing a middleware factory that wraps request handlers. It requires the… |
-| `@reaatech/multi-tenant-mcp-observability` | published v0.1.0 | Structured logging and per-tenant metrics for multi-tenant MCP servers, with log entries and counters |
-| `@reaatech/multi-tenant-mcp-rate-limiter` | published v0.1.0 | Enforces per-tenant rate limits using a token-bucket algorithm via the `DefaultRateLimiter` class. It provides pluggable storage backends, including an LRU-bounded in-memory sto… |
-| `@reaatech/multi-tenant-mcp-tenant-resolver` | published v0.1.0 | Resolve tenant identity from incoming MCP requests using headers, JWTs, or API keys, and propagate the resolved tenant context through `AsyncLocalStorage` via the provided resol… |
-| `@reaatech/multi-tenant-mcp-tool-visibility` | published v0.1.0 | Provides a `VisibilityEngineImpl` class to restrict access to Model Context Protocol (MCP) tools, resources, and prompts based on tenant-specific allow-lists, deny-lists, or cus… |
-| `@reaatech/multi-tenant-mcp-types` | published v0.1.0 | Shared |
+| `@reaatech/multi-tenant-mcp-artifact-store` | published v0.1.0 | Tenant-isolated artifact and file storage with automatic namespace prefixing, path traversal protection, and configurable per-tenant quotas. Provides `FileSystemArtifactStore` a… |
+| `@reaatech/multi-tenant-mcp-config-isolation` | published v0.1.0 | A Zod-validated per-tenant configuration manager with base-config inheritance, pluggable storage, and versioned migration support. Exports `TenantConfigManager`, `ZodConfigValid… |
+| `@reaatech/multi-tenant-mcp-cost-accounting` | published v0.1.0 | Provides interfaces and classes for per-tenant cost tracking in MCP servers, supporting per-call, per-token, and tiered discount pricing models with non-blocking usage event emi… |
+| `@reaatech/multi-tenant-mcp-middleware` | published v0.1.0 | A function that wraps MCP server request handlers with a configurable pipeline for tenant resolution, rate limiting, tool/resource/prompt visibility filtering, cost accounting,… |
+| `@reaatech/multi-tenant-mcp-observability` | published v0.1.0 | Provides structured console logging and LRU-bounded per-tenant metrics for multi-tenant MCP servers, exporting `ConsoleTenantLogger` and `MetricsCollector` classes that automati… |
+| `@reaatech/multi-tenant-mcp-rate-limiter` | published v0.1.0 | A per-tenant rate limiter for MCP servers that enforces fixed-window request and token quotas, exposing a `DefaultRateLimiter` class backed by either an in-memory `MemoryRateLim… |
+| `@reaatech/multi-tenant-mcp-tenant-resolver` | published v0.1.0 | Resolve tenant identity from incoming MCP requests via headers, JWTs, or API keys, and propagate it through `AsyncLocalStorage`. Exports resolver classes (`HeaderTenantResolver`… |
+| `@reaatech/multi-tenant-mcp-tool-visibility` | published v0.1.0 | A class (`VisibilityEngineImpl`) and interface (`VisibilityEngine`) that control which MCP tools, resources, and prompts each tenant can see, supporting allow-list, deny-list, a… |
+| `@reaatech/multi-tenant-mcp-types` | published v0.1.0 | Shared TypeScript types, error classes, and data structures for the multi-tenant MCP ecosystem, including `TenantContext`, `MiddlewareError`, `MiddlewareErrorCode`, and `Bounded… |
 
 ## Issue reporting
 

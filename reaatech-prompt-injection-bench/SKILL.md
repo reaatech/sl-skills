@@ -1,12 +1,12 @@
 ---
 name: reaatech-prompt-injection-bench
-description: "These packages provide a standardized framework for benchmarking and evaluating the effectiveness of prompt-injection defenses in AI agent systems. They allow you to measure security posture by running a diverse corpus of adversarial att…"
+description: "These packages give you a reproducible benchmark for evaluating prompt-injection defenses in AI agent systems, including an attack corpus with 300+ templates across 8 categories, pluggable defense adapters (Rebuff, Lakera Guard, LLM Guar…"
 license: MIT
 ---
 
 # REAA prompt-injection-bench
 
-These packages provide a standardized framework for benchmarking and evaluating the effectiveness of prompt-injection defenses in AI agent systems. They allow you to measure security posture by running a diverse corpus of adversarial attacks against pluggable defense adapters and calculating statistically significant performance scores. The system is designed as a modular pipeline where you can swap defense implementations, execute parallelized benchmarks, and generate reproducible reports through a unified CLI or MCP-compatible interface.
+These packages give you a reproducible benchmark for evaluating prompt-injection defenses in AI agent systems, including an attack corpus with 300+ templates across 8 categories, pluggable defense adapters (Rebuff, Lakera Guard, LLM Guard, Garak, OpenAI/Azure/Anthropic/Cohere Moderation, Custom HTTP), a scoring engine with statistical analysis, a public leaderboard, and an MCP server. You would adopt them to objectively measure and compare how well different defenses detect and block prompt injection attacks, using a standardized methodology with deterministic seeds and SHA-256 proofs for reproducibility. The packages are designed as independent modules—core types, corpus builder, adapters, runner, scoring, leaderboard, observability, and MCP server—that share canonical Zod schemas and a common `DefenseAdapter` interface, so you can mix and match only the pieces you need or run the full benchmark via the umbrella CLI.
 
 ## When to use this
 
@@ -57,15 +57,15 @@ npm install @reaatech/pi-bench-adapters @reaatech/pi-bench-core @reaatech/pi-ben
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/pi-bench-adapters` | published v1.0.1 | Provides a collection of standardized adapter classes and a registry for integrating various prompt injection detection services and libraries. Each adapter implements a common… |
-| `@reaatech/pi-bench-core` | published v1.0.1 | Provides TypeScript types, Zod schemas, and a standardized attack taxonomy for validating and scoring prompt injection benchmarks. It exports utility functions and schema object… |
-| `@reaatech/pi-bench-corpus` | published v1.0.1 | Generates and validates datasets of prompt injection attacks using a template-based engine that applies obfuscation strategies like synonym replacement and character manipulatio… |
-| `@reaatech/pi-bench-leaderboard` | published v1.0.1 | Manages and persists ranked leaderboard data for prompt injection defenses using a factory-provided manager object. It calculates composite scores and assigns performance tiers,… |
-| `@reaatech/pi-bench-mcp-server` | published v1.0.1 | Exposes prompt-injection-bench operations as an MCP server, providing tools to execute benchmarks, compare defense results, and generate reports via stdio. It also includes util… |
-| `@reaatech/pi-bench-observability` | published v1.0.1 | Provides pre-configured observability utilities for prompt injection benchmarks, including a Pino-based structured logger with PII sanitization, an OpenTelemetry-compatible metr… |
-| `@reaatech/pi-bench-runner` | published v1.0.1 | Executes prompt injection benchmarks by running attack suites against defense adapters in parallel with configurable timeouts and progress tracking. It provides factory function… |
-| `@reaatech/pi-bench-scoring` | published v1.0.1 | Calculates weighted scores, statistical significance, and effect sizes for prompt injection defense benchmarks. It provides a collection of utility functions for computing metri… |
-| `prompt-injection-bench` | published v1.0.1 | A CLI and library for running standardized benchmarks of prompt-injection defense mechanisms, providing attack corpora, defense adapters, and commands to execute, compare, and r… |
+| `@reaatech/pi-bench-adapters` | published v1.0.1 | A collection of pluggable defense adapters for prompt injection detection, providing a standard `DefenseAdapter` interface with `detect()` and `sanitize()` methods across 8 buil… |
+| `@reaatech/pi-bench-core` | published v1.0.1 | Canonical TypeScript types, Zod schemas, and attack taxonomy for the prompt-injection-bench benchmarking suite. Exports 18 domain types, 16 Zod schemas for runtime validation, a… |
+| `@reaatech/pi-bench-corpus` | published v1.0.1 | A corpus builder, validator, and variant generation engine for prompt-injection-bench that produces balanced injection samples from YAML templates using synonym replacement, Uni… |
+| `@reaatech/pi-bench-leaderboard` | published v1.0.1 | A leaderboard manager for prompt-injection-bench that ranks defenses by composite score into S/A/B/C/D tiers, with JSON file persistence and pairwise comparison. Exports a `crea… |
+| `@reaatech/pi-bench-mcp-server` | published v1.0.1 | An MCP server that exposes four tools (`run_benchmark`, `compare_defenses`, `generate_report`, `submit_results`) for running prompt injection benchmarks against defenses, compar… |
+| `@reaatech/pi-bench-observability` | published v1.0.1 | A structured logging, OpenTelemetry-compatible metrics, and span-based tracing toolkit for benchmark operations, built on Pino v10 and the OpenTelemetry SDK. It provides `create… |
+| `@reaatech/pi-bench-runner` | published v1.0.1 | A benchmark execution engine that runs prompt injection attacks against defense adapters in parallel with configurable timeouts, progress reporting, and PII-safe result collecti… |
+| `@reaatech/pi-bench-scoring` | published v1.0.1 | Computes weighted defense scores, confidence intervals, effect sizes, and statistical comparisons (z-test, chi-square, ANOVA) for prompt-injection benchmark results, exporting f… |
+| `prompt-injection-bench` | published v1.0.1 | A CLI and library for benchmarking LLM prompt-injection defenses against standardized attack corpora. Exports a `createBenchmarkEngine` function and CLI with subcommands (`bench… |
 
 ## Issue reporting
 

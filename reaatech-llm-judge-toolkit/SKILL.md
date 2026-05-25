@@ -1,12 +1,12 @@
 ---
 name: reaatech-llm-judge-toolkit
-description: "These packages provide a modular framework for evaluating LLM-generated text using other LLMs as judges. You would adopt them to automate quality assessment, detect model bias, and calibrate evaluation scores against human-labeled datase…"
+description: "These packages give you a complete system for using LLMs to evaluate generated text, with built-in prompt templates for five criteria (faithfulness, relevance, coherence, safety, tool-use), multi-provider support (OpenAI, Anthropic, loca…"
 license: MIT
 ---
 
 # REAA llm-judge-toolkit
 
-These packages provide a modular framework for evaluating LLM-generated text using other LLMs as judges. You would adopt them to automate quality assessment, detect model bias, and calibrate evaluation scores against human-labeled datasets. The collection is built around a unified `JudgmentEngine` that integrates pluggable providers, consensus strategies, and caching backends into a consistent, typed pipeline.
+These packages give you a complete system for using LLMs to evaluate generated text, with built-in prompt templates for five criteria (faithfulness, relevance, coherence, safety, tool-use), multi-provider support (OpenAI, Anthropic, local endpoints), and a judgment engine that handles retries, caching, and rate limiting. You would adopt them to replace ad-hoc LLM evaluation scripts with a structured pipeline that includes statistical calibration against human labels, bias detection (position, length, style), and multi-judge consensus strategies. The packages are designed as independently installable modules that share a common type system and pluggable interfaces—the engine, providers, templates, cache backends, and bias detectors each implement a shared contract, so you can swap implementations or use only the pieces you need without pulling in the rest.
 
 ## When to use this
 
@@ -60,16 +60,16 @@ npm install @reaatech/llm-judge-bias @reaatech/llm-judge-cache @reaatech/llm-jud
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/llm-judge-bias` | published v0.1.0 | Identifies systematic position, length, and style biases in LLM evaluations using detector classes that analyze response scores against configurable thresholds. It provides a `C… |
-| `@reaatech/llm-judge-cache` | published v0.1.0 | Provides a `CacheManager` class to store and retrieve LLM judgment results using deterministic SHA-256 keys. It supports in-memory, file-system, and Redis backends, with the Red… |
-| `@reaatech/llm-judge-calibration` | published v0.1.0 | Measures LLM judge accuracy against human-labeled datasets using a `CalibrationRunner` class for batch evaluation and a `CalibrationMetrics` utility for computing Cohen's kappa,… |
-| `@reaatech/llm-judge-cli` | published v0.1.0 | Provides a CLI for batch-evaluating LLM responses and calibrating judgment criteria against human-labeled datasets using JSONL input. It supports multiple LLM providers and conf… |
-| `@reaatech/llm-judge-consensus` | published v0.1.0 | Aggregates multiple LLM evaluation scores into a single consensus result using strategies like majority voting, weighted voting, or cost-optimized tiebreaking. It provides a set… |
-| `@reaatech/llm-judge-engine` | published v0.1.0 | Provides the core engine for evaluating LLM responses against a given query and context, orchestrating provider calls with retry, caching, rate limiting, and a typed event bus.… |
-| `@reaatech/llm-judge-infra` | published v0.1.0 | Infrastructure utilities for LLM judgment pipelines: a `CostTracker` with period-aware budget enforcement, a `BatchProcessor` with configurable concurrency and automatic retry,… |
-| `@reaatech/llm-judge-providers` | published v0.1.0 | Provides a unified interface and factory for interacting with OpenAI, Anthropic, and local OpenAI-compatible LLM APIs. It includes built-in cost calculation and health checks, l… |
-| `@reaatech/llm-judge-templates` | published v0.1.0 | Provides a set of TypeScript classes implementing a `JudgmentTemplate` interface to generate LLM evaluation prompts and parse their structured JSON responses. Each template incl… |
-| `@reaatech/llm-judge-types` | published v0.1.0 | Shared TypeScript types, Zod schemas, and error classes used across the LLM Judge Toolkit ecosystem; requires only `zod` at runtime. Exports 70+ types, 6 error classes, and |
+| `@reaatech/llm-judge-bias` | published v0.1.0 | A set of classes (`PositionBiasDetector`, `LengthBiasDetector`, `StyleBiasDetector`, and `ComprehensiveBiasDetector`) that detect systematic biases—position, length, and style—i… |
+| `@reaatech/llm-judge-cache` | published v0.1.0 | A CacheManager facade with pluggable in-memory, file-system, and Redis backends for caching LLM judgment results, using SHA-256 content-addressed keys and configurable TTL. |
+| `@reaatech/llm-judge-calibration` | published v0.1.0 | A TypeScript library that measures how accurately an LLM judge system classifies text against human-labeled gold-standard datasets, providing Cohen's kappa, confusion matrices,… |
+| `@reaatech/llm-judge-cli` | published v0.1.0 | A CLI that evaluates LLM responses against criteria (faithfulness, relevance, coherence, safety, tool-use) and calibrates judgments against human labels, reading JSONL input and… |
+| `@reaatech/llm-judge-consensus` | published v0.1.0 | Provides consensus strategies (majority voting, weighted voting, and a cheap-first tiebreaker) as classes implementing a shared `ConsensusStrategy` interface, combining individu… |
+| `@reaatech/llm-judge-engine` | published v0.1.0 | Orchestrates LLM-based judgment calls with automatic retry, caching, rate limiting, and a typed event bus, exposing a `JudgmentEngine` class that takes a provider, template, and… |
+| `@reaatech/llm-judge-infra` | published v0.1.0 | Infrastructure utilities for LLM judgment pipelines, providing a `CostTracker` with period-aware budget enforcement, a `BatchProcessor` with configurable concurrency and retry,… |
+| `@reaatech/llm-judge-providers` | published v0.1.0 | A factory-pattern provider that exposes `ProviderFactory.create()` and `ProviderFactory.fromEnv()` to instantiate OpenAI, Anthropic, or local (OpenAI-compatible) LLM clients, al… |
+| `@reaatech/llm-judge-templates` | published v0.1.0 | A set of evaluation prompt templates (faithfulness, relevance, coherence, safety, tool-use) that implement a `JudgmentTemplate` interface with `buildPrompt` and `parseResponse`… |
+| `@reaatech/llm-judge-types` | published v0.1.0 | Shared TypeScript types, Zod schemas, and error classes for the LLM Judge Toolkit ecosystem, providing 70+ exported types and 6 typed error classes with zero runtime dependencie… |
 
 ## Issue reporting
 

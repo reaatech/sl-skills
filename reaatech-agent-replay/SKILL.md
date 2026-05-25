@@ -1,12 +1,12 @@
 ---
 name: reaatech-agent-replay
-description: "These packages let you record, replay, and debug AI agent interactions deterministically, using a trace-based model inspired by distributed tracing. You’d adopt them to decouple agent debugging from live LLM calls—so you can iterate with…"
+description: "These packages give you a deterministic recording and replay system for AI agent interactions. You'd adopt them to debug agent behavior without burning LLM tokens on every iteration — record a trace once, then replay it in stubbed, parti…"
 license: MIT
 ---
 
 # REAA agent-replay
 
-These packages let you record, replay, and debug AI agent interactions deterministically, using a trace-based model inspired by distributed tracing. You’d adopt them to decouple agent debugging from live LLM calls—so you can iterate without burning tokens on every rerun. The core engine, provider interceptors (OpenAI, Anthropic), framework integrations (LangChain, LangGraph), and CLI compose around a shared trace schema, enabling partial replay up to a checkpoint, diff-mode comparison, and step-through debugging from a single recorded trace.
+These packages give you a deterministic recording and replay system for AI agent interactions. You'd adopt them to debug agent behavior without burning LLM tokens on every iteration — record a trace once, then replay it in stubbed, partial, or diff modes for zero-cost debugging and regression testing. The system is built around a trace-based data model with hierarchical spans and events, with interceptors that monkey-patch OpenAI and Anthropic SDKs transparently, so recording happens without modifying your agent code.
 
 ## When to use this
 
@@ -67,13 +67,13 @@ npm install @reaatech/agent-replay @reaatech/agent-replay-cli @reaatech/agent-re
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/agent-replay` | published v0.1.0 | A single entry-point package that re-exports the complete public API of `@reaatech/agent-replay-core`, `@reaatech/agent-replay-interceptors`, and `@reaatech/ |
-| `@reaatech/agent-replay-cli` | published v0.1.0 | A CLI for recording, replaying, debugging, and comparing AI agent traces. It provides five subcommands (`record`, `replay`, `explore`, `diff`, `debug |
-| `@reaatech/agent-replay-core` | published v0.1.0 | A recording and replay engine for AI agent interactions that captures deterministic traces of LLM calls, tool invocations, and state, then replays them in stubbed, live, or part… |
-| `@reaatech/agent-replay-integrations` | published v0.1.0 | Provides callback handlers and state machine hooks to record LangChain and LangGraph interactions into Agent Replay traces. It exports factory functions that generate integratio… |
-| `@reaatech/agent-replay-interceptors` | published v0.1.0 | Monkey-patches OpenAI and Anthropic SDK clients to transparently record all LLM API calls (including streaming responses) into Agent Replay traces, exposing installable intercep… |
-| `@reaatech/agent-replay-shared` | published v0.1.0 | Shared TypeScript types, interfaces, and error classes that define the trace data model, LLM provider abstractions, and storage contracts for the Agent Replay ecosystem. This pa… |
-| `@reaatech/agent-replay-web-ui` | pending npm | Provides a web-based interface for visualizing and inspecting recorded agent traces, including span timelines, event logs, and diff comparisons. It is designed to consume trace… |
+| `@reaatech/agent-replay` | published v0.1.0 | A convenience re-export package that provides the complete public API of the Agent Replay ecosystem—core engine, LLM interceptors, and shared types—from a single import. |
+| `@reaatech/agent-replay-cli` | published v0.1.0 | A CLI tool for recording, replaying, debugging, and comparing AI agent traces, providing five subcommands (`record`, `replay`, `explore`, `diff`, `debug`) that operate on `.artr… |
+| `@reaatech/agent-replay-core` | published v0.1.0 | Recording and replay engine for AI agent traces, providing a `RecordingEngine` to capture span-structured interactions with events and checkpoints, and a `ReplayEngine` to deter… |
+| `@reaatech/agent-replay-integrations` | published v0.1.0 | Provides callback handlers (`createLangChainHandler`) and state machine hooks (`createLangGraphHooks`) that record LangChain and LangGraph agent interactions into traces, return… |
+| `@reaatech/agent-replay-interceptors` | published v0.1.0 | Monkey-patches OpenAI and Anthropic SDK clients to transparently record all LLM API calls into Agent Replay traces, providing `OpenAIInterceptor` and `AnthropicInterceptor` clas… |
+| `@reaatech/agent-replay-shared` | published v0.1.0 | Shared types, interfaces, error classes, and configuration for the Agent Replay ecosystem, providing the canonical trace model shapes, LLM provider abstractions, and storage con… |
+| `@reaatech/agent-replay-web-ui` | pending npm | Web-based trace viewer for Agent Replay that provides an interactive UI for exploring recorded agent traces, including span timelines, event inspection, checkpoint navigation, a… |
 
 ## Issue reporting
 
@@ -82,6 +82,6 @@ Failures while using this skill should be reported via the `report_issue` tool o
 ## More
 
 - Repo: https://github.com/reaatech/agent-replay
-- Browse packages: https://reaatech.com/products/testing-security/agent-replay/packages
+- Browse packages: https://reaatech.com/products/evals-quality/agent-replay/packages
 - npm scope: https://www.npmjs.com/~reaatech
 - tags: agentic-ai, ai, ai-agents, developer-tools, llm, mcp, observability, opentelemetry, replay, testing, typescript

@@ -1,12 +1,12 @@
 ---
 name: reaatech-circuit-breaker-agents
-description: "These packages provide a circuit breaker implementation designed for agent-to-tool and agent-to-agent communication, supporting confidence-based and cost-based tripping alongside standard error thresholds. You would adopt them to manage…"
+description: "These packages give you a circuit breaker designed specifically for agent-to-tool and agent-to-agent communication, with per-tool circuit isolation, confidence-aware tripping, and cost-based rate limiting. You would adopt them to prevent…"
 license: MIT
 ---
 
 # REAA circuit-breaker-agents
 
-These packages provide a circuit breaker implementation designed for agent-to-tool and agent-to-agent communication, supporting confidence-based and cost-based tripping alongside standard error thresholds. You would adopt them to manage the reliability of LLM-based workflows by isolating tool failures and enforcing budget constraints across distributed environments. The system uses a lazy, timer-free state machine that can optionally persist state across process restarts using Firestore, DynamoDB, or Redis adapters.
+These packages give you a circuit breaker designed specifically for agent-to-tool and agent-to-agent communication, with per-tool circuit isolation, confidence-aware tripping, and cost-based rate limiting. You would adopt them to prevent cascading failures when an LLM agent repeatedly calls a degraded tool, or to automatically route traffic away from expensive or unreliable model endpoints. The most distinctive thing is that circuits are identified by a logical `circuitId` (not a hostname), and the state machine uses a lazy auto-transition model with no timers, plus optional leader-elected persistence across restarts via Firestore, DynamoDB, or Redis.
 
 ## When to use this
 
@@ -61,9 +61,9 @@ npm install @reaatech/circuit-breaker-agents @reaatech/circuit-breaker-core @rea
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/circuit-breaker-agents` | published v0.1.0 | Provides a unified entry point that re-exports the `CircuitBreaker` class, state machine logic, and all persistence adapters from the core and persistence sub-packages. It serve… |
-| `@reaatech/circuit-breaker-core` | published v0.1.0 | A circuit breaker state machine with pluggable trip and recovery strategies for managing agent-to |
-| `@reaatech/circuit-breaker-persistence` | published v0.1.0 | Provides persistence adapters for circuit breaker state to enable cross-instance state sharing and survival across process restarts. It exports a standard `PersistenceAdapter` i… |
+| `@reaatech/circuit-breaker-agents` | published v0.1.0 | A meta-package that re-exports all public APIs from `@reaatech/circuit-breaker-core` and `@reaatech/circuit-breaker-persistence` as a single dependency, providing classes (`Circ… |
+| `@reaatech/circuit-breaker-core` | published v0.1.0 | A circuit breaker state machine for agent-to-tool and agent-to-agent communication, providing a `CircuitBreaker` class with lazy auto-transition state evaluation, configurable t… |
+| `@reaatech/circuit-breaker-persistence` | published v0.1.0 | Persistence adapters for circuit breaker state that survive restarts and share state across instances. Exports a `PersistenceAdapter` interface with four implementations: `InMem… |
 | `@reaatech/circuit-breaker-example-basic` | pending npm | Description pending. |
 | `@reaatech/circuit-breaker-example-dynamodb` | pending npm | Description pending. |
 | `@reaatech/circuit-breaker-example-firestore` | pending npm | Description pending. |

@@ -1,12 +1,12 @@
 ---
 name: reaatech-otel-cost-exporter
-description: "These packages convert GenAI semantic convention spans into real-time USD cost metrics and export them via Prometheus, OTLP, or JSON. They solve the problem of tracking LLM spend without maintaining pricing data, shipping with pre‑valida…"
+description: "These packages convert GenAI semantic convention spans into real-time USD cost metrics, exporting them via Prometheus, OTLP, or JSON. You would adopt them to track LLM spend per model and provider without manually maintaining pricing tab…"
 license: MIT
 ---
 
 # REAA otel-cost-exporter
 
-These packages convert GenAI semantic convention spans into real-time USD cost metrics and export them via Prometheus, OTLP, or JSON. They solve the problem of tracking LLM spend without maintaining pricing data, shipping with pre‑validated pricing tables for major providers that are updated on patch releases. The packages compose as an OTel‑native pipeline—either as an in‑process SpanProcessor for the Node.js SDK or a standalone collector—and process only metadata, never LLM content.
+These packages convert GenAI semantic convention spans into real-time USD cost metrics, exporting them via Prometheus, OTLP, or JSON. You would adopt them to track LLM spend per model and provider without manually maintaining pricing tables for OpenAI, Anthropic, Google, AWS Bedrock, and Azure. The packages compose as a layered pipeline—core types, pricing tables, a calculator with LRU caching, and an exporter that can run either as an in-process Node.js SpanProcessor or as a standalone OTLP collector.
 
 ## When to use this
 
@@ -53,11 +53,11 @@ npm install @reaatech/otel-cost-exporter @reaatech/otel-cost-exporter-calculator
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/otel-cost-exporter` | published v0.1.0 | Calculates real-time LLM usage costs by processing OpenTelemetry GenAI semantic convention spans. It provides a `SpanProcessor` for integration into Node.js OTel SDKs or a stand… |
-| `@reaatech/otel-cost-exporter-calculator` | published v0.1.0 | Calculates GenAI token costs in USD by normalizing model names and processing token counts from OpenTelemetry semantic convention spans. It provides a `CostCalculator` class tha… |
-| `@reaatech/otel-cost-exporter-cli` | published v0.1.0 | @reaatech/otel-cost-exporter-cli is a CLI that provides commands to |
-| `@reaatech/otel-cost-exporter-core` | published v0.1.0 | Provides shared TypeScript types, Zod schemas, and GenAI semantic conventions for modeling and validating LLM cost data. It serves as the foundational library for the otel-cost-… |
-| `@reaatech/otel-cost-exporter-pricing` | published v0.1.0 | Provides a lookup interface for LLM token pricing across major providers using bundled, versioned YAML data. It exports functions to load these datasets and instantiate a `Prici… |
+| `@reaatech/otel-cost-exporter` | published v0.1.0 | An OpenTelemetry span processor that reads GenAI semantic convention spans, calculates real-time USD costs using bundled pricing tables for major LLM providers, and exports the… |
+| `@reaatech/otel-cost-exporter-calculator` | published v0.1.0 | A cost calculator that converts raw token counts from GenAI semantic convention spans into per-model cost breakdowns in USD, with model name normalization, provider detection, a… |
+| `@reaatech/otel-cost-exporter-cli` | published v0.1.0 | A CLI that starts an OTLP collector service, validates pricing tables, generates cost reports from span data, and inspects configuration, providing commands like `serve`, `repor… |
+| `@reaatech/otel-cost-exporter-core` | published v0.1.0 | Shared domain types, Zod schemas, GenAI semantic convention constants, and a Pino-based logger factory for the `@reaatech/otel-cost-exporter-*` ecosystem. Exports TypeScript typ… |
+| `@reaatech/otel-cost-exporter-pricing` | published v0.1.0 | A pricing table loader and lookup utility that bundles pre-validated YAML pricing data for OpenAI, Anthropic, Google, AWS Bedrock, and Azure, providing `loadPricingData()` and `… |
 
 ## Issue reporting
 

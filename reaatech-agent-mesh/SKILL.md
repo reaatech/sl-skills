@@ -1,12 +1,12 @@
 ---
 name: reaatech-agent-mesh
-description: "These packages provide a modular orchestrator for routing user requests to multiple AI agents using the Model Context Protocol. You would use them to build a resilient gateway that handles intent classification, session persistence, and…"
+description: "These packages give you a complete multi-agent orchestrator that routes user requests to the right agent based on intent confidence, manages multi-turn sessions, and isolates failing agents with circuit breakers. You would adopt them to…"
 license: MIT
 ---
 
 # REAA agent-mesh
 
-These packages provide a modular orchestrator for routing user requests to multiple AI agents using the Model Context Protocol. You would use them to build a resilient gateway that handles intent classification, session persistence, and circuit breaking across a distributed set of agents. The system is designed as a collection of decoupled services that share a common set of Zod-validated types and rely on Firestore for cross-instance state management.
+These packages give you a complete multi-agent orchestrator that routes user requests to the right agent based on intent confidence, manages multi-turn sessions, and isolates failing agents with circuit breakers. You would adopt them to build a production system where multiple specialized AI agents handle different tasks (like password resets, HR queries, or IT support) behind a single API endpoint, with automatic fallback and clarification when the intent is unclear. The most distinctive thing is how the packages compose around a confidence-gated decision tree—Gemini Flash classifies intent, a 5-rule engine decides whether to route, clarify, or fall back, and per-agent circuit breakers with Firestore persistence prevent cascading failures across Cloud Run instances.
 
 ## When to use this
 
@@ -55,16 +55,16 @@ npm install @reaatech/agent-mesh @reaatech/agent-mesh-classifier @reaatech/agent
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/agent-mesh` | published v1.0.0 | Provides core domain types, Zod validation schemas, environment configuration, and shared constants for the @reaatech/agent-mesh multi-agent orchestrator. It exports 15+ TypeScr… |
-| `@reaatech/agent-mesh-classifier` | published v1.0.0 | Classifies user input against an agent registry using Gemini Flash, returning a structured object containing the target agent ID, confidence score, and intent summary. It provid… |
-| `@reaatech/agent-mesh-confidence` | published v1.0.0 | Evaluates routing decisions for an agent-mesh orchestrator using a deterministic decision tree that compares classifier confidence against agent-specific thresholds. It provides… |
-| `@reaatech/agent-mesh-gateway` | published v1.0.0 | Express middleware and request handlers that expose `/v1/ |
-| `@reaatech/agent-mesh-mcp-server` | published v1.0.0 | Exposes an agent-mesh orchestrator as an MCP-compliant server by providing Express middleware and handlers for JSON-RPC 2.0 routing and SSE transport. It registers tools to rout… |
-| `@reaatech/agent-mesh-observability` | published v1.0.0 | Provides structured JSON logging with automatic PII redaction, OpenTelemetry tracing and metrics, and audit event logging for agent-mesh orchestrators—exposes a Winston logger,… |
-| `@reaatech/agent-mesh-registry` | published v1.0.0 | Manages a thread-safe registry of validated YAML agent configurations, providing atomic-swap updates and SIGHUP-triggered hot-reloading. It exposes a singleton state object for… |
-| `@reaatech/agent-mesh-router` | published v1.0.0 | Provides dispatch and validation functions for routing requests to MCP-based agents over |
-| `@reaatech/agent-mesh-session` | published v1.0.0 | Manages multi-turn conversation state and workflow context using Firestore as a persistence layer. It provides a set of asynchronous functions for session lifecycle management,… |
-| `@reaatech/agent-mesh-utils` | published v1.0.0 | Provides a three-state circuit breaker for managing agent health, featuring Firestore-backed persistence and leader election for cross-instance state synchronization. It exposes… |
+| `@reaatech/agent-mesh` | published v1.0.0 | A Zod-schema and TypeScript type package that defines the core domain entities, request/response shapes, and environment configuration for the agent-mesh multi-agent orchestrato… |
+| `@reaatech/agent-mesh-classifier` | published v1.0.0 | A Gemini Flash intent classifier that maps user requests to registered agents, returning a `ClassifierOutput` with agent ID, confidence score, and detected language. It dynamica… |
+| `@reaatech/agent-mesh-confidence` | published v1.0.0 | A decision engine that evaluates classifier output against agent thresholds using a 5-rule decision tree to route requests, ask for clarification, or fall back to a default agen… |
+| `@reaatech/agent-mesh-gateway` | published v1.0.0 | An Express middleware pipeline that provides a `/v1/request` endpoint for orchestrating agent dispatch, including authentication, rate limiting, TLS enforcement, health checks,… |
+| `@reaatech/agent-mesh-mcp-server` | published v1.0.0 | Exposes the agent-mesh orchestrator as an MCP-compliant agent by providing Express middleware (`mcpMiddleware`), JSON-RPC 2.0 handlers, and SSE transport for legacy client compa… |
+| `@reaatech/agent-mesh-observability` | published v1.0.0 | A structured observability layer for the agent-mesh orchestrator, providing Winston-powered JSON logging with automatic PII redaction, OpenTelemetry tracing and metrics (histogr… |
+| `@reaatech/agent-mesh-registry` | published v1.0.0 | A YAML-based agent registry loader that parses, validates (with Zod), and hot-reloads agent configurations via SIGHUP, exposing a thread-safe singleton with atomic-swap semantic… |
+| `@reaatech/agent-mesh-router` | published v1.0.0 | A Zod-validated MCP dispatch layer that routes requests to registered agents via StreamableHTTP transport, managing connection pooling, circuit breakers, retries, and timeouts p… |
+| `@reaatech/agent-mesh-session` | published v1.0.0 | Firestore-backed session management for the agent-mesh orchestrator, providing functions (`createSession`, `getActiveSession`, `appendTurn`, `closeSession`, `resumeSession`) to… |
+| `@reaatech/agent-mesh-utils` | published v1.0.0 | A per-agent circuit breaker with Firestore-backed persistence and leader-elected cross-instance state synchronization, exposed as a singleton object with synchronous methods (`c… |
 
 ## Issue reporting
 

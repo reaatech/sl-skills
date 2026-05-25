@@ -1,12 +1,12 @@
 ---
 name: reaatech-llm-router
-description: "These packages provide a centralized routing engine for managing LLM requests across multiple providers, balancing cost, latency, and model capabilities. They allow you to implement complex fallback chains, enforce strict budget limits,…"
+description: "These packages give you a config-driven LLM routing engine that selects models based on cost, latency, capability, or a two-tier judgment strategy, with automatic fallback chains and circuit breakers when models fail. You would adopt the…"
 license: MIT
 ---
 
 # REAA llm-router
 
-These packages provide a centralized routing engine for managing LLM requests across multiple providers, balancing cost, latency, and model capabilities. They allow you to implement complex fallback chains, enforce strict budget limits, and integrate LLM routing directly into agent workflows via the Model Context Protocol. The system is built around a configuration-driven architecture where routing strategies, observability hooks, and resilience patterns are composed into a single, unified execution pipeline.
+These packages give you a config-driven LLM routing engine that selects models based on cost, latency, capability, or a two-tier judgment strategy, with automatic fallback chains and circuit breakers when models fail. You would adopt them to manage multi-provider LLM costs, enforce daily budgets, and add structured degradation paths without writing provider-specific orchestration code. The system is built as a set of independent packages—core types, engine, strategies, fallback, telemetry, MCP server, and CLI—that compose through a shared config schema and a single `executeModel` callback, keeping provider SDKs out of the router itself.
 
 ## When to use this
 
@@ -59,13 +59,13 @@ npm install @reaatech/llm-router-cli @reaatech/llm-router-core @reaatech/llm-rou
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/llm-router-cli` | published v1.0.0 | A command-line interface (CLI) for the `llm-router` package, exposing four commands—`route`, `benchmark`, `cost-report`, and `validate-config`—to send prompts |
-| `@reaatech/llm-router-core` | published v1.0.0 | Provides the shared TypeScript interfaces, Zod schemas, and enums for defining LLM routing configurations, budget tracking, and circuit breaker states. It serves as the foundati… |
-| `@reaatech/llm-router-engine` | published v1.0.0 | Provides an `LLMRouter` class that orchestrates model selection, fallback chains, cost tracking, and A/B testing for LLM requests. It requires a user-provided `executeModel` cal… |
-| `@reaatech/llm-router-fallback` | published v1.0.0 | Implements resilience patterns for LLM API calls, providing a `FallbackChain` class that manages ordered model failover, circuit breaking, and exponential backoff retries. It re… |
-| `@reaatech/llm-router-mcp` | published v1.0.0 | Exposes an MCP server (via `createMCPServer`) that provides three tools—`route_request`, `get_model_info`, and `get_cost_report`—allowing AI agents and orchestration frameworks… |
-| `@reaatech/llm-router-strategies` | published v1.0.0 | Provides a collection of routing strategies and an orchestrator class to select the optimal LLM for a request based on cost, latency, capability, or judgment. It exposes a `Stra… |
-| `@reaatech/llm-router-telemetry` | published v1.0.0 | Tracks LLM request costs and enforces budget limits through a set of utility classes for recording, aggregating, and reporting usage data. It provides an OpenTelemetry-compatibl… |
+| `@reaatech/llm-router-cli` | published v1.0.0 | A CLI that provides four commands—`route`, `benchmark`, `cost-report`, and `validate-config`—for routing prompts through configurable LLM strategies, benchmarking model performa… |
+| `@reaatech/llm-router-core` | published v1.0.0 | Core TypeScript types, Zod schemas, and input validation for the llm-router ecosystem, providing 30+ domain types and 11 runtime validation schemas for model definitions, routin… |
+| `@reaatech/llm-router-engine` | published v1.0.0 | A config-driven `LLMRouter` class that orchestrates model selection, fallback chains, cost tracking, A/B testing, quality scoring, and observability into a single routing decisi… |
+| `@reaatech/llm-router-fallback` | published v1.0.0 | A function that creates ordered fallback chains for LLM calls, with per-model circuit breakers and exponential-backoff retry logic, returning a `FallbackChain` instance whose `e… |
+| `@reaatech/llm-router-mcp` | published v1.0.0 | An MCP server that exposes three tools—`route_request`, `get_model_info`, and `get_cost_report`—for routing LLM requests through a pluggable router implementation via the Model… |
+| `@reaatech/llm-router-strategies` | published v1.0.0 | A set of pluggable routing strategies (CostOptimized, LatencyOptimized, JudgmentBased, CapabilityBased) and a priority-based `StrategyOrchestrator` that evaluates them in order… |
+| `@reaatech/llm-router-telemetry` | published v1.0.0 | A set of classes (`CostTracker`, `BudgetManager`, `CostReporter`) and a `MetricsCollector` facade for tracking per-request LLM costs, enforcing daily budget limits with configur… |
 
 ## Issue reporting
 

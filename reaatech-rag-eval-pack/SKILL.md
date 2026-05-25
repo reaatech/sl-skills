@@ -1,12 +1,12 @@
 ---
 name: reaatech-rag-eval-pack
-description: "These packages provide a modular toolkit for evaluating RAG systems using heuristic scorers, LLM-as-judge, and automated quality gates. They help teams measure retrieval and generation performance while enforcing cost budgets and CI/CD r…"
+description: "These packages give you a full RAG evaluation pipeline—heuristic scorers for faithfulness, relevance, context precision, and context recall, plus an LLM-as-judge with multi-provider support, cost tracking with budget enforcement, and CI…"
 license: MIT
 ---
 
 # REAA rag-eval-pack
 
-These packages provide a modular toolkit for evaluating RAG systems using heuristic scorers, LLM-as-judge, and automated quality gates. They help teams measure retrieval and generation performance while enforcing cost budgets and CI/CD regression thresholds. The system is built as a composable suite where an orchestration engine coordinates data loading, metric calculation, and observability across independent, type-safe packages.
+These packages give you a full RAG evaluation pipeline—heuristic scorers for faithfulness, relevance, context precision, and context recall, plus an LLM-as-judge with multi-provider support, cost tracking with budget enforcement, and CI quality gates that can fail a build. You'd adopt them to catch regressions in a RAG system before deployment, whether that's a pre-commit smoke check or a nightly regression suite. The distinctive design is that every metric can run at three fidelity levels—free lexical scoring, embedding-based semantic scoring, or LLM judging—so you can trade cost for accuracy per use case without changing the evaluation interface.
 
 ## When to use this
 
@@ -57,16 +57,16 @@ npm install @reaatech/rag-eval-cli @reaatech/rag-eval-core @reaatech/rag-eval-co
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/rag-eval-cli` | published v0.1.0 | Provides a CLI for executing, gating, and comparing RAG evaluation suites, while also acting as a barrel package that re-exports the entire `@reaatech/rag-eval-*` library for pr… |
-| `@reaatech/rag-eval-core` | published v0.1.0 | Provides TypeScript types and Zod schemas for defining RAG evaluation suites, including configurations for judges, cost tracking, and quality gates. It serves as a shared schema… |
-| `@reaatech/rag-eval-cost` | published v0.1.0 | Tracks per-sample cost and token usage for RAG evaluations, with configurable budget limits, alert thresholds, and built-in pricing for Anthropic, OpenAI, and Google models. Exp… |
-| `@reaatech/rag-eval-dataset` | published v0.1.0 | Manages RAG evaluation datasets by providing classes to load, validate, and version-track samples from JSON, JSONL, and YAML files. It relies on Zod for schema enforcement and i… |
-| `@reaatech/rag-eval-gate` | published v0.1.0 | Enforces quality standards on RAG evaluation metrics using a `GateEngine` class that validates results against fixed thresholds or historical baselines. It provides CI-friendly… |
-| `@reaatech/rag-eval-judge` | published v0.1.0 | Evaluates RAG pipeline outputs using LLM-as-a-judge with support for multi-model consensus, provider fallbacks, and human-label calibration. It provides a `JudgeEngine` class th… |
-| `@reaatech/rag-eval-mcp-server` | published v0.1.0 | An MCP server exposing RAG evaluation as a three‑layer API of atomic judge operations, orchestrated suite runs, and CI regression gates, delivered either as a standalone CLI or… |
-| `@reaatech/rag-eval-metrics` | published v0.1.0 | Calculates heuristic-based RAG evaluation metrics including faithfulness, relevance, context precision, and context recall without requiring LLM API calls. It provides individua… |
-| `@reaatech/rag-eval-observability` | published v0.1.0 | Provides structured logging via Pino and OpenTelemetry instrumentation for tracing and metrics specific to RAG evaluation workflows. It exports a set of wrapper functions for tr… |
-| `@reaatech/rag-eval-suite` | published v0.1.0 | Provides an `EvaluationSuite` class that orchestrates RAG evaluation by running heuristic metrics, an optional LLM judge, per-run cost tracking, quality gates, and dataset |
+| `@reaatech/rag-eval-cli` | published v0.1.0 | A CLI that runs RAG evaluation suites, quality gates, run comparisons, cost breakdowns, markdown reports, LLM-based judging, and an MCP server, exposed as the `rag-eval-pack` co… |
+| `@reaatech/rag-eval-core` | published v0.1.0 | Canonical TypeScript types and Zod schemas for RAG evaluation data shapes. Exports 18+ types (`EvaluationSample`, `EvalSuiteConfig`, `SampleEvalResult`, `GateConfig`, `JudgeConf… |
+| `@reaatech/rag-eval-cost` | published v0.1.0 | Cost tracking, pricing, budgeting, and reporting infrastructure for RAG evaluations, providing `CostTracker`, `Pricing`, `BudgetManager`, and `CostReporter` classes that track p… |
+| `@reaatech/rag-eval-dataset` | published v0.1.0 | A Zod-validated dataset loader and validator for RAG evaluation samples, supporting JSONL, JSON, and YAML formats with duplicate detection, synthetic generation from templates,… |
+| `@reaatech/rag-eval-gate` | published v0.1.0 | A quality gate engine for RAG evaluation pipelines that enforces threshold-based metric checks and baseline regression detection, returning a `GateResult` object with pass/fail… |
+| `@reaatech/rag-eval-judge` | published v0.1.0 | A TypeScript class (`JudgeEngine`) that uses an LLM (Anthropic, OpenAI, or Google) to score RAG outputs on metrics like faithfulness and relevance, with optional consensus votin… |
+| `@reaatech/rag-eval-mcp-server` | published v0.1.0 | An MCP server that exposes RAG evaluation tools as a three-layer API of atomic judge operations, orchestrated suite runs, and CI-style regression gates, providing `createMcpServ… |
+| `@reaatech/rag-eval-metrics` | published v0.1.0 | Provides four heuristic metric scorers (faithfulness, relevance, context precision, context recall) for evaluating RAG outputs, plus a `MetricsEngine` orchestrator that runs the… |
+| `@reaatech/rag-eval-observability` | published v0.1.0 | Provides structured JSON logging via Pino, OpenTelemetry tracing, and OpenTelemetry metrics specifically for RAG evaluation pipelines, exporting functions like `createLogger`, `… |
+| `@reaatech/rag-eval-suite` | published v0.1.0 | A class (`EvaluationSuite`) that orchestrates RAG evaluation runs by executing heuristic metrics, optional LLM judge scoring, cost tracking, and quality gates against a dataset,… |
 
 ## Issue reporting
 

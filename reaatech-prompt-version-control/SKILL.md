@@ -1,12 +1,12 @@
 ---
 name: reaatech-prompt-version-control
-description: "These packages provide a centralized system for managing the lifecycle of AI prompts, including version tracking, A/B testing, and evaluation-gated promotions. You would adopt them to move prompt management out of application code and in…"
+description: "These packages give you Git-like version control for AI prompts — an API server, TypeScript SDK, CLI, and MCP server that let you track prompt changes, gate promotions on eval results, and serve A/B deployments. You'd adopt them to solve…"
 license: MIT
 ---
 
 # REAA prompt-version-control
 
-These packages provide a centralized system for managing the lifecycle of AI prompts, including version tracking, A/B testing, and evaluation-gated promotions. You would adopt them to move prompt management out of application code and into a structured environment that supports staging, production tagging, and runtime retrieval. The system is designed as a unified ecosystem where a Hono-based API server acts as the source of truth, accessible via a TypeScript SDK, a CLI, and an MCP server for direct integration with AI agents.
+These packages give you Git-like version control for AI prompts — an API server, TypeScript SDK, CLI, and MCP server that let you track prompt changes, gate promotions on eval results, and serve A/B deployments. You'd adopt them to solve the problem of managing prompt iterations across development, staging, and production without manual copy-pasting or ad-hoc versioning. The most distinctive thing is that the entire lifecycle — from creating a draft to promoting it to production — is gated by evaluation harness results, with AI agents able to pull managed prompts at runtime via the MCP server.
 
 ## When to use this
 
@@ -57,11 +57,11 @@ npm install @reaatech/prompt-version-control @reaatech/prompt-version-control-cl
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/prompt-version-control` | published v0.1.0 | Provides a typed client class for interacting with the Prompt Version Control API, featuring built-in exponential backoff retries, request timeouts, and optional in-memory respo… |
-| `@reaatech/prompt-version-control-cli` | published v0.1.0 | Manages prompt templates, versioning, and lifecycle tagging via a CLI that interacts with a remote prompt-version-control API. It provides a suite of commands for CRUD operation… |
-| `@reaatech/prompt-version-control-mcp` | published v0.1.0 | Exposes a Model Context Protocol server that provides a `prompt.get` tool for fetching and rendering version-controlled prompts via Handlebars. It requires a configured Prompt V… |
-| `@reaatech/prompt-version-control-server` | published v0.1.0 | A Hono app that exposes a REST API for Git-like version control of AI prompts, with eval-gated staging-to-production promotion, A/B traffic splitting, metrics ingestion, and web… |
-| `@reaatech/prompt-version-control-shared` | published v0.1.0 | Provides shared TypeScript types, Zod schemas, and utility functions for validating, checksumming, and rendering prompt templates within the Prompt Version Control ecosystem. It… |
+| `@reaatech/prompt-version-control` | published v0.1.0 | A typed TypeScript client class (`PromptVersionControlClient` or `PVCClient`) for the Prompt Version Control API, providing authenticated HTTP access with automatic exponential-… |
+| `@reaatech/prompt-version-control-cli` | published v0.1.0 | A CLI tool (`pvc`) for managing prompt templates, their versions, and lifecycle tags (draft/staging/production) from the terminal, built on Clipanion 4 with persistent configura… |
+| `@reaatech/prompt-version-control-mcp` | published v0.1.0 | An MCP server that exposes a single `prompt.get` tool, which fetches a production-tagged prompt from a Prompt Version Control API server and renders it with Handlebars template… |
+| `@reaatech/prompt-version-control-server` | published v0.1.0 | A Hono 4 server that provides Git-like version control for AI prompts, including CRUD, SHA-256 checksummed versioning, tag-based lifecycle (draft/staging/production), eval-gated… |
+| `@reaatech/prompt-version-control-shared` | published v0.1.0 | Canonical TypeScript types, Zod schemas, and shared utilities (template rendering, API key generation, checksumming) for the Prompt Version Control ecosystem. Exports 25+ Zod sc… |
 
 ## Issue reporting
 

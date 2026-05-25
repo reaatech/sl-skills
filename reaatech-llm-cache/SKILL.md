@@ -1,12 +1,12 @@
 ---
 name: reaatech-llm-cache
-description: "These packages provide a semantic and exact-match caching layer for LLM interactions, including support for embedding-based similarity, model-aware fingerprinting, and cost tracking. You would adopt them to reduce latency and API expense…"
+description: "These packages give you a semantic caching layer for LLM calls that returns cached responses for both exact prompt matches and semantically similar prompts above a configurable cosine similarity threshold. You'd adopt them to reduce API…"
 license: MIT
 ---
 
 # REAA llm-cache
 
-These packages provide a semantic and exact-match caching layer for LLM interactions, including support for embedding-based similarity, model-aware fingerprinting, and cost tracking. You would adopt them to reduce latency and API expenses by serving cached responses for semantically equivalent prompts across different storage backends like Redis, DynamoDB, and Qdrant. The system is built around a modular architecture where a core engine composes pluggable storage adapters, cost calculators, and observability utilities to fit into either application code or as a standalone HTTP sidecar.
+These packages give you a semantic caching layer for LLM calls that returns cached responses for both exact prompt matches and semantically similar prompts above a configurable cosine similarity threshold. You'd adopt them to reduce API costs and latency by avoiding redundant LLM calls, especially when users ask the same question in different phrasings. The system is built as a modular engine with pluggable storage adapters (Redis, DynamoDB, Qdrant) and optional cost tracking, observability, and HTTP server packages that compose together through well-defined interfaces rather than a monolithic service.
 
 ## When to use this
 
@@ -58,13 +58,13 @@ npm install @reaatech/llm-cache @reaatech/llm-cache-adapters-dynamodb @reaatech/
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/llm-cache` | published v0.1.0 | Provides a multi-stage caching engine for LLM responses that performs exact-match lookups and embedding-based semantic similarity searches. It exposes a `CacheEngine` class that… |
-| `@reaatech/llm-cache-adapters-dynamodb` | published v0.1.0 | Provides a DynamoDB storage adapter class for the `llm-cache` library, enabling persistent caching with native TTL support and GSI-based metadata querying. It implements the `St… |
-| `@reaatech/llm-cache-adapters-qdrant` | published v0.1.0 | Provides a Qdrant vector database adapter for the `llm-cache` library, implementing the `VectorStorageAdapter` interface for semantic search and metadata filtering. It exposes a… |
-| `@reaatech/llm-cache-adapters-redis` | published v0.1.0 | Provides a Redis storage adapter for the `llm-cache` library, enabling persistent key-value caching with support for batch operations and metadata-based invalidation. It exports… |
-| `@reaatech/llm-cache-cost-tracker` | published v0.1.0 | Calculates LLM request costs and cache savings using a built-in database of pricing for over 40 models. It provides a `CostCalculator` class that implements the `CostCalculatorL… |
-| `@reaatech/llm-cache-observability` | published v0.1.0 | Provides structured NDJSON logging with automatic PII redaction and Prometheus-compatible metrics collection for the `llm-cache` library. It exposes `Logger` and `MetricsCollect… |
-| `@reaatech/llm-cache-server` | published v0.1.0 | Provides a REST API server for managing LLM cache operations, including semantic search and exact-match lookups. It exposes a configurable HTTP interface that supports Redis, Dy… |
+| `@reaatech/llm-cache` | published v0.1.0 | A caching engine for LLM calls that provides both exact-match (SHA-256 hash) and semantic (cosine similarity on embeddings) cache lookups, with model-aware fingerprinting, use-c… |
+| `@reaatech/llm-cache-adapters-dynamodb` | published v0.1.0 | A DynamoDB storage adapter for `@reaatech/llm-cache` that persists exact-match cache entries with native TTL, GSI-backed metadata queries, and batch operations chunked to AWS li… |
+| `@reaatech/llm-cache-adapters-qdrant` | published v0.1.0 | A Qdrant vector database adapter for `@reaatech/llm-cache` that implements the `VectorStorageAdapter` interface, providing HNSW approximate nearest neighbor search with metadata… |
+| `@reaatech/llm-cache-adapters-redis` | published v0.1.0 | A Redis storage adapter for the `@reaatech/llm-cache` library that implements the `StorageAdapter` interface, providing exact-match cache operations with automatic TTL via `SETE… |
+| `@reaatech/llm-cache-cost-tracker` | published v0.1.0 | A cost calculator and pricing database for LLM API usage, providing a `CostCalculator` class that computes per-request costs from token counts and model pricing, and tracks savi… |
+| `@reaatech/llm-cache-observability` | published v0.1.0 | A structured JSON logger and Prometheus-compatible metrics collector for LLM cache operations, providing automatic PII redaction on 17 sensitive field names, correlation ID prop… |
+| `@reaatech/llm-cache-server` | published v0.1.0 | An HTTP server wrapper for llm-cache that exposes a REST API for cache operations, Prometheus metrics, and health endpoints, configurable via environment variables for storage (… |
 
 ## Issue reporting
 

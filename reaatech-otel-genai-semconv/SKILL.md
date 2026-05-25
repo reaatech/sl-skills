@@ -1,12 +1,12 @@
 ---
 name: reaatech-otel-genai-semconv
-description: "These packages provide instrumented wrappers for OpenAI, Anthropic, Vertex AI, and AWS Bedrock that emit OpenTelemetry-compliant spans for LLM interactions. You would adopt them to gain standardized observability into token usage, costs,…"
+description: "These packages give you instrumented wrappers for OpenAI, Anthropic, Vertex AI, and AWS Bedrock that emit OpenTelemetry GenAI semantic convention spans, plus deployable dashboards for Phoenix, Langfuse, and Cloud Trace. You would adopt t…"
 license: MIT
 ---
 
 # REAA otel-genai-semconv
 
-These packages provide instrumented wrappers for OpenAI, Anthropic, Vertex AI, and AWS Bedrock that emit OpenTelemetry-compliant spans for LLM interactions. You would adopt them to gain standardized observability into token usage, costs, streaming performance, and error rates across multiple AI providers. The collection is built on a shared instrumentation framework that uses a zero-config wrapper pattern to inject lifecycle hooks, circuit breakers, and PII redaction directly into existing SDK clients.
+These packages give you instrumented wrappers for OpenAI, Anthropic, Vertex AI, and AWS Bedrock that emit OpenTelemetry GenAI semantic convention spans, plus deployable dashboards for Phoenix, Langfuse, and Cloud Trace. You would adopt them to get spec-compliant observability across multiple LLM providers without writing instrumentation code yourself. The packages are designed as independent, installable modules—core types, instrumentation framework, provider wrappers, utilities, and exporters—so you can compose exactly what you need rather than pulling in a monolithic library.
 
 ## When to use this
 
@@ -53,15 +53,15 @@ npm install @reaatech/otel-genai-semconv-anthropic @reaatech/otel-genai-semconv-
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/otel-genai-semconv-anthropic` | published v0.1.0 | Instruments the Anthropic Node.js SDK to automatically emit OpenTelemetry spans compliant with GenAI semantic conventions. It provides a class that wraps the Anthropic client to… |
-| `@reaatech/otel-genai-semconv-bedrock` | published v0.1.0 | Instruments the AWS Bedrock Runtime SDK to automatically emit OpenTelemetry spans compliant with GenAI semantic conventions. It provides an `instrument` method that wraps the `B… |
-| `@reaatech/otel-genai-semconv-core` | published v0.1.0 | Provides TypeScript types, Zod schemas, and a span-builder utility for implementing OpenTelemetry GenAI semantic conventions. It exports constants for attributes, events, and me… |
-| `@reaatech/otel-genai-semconv-exporters` | published v0.1.0 | Provides OpenTelemetry `SpanExporter` classes that filter for `gen_ai.*` spans and transform them into the native formats required by Arize Phoenix, Langfuse, and Google Cloud T… |
-| `@reaatech/otel-genai-semconv-instrumentation` | published v0.1.0 | Provides a suite of classes for building LLM observability instrumentation, including utilities for OpenTelemetry tracer management, streaming response aggregation, error classi… |
-| `@reaatech/otel-genai-semconv-observability` | published v0.1.0 | Provides pre-configured OpenTelemetry SDK initialization, Pino-based structured logging, and GenAI-specific metrics instrumentation for LLM applications. It exports utility func… |
-| `@reaatech/otel-genai-semconv-openai` | published v0.1.0 | Instruments the OpenAI Node.js SDK to automatically emit OpenTelemetry spans compliant with GenAI semantic conventions. It provides an `OpenAIInstrumentation` class that wraps t… |
-| `@reaatech/otel-genai-semconv-utils` | published v0.1.0 | Provides classes for estimating LLM token usage, calculating request costs based on provider-specific pricing, and recursively redacting PII from nested objects. It exposes `Tok… |
-| `@reaatech/otel-genai-semconv-vertexai` | published v0.1.0 | Instruments the Google Generative Language (Vertex AI) SDK to automatically emit OpenTelemetry spans following GenAI semantic conventions. It provides an `instrument` function t… |
+| `@reaatech/otel-genai-semconv-anthropic` | published v0.1.0 | An OpenTelemetry instrumentation for the Anthropic Node.js SDK that wraps `client.messages.create()` to emit GenAI semantic convention spans with request metadata, token usage,… |
+| `@reaatech/otel-genai-semconv-bedrock` | published v0.1.0 | A zero-config OpenTelemetry instrumentation class for the AWS Bedrock Runtime SDK that wraps `client.send()` to emit GenAI semantic convention spans with model-family-aware attr… |
+| `@reaatech/otel-genai-semconv-core` | published v0.1.0 | Canonical TypeScript types, constants, Zod schemas, and span-builder utilities for the OpenTelemetry GenAI semantic conventions, providing the single source of truth for all `ge… |
+| `@reaatech/otel-genai-semconv-exporters` | published v0.1.0 | Custom OpenTelemetry span exporters that convert GenAI spans into the native formats of Arize Phoenix, Langfuse, and Google Cloud Trace, each implementing the `SpanExporter` int… |
+| `@reaatech/otel-genai-semconv-instrumentation` | published v0.1.0 | Provides tracer management, lifecycle hooks, streaming response handling, error classification, retry with exponential backoff, per-provider circuit breaking, chunk aggregation,… |
+| `@reaatech/otel-genai-semconv-observability` | published v0.1.0 | A zero-config observability kit for GenAI workloads, providing structured Pino logging, OpenTelemetry SDK initialization with OTLP trace export, pre-built metrics counters/histo… |
+| `@reaatech/otel-genai-semconv-openai` | published v0.1.0 | A function `instrument(client)` that wraps an OpenAI SDK client instance to automatically emit OpenTelemetry GenAI semantic convention spans for every `chat.completions.create()… |
+| `@reaatech/otel-genai-semconv-utils` | published v0.1.0 | Token counting, cost calculation, and PII redaction utilities for LLM observability. Provides a `TokenCounter` class with tiktoken-based estimation for OpenAI models and charact… |
+| `@reaatech/otel-genai-semconv-vertexai` | published v0.1.0 | A function that wraps a Google Generative Language (Vertex AI) SDK model instance to automatically emit OpenTelemetry GenAI semantic convention spans on every `generateContent()… |
 
 ## Issue reporting
 

@@ -1,12 +1,12 @@
 ---
 name: reaatech-agent-chaos
-description: "These packages provide a fault injection toolkit for testing the resilience of LLM agent systems against real-world failures like latency, rate limits, and malformed tool outputs. You would adopt these to validate that your circuit break…"
+description: "These packages give you a middleware-based fault injection engine that sits between your agent and its tools, injecting failures like latency spikes, rate limits, and malformed output to test whether your circuit breakers, confidence gat…"
 license: MIT
 ---
 
 # REAA agent-chaos
 
-These packages provide a fault injection toolkit for testing the resilience of LLM agent systems against real-world failures like latency, rate limits, and malformed tool outputs. You would adopt these to validate that your circuit breakers, fallbacks, and error-handling logic function correctly when external dependencies fail. The system uses a transparent middleware architecture that intercepts tool calls, allowing you to inject faults declaratively via YAML or JSON without modifying your agent's core implementation.
+These packages give you a middleware-based fault injection engine that sits between your agent and its tools, injecting failures like latency spikes, rate limits, and malformed output to test whether your circuit breakers, confidence gates, and fallback trees actually work. You'd adopt them to validate agent reliability under realistic failure conditions before they hit production. The most distinctive thing is the transparent interceptor pattern — adapters for LangChain, LlamaIndex, and Vercel AI SDK wrap your existing tool calls without modifying agent code, while a declarative YAML/JSON scenario system with probability-based fault selection and hot reloading lets you change failure modes at runtime.
 
 ## When to use this
 
@@ -55,12 +55,12 @@ npm install @reaatech/agent-chaos-cli @reaatech/agent-chaos-core @reaatech/agent
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/agent-chaos-cli` | published v0.1.0 | Provides a CLI and programmatic API for managing, validating, and executing chaos engineering scenarios for AI agents. It supports project initialization, template generation, a… |
-| `@reaatech/agent-chaos-core` | published v0.1.0 | A middleware |
-| `@reaatech/agent-chaos-scenarios` | published v0.1.0 | Provides a `ScenarioLoader` class and `SchemaValidator` utility to parse, validate, and hot-reload YAML or JSON chaos injection scenarios. It supports scenario composition via i… |
-| `@reaatech/agent-chaos-adapters` | pending npm | Framework adapters that wrap agent tools for LangChain, LlamaIndex, Vercel AI SDK, or any custom tool-call interface, transparently injecting faults from |
-| `@reaatech/agent-chaos-e2e` | pending npm | End-to-end test suite that validates the full agent-chaos pipeline, including scenario loading, schema validation, fault injection, engine event recording, and CLI execution aga… |
-| `@reaatech/agent-chaos-observability` | pending npm | Structured logging, metrics collection, OpenTelemetry tracing, and report generation for agent-chaos fault injection experiments. It provides pluggable collectors and report gen… |
+| `@reaatech/agent-chaos-cli` | published v0.1.0 | A CLI that validates, generates, and runs chaos engineering scenarios for AI agents, providing `init`, `generate`, `validate`, and `run` commands for managing fault-injection te… |
+| `@reaatech/agent-chaos-core` | published v0.1.0 | Middleware-based fault injection engine for agent systems that intercepts tool calls and injects latency, timeout, malformed output, token exhaustion, and other failure modes vi… |
+| `@reaatech/agent-chaos-scenarios` | published v0.1.0 | A scenario loader and validator for the agent-chaos fault injection toolkit that parses YAML and JSON scenario files, validates them against a JSON Schema, supports composition… |
+| `@reaatech/agent-chaos-adapters` | pending npm | Framework adapters for injecting fault-tolerance testing into LangChain, LlamaIndex, Vercel AI SDK, or any custom agent with a tool-call interface, using a shared interceptor pa… |
+| `@reaatech/agent-chaos-e2e` | pending npm | End-to-end test suite that validates the full agent-chaos pipeline—scenario loading, schema validation, fault injection, engine event recording, CLI execution, and cross-package… |
+| `@reaatech/agent-chaos-observability` | pending npm | Structured logging, metrics collection, OpenTelemetry tracing, and report generation for chaos engineering experiments, exposed as a set of classes (`MetricsCollector`, `Tracer`… |
 
 ## Issue reporting
 

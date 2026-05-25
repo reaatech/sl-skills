@@ -1,12 +1,12 @@
 ---
 name: reaatech-agent-auth-proxy
-description: "These packages provide a stateful identity-aware reverse proxy that manages OAuth2 flows, API key injection, and scope enforcement for AI agents. You would adopt them to secure agent-to-service communication by centralizing credential ma…"
+description: "These packages give you an identity-aware reverse proxy that sits between AI agents and downstream APIs like Google or GitHub, handling OAuth2 token management, API key vaulting, and scope enforcement. You would adopt them to solve the p…"
 license: MIT
 ---
 
 # REAA agent-auth-proxy
 
-These packages provide a stateful identity-aware reverse proxy that manages OAuth2 flows, API key injection, and scope enforcement for AI agents. You would adopt them to secure agent-to-service communication by centralizing credential management and audit logging behind a zero-trust architecture. The system is built as a modular Fastify-based server paired with a shared core library and a typed client SDK, ensuring consistent schema validation and error handling across both the proxy and the agents interacting with it.
+These packages give you an identity-aware reverse proxy that sits between AI agents and downstream APIs like Google or GitHub, handling OAuth2 token management, API key vaulting, and scope enforcement. You would adopt them to solve the problem of securely authenticating and authorizing agent-to-service requests without embedding long-lived credentials in agent code or managing per-user OAuth flows yourself. The most distinctive thing is that the proxy is stateful and built as a Fastify plugin with a typed client SDK, so the server, client, and shared schemas are versioned together in a monorepo and the entire request pipeline—authentication, scope validation, credential decryption, and injection—runs in a single proxy hop.
 
 ## When to use this
 

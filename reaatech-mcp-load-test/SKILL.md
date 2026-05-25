@@ -1,12 +1,12 @@
 ---
 name: reaatech-mcp-load-test
-description: "These packages provide a load testing framework designed to evaluate the performance and reliability of Model Context Protocol (MCP) servers. You would use them to simulate concurrent user behavior, identify breaking points, and generate…"
+description: "These packages give you a purpose-built load testing framework for MCP (Model Context Protocol) servers, with a CLI, orchestration engine, transport clients, and analysis tooling. You would adopt them to stress-test MCP servers under rea…"
 license: MIT
 ---
 
 # REAA mcp-load-test
 
-These packages provide a load testing framework designed to evaluate the performance and reliability of Model Context Protocol (MCP) servers. You would use them to simulate concurrent user behavior, identify breaking points, and generate performance benchmarks for your MCP implementations. The system is built as a modular engine that separates transport-aware clients, pattern-based session orchestration, and real-time metrics analysis into distinct, composable packages.
+These packages give you a purpose-built load testing framework for MCP (Model Context Protocol) servers, with a CLI, orchestration engine, transport clients, and analysis tooling. You would adopt them to stress-test MCP servers under realistic concurrent workloads—modeling user behavior with weighted tool-call patterns, detecting breaking points, and producing latency histograms with letter grades. The framework is transport-aware, meaning it accounts for the different concurrency profiles of StreamableHTTP, SSE, and stdio, and uses session-based closed-loop concurrency where long-lived sessions continuously execute patterns with think-time delays and stateful context.
 
 ## When to use this
 
@@ -52,15 +52,15 @@ npm install @reaatech/mcp-load-test-analysis @reaatech/mcp-load-test-cli @reaate
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/mcp-load-test-analysis` | published v0.1.0 | Analyzes Model Context Protocol (MCP) load test metrics to detect performance breaking points and assign letter grades based on latency, error rates, and recovery times. It prov… |
-| `@reaatech/mcp-load-test-cli` | published v0.1.0 | Executes load, ramp, soak, and spike tests against Model Context Protocol (MCP) servers via a command-line interface. It generates performance reports in console, JSON, or Markd… |
-| `@reaatech/mcp-load-test-client` | published v0.1.0 | Provides a unified client interface for Model Context Protocol (MCP) servers that automatically negotiates between stdio, SSE, and StreamableHTTP transports. It returns a sessio… |
-| `@reaatech/mcp-load-test-core` | published v0.1.0 | Provides shared TypeScript types, Zod validation schemas, and utility functions for defining and analyzing MCP load test configurations. It serves as the foundational library fo… |
-| `@reaatech/mcp-load-test-engine` | published v0.1.0 | Orchestrates load testing for Model Context Protocol (MCP) servers by managing session pools, concurrency patterns, and breaking point detection. It provides a `LoadEngine` clas… |
-| `@reaatech/mcp-load-test-metrics` | published v0.1.0 | Aggregates latency histograms, error rates, and throughput metrics for Model Context Protocol (MCP) load testing. It provides a `MetricsCollector` class that processes individua… |
-| `@reaatech/mcp-load-test-patterns` | published v0.1.0 | Provides a `PatternExecutor` class to run stateful, multi-step MCP tool-call sequences for load testing. It requires an MCP client and a metrics collector to execute predefined… |
-| `@reaatech/mcp-load-test-profiles` | published v0.1.0 | Provides async generators that yield concurrency and phase metadata at one-second intervals to drive load testing session pools. It offers pre-built ramp, soak, spike, and custo… |
-| `@reaatech/mcp-load-test-reporters` | published v0.1.0 | Provides classes to format MCP load test results into ANSI-colored console output, GitHub-flavored markdown, or machine-readable JSON. These reporters consume `LoadTestReport` o… |
+| `@reaatech/mcp-load-test-analysis` | published v0.1.0 | Provides breaking point detection and performance grading for MCP load test reports. Exports `BreakingPointDetector` (a class that monitors error rates and latency against confi… |
+| `@reaatech/mcp-load-test-cli` | published v0.1.0 | A CLI that runs load, ramp, soak, and spike tests against MCP servers, outputting results to the console, Markdown, or JSON. Built on Commander.js, it accepts YAML or JSON confi… |
+| `@reaatech/mcp-load-test-client` | published v0.1.0 | A session-scoped MCP transport client that auto-negotiates across stdio, SSE, and StreamableHTTP, providing `connect()`, `disconnect()`, `callTool()`, and `listTools()` methods… |
+| `@reaatech/mcp-load-test-core` | published v0.1.0 | Shared TypeScript types, Zod schemas, utility functions (percentile calculation, retry with backoff, URL validation), and a pre-configured Pino logger that serve as the single s… |
+| `@reaatech/mcp-load-test-engine` | published v0.1.0 | A `LoadEngine` class that orchestrates MCP server load tests by managing a dynamic session pool, executing weighted-random tool call patterns, and producing a `LoadTestReport` w… |
+| `@reaatech/mcp-load-test-metrics` | published v0.1.0 | A latency histogram, throughput collector, and error tracker for MCP load testing, exposed as a `MetricsCollector` class that records per-tool percentile distributions, rolling-… |
+| `@reaatech/mcp-load-test-patterns` | published v0.1.0 | A pattern execution engine and three built-in tool-call sequences (`EXPLORE_THEN_ACT`, `READ_THEN_WRITE`, `MULTI_STEP_WORKFLOW`) for load testing MCP servers, provided as a `Pat… |
+| `@reaatech/mcp-load-test-profiles` | published v0.1.0 | Async generator functions that yield `{ concurrency, phase }` tuples at 1-second intervals for four load-testing profiles (ramp, soak, spike, and custom curve), designed to driv… |
+| `@reaatech/mcp-load-test-reporters` | published v0.1.0 | Console, markdown, and JSON output formatters for MCP load test reports. Each reporter is a class with a `format(report: LoadTestReport): string` method, producing either ANSI-c… |
 
 ## Issue reporting
 

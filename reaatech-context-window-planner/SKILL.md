@@ -1,12 +1,12 @@
 ---
 name: reaatech-context-window-planner
-description: "These packages provide a deterministic engine for managing LLM context windows by deciding which data to include, summarize, or drop based on token budgets. They solve the problem of prompt overflow in complex agentic workflows where inp…"
+description: "These packages give you a deterministic engine for deciding what content to include, summarize, or drop when packing prompts into an LLM's context window. You'd adopt them to solve the problem of overflowing a model's token budget—replac…"
 license: MIT
 ---
 
 # REAA context-window-planner
 
-These packages provide a deterministic engine for managing LLM context windows by deciding which data to include, summarize, or drop based on token budgets. They solve the problem of prompt overflow in complex agentic workflows where input data frequently exceeds model limits. The system uses a modular builder pattern that allows you to compose custom packing strategies, tokenizer adapters, and typed context primitives into a single, framework-agnostic execution plan.
+These packages give you a deterministic engine for deciding what content to include, summarize, or drop when packing prompts into an LLM's context window. You'd adopt them to solve the problem of overflowing a model's token budget—replacing ad-hoc truncation with a configurable planner that enforces budgets, reserves space for generation, and emits structured warnings about every decision. The most distinctive thing is the pluggable strategy system: you can swap between priority-greedy, sliding-window, summarize-and-replace, or RAG relevance selection strategies, or compose custom ones, all while using typed context item primitives and tokenizer adapters for different model families.
 
 ## When to use this
 
@@ -53,8 +53,8 @@ npm install @reaatech/context-window-planner @reaatech/context-window-planner-cl
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/context-window-planner` | published v0.1.0 | Manages LLM context windows by providing a builder class, packing strategies, and typed primitives for prioritizing, summarizing, or dropping content. It relies on `js-tiktoken`… |
-| `@reaatech/context-window-planner-cli` | published v0.1.0 | Provides a command-line interface for the `@reaatech/context-window-planner` library, accepting JSON via `stdin` to calculate token-aware packing plans for LLM context windows.… |
+| `@reaatech/context-window-planner` | published v0.1.0 | A TypeScript library providing typed context items, packing strategies, and tokenizer adapters for deciding what to include, summarize, or drop when fitting prompts into LLM con… |
+| `@reaatech/context-window-planner-cli` | published v0.1.0 | A CLI that reads a JSON context-window planning request from stdin and writes a packing plan (included, summarized, and dropped items with token counts) to stdout. |
 
 ## Issue reporting
 
@@ -63,6 +63,6 @@ Failures while using this skill should be reported via the `report_issue` tool o
 ## More
 
 - Repo: https://github.com/reaatech/context-window-planner
-- Browse packages: https://reaatech.com/products/domain-pipelines/context-window-planner/packages
+- Browse packages: https://reaatech.com/products/evals-quality/context-window-planner/packages
 - npm scope: https://www.npmjs.com/~reaatech
 - tags: agentic-ai, ai, ai-agents, anthropic, developer-tools, llm, openai, prompt-engineering, rag, typescript

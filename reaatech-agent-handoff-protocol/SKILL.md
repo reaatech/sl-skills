@@ -1,12 +1,12 @@
 ---
 name: reaatech-agent-handoff-protocol
-description: "These packages provide a standardized lifecycle for transferring AI agent conversations, including context compression, intelligent routing, and transport delivery. You would adopt them to manage complex multi-agent workflows where sessi…"
+description: "These packages give you a complete lifecycle for transferring a conversation from one AI agent to another mid-session, including compressing the conversation history, scoring and selecting the best target agent, validating payload compat…"
 license: MIT
 ---
 
 # REAA agent-handoff-protocol
 
-These packages provide a standardized lifecycle for transferring AI agent conversations, including context compression, intelligent routing, and transport delivery. You would adopt them to manage complex multi-agent workflows where sessions must move between specialized agents based on capability, load, and availability. The system is built as a modular, transport-agnostic protocol that allows you to swap compression strategies, routing logic, and transport layers like MCP or HTTP independently.
+These packages give you a complete lifecycle for transferring a conversation from one AI agent to another mid-session, including compressing the conversation history, scoring and selecting the best target agent, validating payload compatibility, delivering the handoff via MCP or A2A transport, and handling rejection with fallback alternatives. You would adopt them to solve the problem of routing a live multi-turn conversation between specialized agents without losing context or requiring the user to repeat themselves. The most distinctive thing is that every stage—compression, routing, validation, transport, and rejection handling—is a separate, pluggable package with zero runtime dependencies, so you can compose only the pieces you need and inject your own implementations for any stage.
 
 ## When to use this
 
@@ -55,12 +55,12 @@ npm install @reaatech/agent-handoff @reaatech/agent-handoff-compression @reaatec
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/agent-handoff` | published v0.1.0 | Provides the core TypeScript definitions, error classes, and utility functions required to implement the Agent Handoff Protocol. It exports a set of interfaces, a typed event em… |
-| `@reaatech/agent-handoff-compression` | published v0.1.0 | Reduces conversation history into a condensed format using sliding window, extractive summary, or hybrid strategies to fit within specific token budgets. It provides a set of co… |
-| `@reaatech/agent-handoff-protocol` | published v0.1.0 | Orchestrates the transfer of conversation state between AI agents using a `HandoffManager` class that handles context compression, routing logic, and transport delivery. It prov… |
-| `@reaatech/agent-handoff-routing` | published v0.1.0 | Selects the optimal agent for a handoff using a weighted scoring algorithm that evaluates skills, domain expertise, load, and language. It provides a `CapabilityBasedRouter` cla… |
-| `@reaatech/agent-handoff-transport` | published v0.1.0 | Provides transport layer implementations for agent-to-agent handoffs via MCP tool calls or HTTP POST requests. It includes a factory class that performs health checks and auto-s… |
-| `@reaatech/agent-handoff-validation` | published v0.1.0 | Validates Agent Handoff Protocol payloads and agent compatibility using a `HandoffValidator` class or standalone manual functions. It optionally integrates with Zod for schema e… |
+| `@reaatech/agent-handoff` | published v0.1.0 | Core types, utilities, and configuration for the Agent Handoff Protocol, providing 35+ TypeScript types, 7 typed error classes, a typed event emitter, a retry utility with confi… |
+| `@reaatech/agent-handoff-compression` | published v0.1.0 | Compresses conversation history before agent handoff using three built-in strategies (hybrid, summary, sliding-window) with configurable token budgets. Exports compressor classe… |
+| `@reaatech/agent-handoff-protocol` | published v0.1.0 | A TypeScript library for transferring a conversation from one AI agent to another mid-session, providing context compression, capability-based routing, payload validation, trans… |
+| `@reaatech/agent-handoff-routing` | published v0.1.0 | A weighted scoring engine that selects the best target agent during a handoff, implementing a route/clarify/fallback decision tree with an in-memory agent registry. Exports `Cap… |
+| `@reaatech/agent-handoff-transport` | published v0.1.0 | Transport layer implementations for delivering handoffs between agents, providing MCP (tool-call-based), A2A (HTTP POST with retry), and a transport factory with health-check ca… |
+| `@reaatech/agent-handoff-validation` | published v0.1.0 | Validates `HandoffPayload` structure and checks agent compatibility (language, capacity, availability, history size) for the Agent Handoff Protocol. Exports a `HandoffValidator`… |
 
 ## Issue reporting
 

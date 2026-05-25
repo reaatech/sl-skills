@@ -1,12 +1,12 @@
 ---
 name: reaatech-mcp-contract-kit
-description: "These packages provide a comprehensive suite for testing Model Context Protocol (MCP) server implementations against the official specification. You would adopt them to automate conformance, security, and performance validation of your M…"
+description: "These packages give you a CLI tool and programmatic API for testing Model Context Protocol (MCP) servers against the MCP specification. You'd adopt them to validate that an MCP server correctly implements protocol conformance, registry Y…"
 license: MIT
 ---
 
 # REAA mcp-contract-kit
 
-These packages provide a comprehensive suite for testing Model Context Protocol (MCP) server implementations against the official specification. You would adopt them to automate conformance, security, and performance validation of your MCP servers within CI/CD pipelines or local development workflows. The collection is built on a shared foundation of Zod schemas and core domain types, allowing you to compose custom validation logic, client interactions, and reporting formats into a unified testing harness.
+These packages give you a CLI tool and programmatic API for testing Model Context Protocol (MCP) servers against the MCP specification. You'd adopt them to validate that an MCP server correctly implements protocol conformance, registry YAML schemas, routing contracts, security posture, and performance baselines before deploying it. The packages are designed as composable layers—core types, a client SDK, validators, reporters, and observability—that you can use individually or together through the CLI, with all validators sharing the same typed test report format.
 
 ## When to use this
 
@@ -52,12 +52,12 @@ npm install @reaatech/mcp-contract-cli @reaatech/mcp-contract-client @reaatech/m
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/mcp-contract-cli` | published v0.1.0 | Validates Model Context Protocol (MCP) servers against protocol, security, and performance standards using a CLI tool and a programmatic API. It provides functions to execute te… |
-| `@reaatech/mcp-contract-client` | published v0.1.0 | Connects to and interacts with Model Context Protocol (MCP) servers over HTTP using a client class or factory function. It provides typed methods for JSON-RPC 2.0 communication,… |
-| `@reaatech/mcp-contract-core` | published v0.1.0 | Provides foundational TypeScript interfaces, Zod schemas, and JSON-RPC 2.0 types for validating and interacting with Model Context Protocol (MCP) contracts. It serves as the sha… |
-| `@reaatech/mcp-contract-observability` | published v0.1.0 | Provides structured logging via Pino, in-memory metrics collection, and W3C trace context propagation for Model Context Protocol (MCP) contract validation. It exports a suite of… |
-| `@reaatech/mcp-contract-reporters` | published v0.1.0 | Converts `TestReport` objects from `@reaatech/mcp-contract-core` into console, JSON, Markdown, or HTML strings. It provides a collection of formatting functions and a dispatcher… |
-| `@reaatech/mcp-contract-validators` | published v0.1.0 | Validates Model Context Protocol (MCP) server compliance, security, and performance through a collection of validator functions and suites. It provides individual validator obje… |
+| `@reaatech/mcp-contract-cli` | published v0.1.0 | CLI tool and programmatic API for running conformance tests against MCP servers, covering protocol, registry, routing, security, and performance validators. Exports `runTests`,… |
+| `@reaatech/mcp-contract-client` | published v0.1.0 | A factory function (`createMCPClient`) and class (`MCPHttpClient`) for connecting to Model Context Protocol servers over HTTP, providing tool discovery, tool invocation, JSON-RP… |
+| `@reaatech/mcp-contract-core` | published v0.1.0 | Core domain types, JSON-RPC 2.0 schemas, and shared utilities for MCP contract validation, providing enums (`Severity`, `TestCategory`, `TestSuite`), result interfaces (`TestRes… |
+| `@reaatech/mcp-contract-observability` | published v0.1.0 | A pino-based structured logger, in-memory metrics collector, and W3C trace context propagator for MCP contract validation. Exports a logger singleton with automatic PII redactio… |
+| `@reaatech/mcp-contract-reporters` | published v0.1.0 | A set of reporter functions that consume `TestReport` objects from `@reaatech/mcp-contract-core` and render them as colored console output, JSON, GitHub-flavored Markdown, or a… |
+| `@reaatech/mcp-contract-validators` | published v0.1.0 | A set of conformance validators for MCP servers that checks protocol compliance (JSON-RPC 2.0), registry configuration, routing contracts, security posture, and performance base… |
 
 ## Issue reporting
 
