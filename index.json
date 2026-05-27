@@ -1,7 +1,7 @@
 [
   {
     "name": "reaatech-a2a-reference-ts",
-    "description": "These packages give you a full TypeScript implementation of the Agent-to-Agent (A2A) protocol — server framework, client SDK, authentication, persistence, observability, and a bidirectional bridge to MCP — so you can build interoperable…",
+    "description": "These packages give you a complete TypeScript implementation of the Agent-to-Agent (A2A) protocol — server framework, client SDK, CLI scaffolding, and a bidirectional A2A ↔ MCP bridge — so you can build AI agents that discover each other…",
     "path": "reaatech-a2a-reference-ts/SKILL.md",
     "repo": {
       "slug": "a2a-reference-ts",
@@ -11,7 +11,7 @@
       "slug": "orchestration-protocols",
       "name": "Orchestration & Protocols"
     },
-    "packageCount": 7
+    "packageCount": 8
   },
   {
     "name": "reaatech-agent-auth-proxy",
