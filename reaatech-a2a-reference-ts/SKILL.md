@@ -60,19 +60,19 @@ Run the server and any A2A client (including `@reaatech/a2a-reference-client`) c
 ## Packages
 
 ```bash
-npm install @reaatech/a2a-reference-auth @reaatech/a2a-reference-client @reaatech/a2a-reference-core @reaatech/a2a-reference-mcp-bridge @reaatech/a2a-reference-observability @reaatech/a2a-reference-persistence @reaatech/a2a-reference-server
+npm install @reaatech/a2a-reference-auth @reaatech/a2a-reference-cli @reaatech/a2a-reference-client @reaatech/a2a-reference-core @reaatech/a2a-reference-mcp-bridge @reaatech/a2a-reference-observability @reaatech/a2a-reference-persistence @reaatech/a2a-reference-server
 ```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/a2a-reference-auth` | published v0.1.0 | Pluggable authentication and authorization strategies for A2A agents, providing `NoneStrategy`, `ApiKeyStrategy`, `JwtStrategy`, and `OAuth2Strategy` classes plus a `extractScop… |
-| `@reaatech/a2a-reference-client` | published v0.1.0 | A type-safe A2A client SDK that provides a class (`A2AClient`) for task submission, agent discovery, and SSE streaming against A2A-compatible servers. It handles agent card cach… |
-| `@reaatech/a2a-reference-core` | published v0.1.0 | Zod schemas, TypeScript types, error classes, and a signature verification function for the A2A (Agent-to-Agent) protocol, providing canonical validation and parsing for task li… |
-| `@reaatech/a2a-reference-mcp-bridge` | published v0.1.0 | A bidirectional protocol adapter that exposes MCP tools as A2A skills via `McpToolAdapter` (producing an enriched Agent Card), and wraps an A2A agent as an MCP server via `A2aAs… |
-| `@reaatech/a2a-reference-observability` | published v0.1.0 | Pino-based structured logging with correlation IDs and OpenTelemetry abstractions (tracers, meters, spans) for A2A agents, providing `createLogger`, `withCorrelationId`, `getTra… |
-| `@reaatech/a2a-reference-persistence` | published v0.1.0 | Provides in-memory, filesystem, Redis, and Postgres implementations of a `TaskStore` interface for persisting A2A (Agent-to-Agent) tasks, each exposed as a class constructor. |
-| `@reaatech/a2a-reference-server` | published v0.1.0 | A server framework that implements the A2A (Agent-to-Agent) protocol, providing Express 5 and Hono adapters that expose JSON-RPC 2.0 endpoints, SSE streaming, health checks, rat… |
-| `@reaatech/a2a-reference-cli` | pending npm | Description pending. |
+| `@reaatech/a2a-reference-auth` | published v0.2.0 | Pluggable authentication and authorization strategies for A2A agents, providing `NoneStrategy`, `ApiKeyStrategy`, `JwtStrategy`, and `OAuth2Strategy` classes plus a `extractScop… |
+| `@reaatech/a2a-reference-cli` | published v0.2.0 | Description pending. |
+| `@reaatech/a2a-reference-client` | published v0.1.1 | A type-safe A2A client SDK that provides a class (`A2AClient`) for task submission, agent discovery, and SSE streaming against A2A-compatible servers. It handles agent card cach… |
+| `@reaatech/a2a-reference-core` | published v0.2.0 | Zod schemas, TypeScript types, error classes, and a signature verification function for the A2A (Agent-to-Agent) protocol, providing canonical validation and parsing for task li… |
+| `@reaatech/a2a-reference-mcp-bridge` | published v0.1.2 | A bidirectional protocol adapter that exposes MCP tools as A2A skills via `McpToolAdapter` (producing an enriched Agent Card), and wraps an A2A agent as an MCP server via `A2aAs… |
+| `@reaatech/a2a-reference-observability` | published v0.2.0 | Pino-based structured logging with correlation IDs and OpenTelemetry abstractions (tracers, meters, spans) for A2A agents, providing `createLogger`, `withCorrelationId`, `getTra… |
+| `@reaatech/a2a-reference-persistence` | published v0.2.0 | Provides in-memory, filesystem, Redis, and Postgres implementations of a `TaskStore` interface for persisting A2A (Agent-to-Agent) tasks, each exposed as a class constructor. |
+| `@reaatech/a2a-reference-server` | published v0.2.0 | A server framework that implements the A2A (Agent-to-Agent) protocol, providing Express 5 and Hono adapters that expose JSON-RPC 2.0 endpoints, SSE streaming, health checks, rat… |
 
 ## Issue reporting
 
