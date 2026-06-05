@@ -59,9 +59,9 @@ npm install @reaatech/llm-router-cli @reaatech/llm-router-core @reaatech/llm-rou
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/llm-router-cli` | published v1.0.0 | A CLI that provides four commands—`route`, `benchmark`, `cost-report`, and `validate-config`—for routing prompts through configurable LLM strategies, benchmarking model performa… |
+| `@reaatech/llm-router-cli` | published v1.0.1 | A CLI that provides four commands—`route`, `benchmark`, `cost-report`, and `validate-config`—for routing prompts through configurable LLM strategies, benchmarking model performa… |
 | `@reaatech/llm-router-core` | published v1.0.0 | Core TypeScript types, Zod schemas, and input validation for the llm-router ecosystem, providing 30+ domain types and 11 runtime validation schemas for model definitions, routin… |
-| `@reaatech/llm-router-engine` | published v1.0.0 | A config-driven `LLMRouter` class that orchestrates model selection, fallback chains, cost tracking, A/B testing, quality scoring, and observability into a single routing decisi… |
+| `@reaatech/llm-router-engine` | published v1.0.1 | A config-driven `LLMRouter` class that orchestrates model selection, fallback chains, cost tracking, A/B testing, quality scoring, and observability into a single routing decisi… |
 | `@reaatech/llm-router-fallback` | published v1.0.0 | A function that creates ordered fallback chains for LLM calls, with per-model circuit breakers and exponential-backoff retry logic, returning a `FallbackChain` instance whose `e… |
 | `@reaatech/llm-router-mcp` | published v1.0.0 | An MCP server that exposes three tools—`route_request`, `get_model_info`, and `get_cost_report`—for routing LLM requests through a pluggable router implementation via the Model… |
 | `@reaatech/llm-router-strategies` | published v1.0.0 | A set of pluggable routing strategies (CostOptimized, LatencyOptimized, JudgmentBased, CapabilityBased) and a priority-based `StrategyOrchestrator` that evaluates them in order… |

@@ -50,17 +50,17 @@ await manager.handoff({
 ## Packages
 
 ```bash
-npm install @reaatech/agent-handoff-compression @reaatech/agent-handoff-protocol @reaatech/agent-handoff-routing @reaatech/agent-handoff-transport @reaatech/agent-handoff-validation
+npm install @reaatech/agent-handoff @reaatech/agent-handoff-compression @reaatech/agent-handoff-protocol @reaatech/agent-handoff-routing @reaatech/agent-handoff-transport @reaatech/agent-handoff-validation
 ```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
+| `@reaatech/agent-handoff` | published v0.1.0 | Core types, utilities, and configuration for the Agent Handoff Protocol, providing 35+ TypeScript types, 7 typed error classes, a typed event emitter, a retry utility with confi… |
 | `@reaatech/agent-handoff-compression` | published v0.1.0 | Compresses conversation history before agent handoff using three built-in strategies (hybrid, summary, sliding-window) with configurable token budgets. Exports compressor classe… |
 | `@reaatech/agent-handoff-protocol` | published v0.1.0 | A TypeScript library for transferring a conversation from one AI agent to another mid-session, providing context compression, capability-based routing, payload validation, trans… |
 | `@reaatech/agent-handoff-routing` | published v0.1.0 | A weighted scoring engine that selects the best target agent during a handoff, implementing a route/clarify/fallback decision tree with an in-memory agent registry. Exports `Cap… |
 | `@reaatech/agent-handoff-transport` | published v0.1.0 | Transport layer implementations for delivering handoffs between agents, providing MCP (tool-call-based), A2A (HTTP POST with retry), and a transport factory with health-check ca… |
 | `@reaatech/agent-handoff-validation` | published v0.1.0 | Validates `HandoffPayload` structure and checks agent compatibility (language, capacity, availability, history size) for the Agent Handoff Protocol. Exports a `HandoffValidator`… |
-| `@reaatech/agent-handoff` | pending npm | Core types, utilities, and configuration for the Agent Handoff Protocol, providing 35+ TypeScript types, 7 typed error classes, a typed event emitter, a retry utility with confi… |
 
 ## Issue reporting
 

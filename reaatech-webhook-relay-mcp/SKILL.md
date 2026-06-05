@@ -25,16 +25,16 @@ These packages give you an MCP server that receives webhooks from services like 
 ## Packages
 
 ```bash
-# (no packages published to npm yet — install from source or wait for publish)
+npm install @reaatech/webhook-relay-core @reaatech/webhook-relay-mcp @reaatech/webhook-relay-storage @reaatech/webhook-relay-tools @reaatech/webhook-relay-webhooks
 ```
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/webhook-relay-core` | pending npm | Shared types, configuration loading, AES-256-GCM encryption helpers, a filter DSL evaluator, Prometheus metric registry, and a shared pino logger for the webhook-relay-mcp proje… |
-| `@reaatech/webhook-relay-mcp` | pending npm | A CLI binary (`webhook-relay-mcp`) that runs an MCP server bridging third-party webhooks (Stripe, GitHub, Replicate, Twilio, SendGrid, Slack, Vercel, and generic sources) into a… |
-| `@reaatech/webhook-relay-storage` | pending npm | SQLite storage layer for webhook-relay-mcp, providing schema migrations and repository classes (Events, Subscriptions, Sources, Audit) plus services (Cleanup, Delivery with retr… |
-| `@reaatech/webhook-relay-tools` | pending npm | A library that exposes an MCP server and 15 webhook management tools (subscribe, unsubscribe, list, poll, history, register, stats, replay, update-source, delete-source, rotate-… |
-| `@reaatech/webhook-relay-webhooks` | pending npm | Provides webhook ingestion logic including signature validators (HMAC-SHA256/SHA1 with constant-time comparison), source handlers for Stripe, GitHub, Replicate, Twilio, SendGrid… |
+| `@reaatech/webhook-relay-core` | published v0.2.0 | Shared types, configuration loading, AES-256-GCM encryption helpers, a filter DSL evaluator, Prometheus metric registry, and a shared pino logger for the webhook-relay-mcp proje… |
+| `@reaatech/webhook-relay-mcp` | published v0.2.0 | A CLI binary (`webhook-relay-mcp`) that runs an MCP server bridging third-party webhooks (Stripe, GitHub, Replicate, Twilio, SendGrid, Slack, Vercel, and generic sources) into a… |
+| `@reaatech/webhook-relay-storage` | published v0.2.0 | SQLite storage layer for webhook-relay-mcp, providing schema migrations and repository classes (Events, Subscriptions, Sources, Audit) plus services (Cleanup, Delivery with retr… |
+| `@reaatech/webhook-relay-tools` | published v0.2.0 | A library that exposes an MCP server and 15 webhook management tools (subscribe, unsubscribe, list, poll, history, register, stats, replay, update-source, delete-source, rotate-… |
+| `@reaatech/webhook-relay-webhooks` | published v0.2.0 | Provides webhook ingestion logic including signature validators (HMAC-SHA256/SHA1 with constant-time comparison), source handlers for Stripe, GitHub, Replicate, Twilio, SendGrid… |
 
 ## Issue reporting
 

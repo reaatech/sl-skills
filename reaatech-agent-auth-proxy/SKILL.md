@@ -60,9 +60,9 @@ npm install @reaatech/agent-auth-proxy-client @reaatech/agent-auth-proxy-core @r
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/agent-auth-proxy-client` | published v1.0.0 | Two typed HTTP clients for the agent-auth-proxy server: `AgentClient` exchanges an API key for a JWT and makes proxied requests to third-party APIs on behalf of a user, while `A… |
-| `@reaatech/agent-auth-proxy-core` | published v1.0.0 | Shared Zod schemas, error classes, and TypeScript types for OAuth2 proxy request validation, scope management, and error handling, exported as framework-agnostic primitives that… |
-| `@reaatech/agent-auth-proxy-server` | published v1.0.0 | Fastify plugin and CLI that implements an identity-aware proxy server for agent-to-service communication, handling API key auth, OAuth2 with PKCE, JWT issuance, scope enforcemen… |
+| `@reaatech/agent-auth-proxy-client` | published v2.0.0 | Two typed HTTP clients for the agent-auth-proxy server: `AgentClient` exchanges an API key for a JWT and makes proxied requests to third-party APIs on behalf of a user, while `A… |
+| `@reaatech/agent-auth-proxy-core` | published v2.0.0 | Shared Zod schemas, error classes, and TypeScript types for OAuth2 proxy request validation, scope management, and error handling, exported as framework-agnostic primitives that… |
+| `@reaatech/agent-auth-proxy-server` | published v2.0.0 | Fastify plugin and CLI that implements an identity-aware proxy server for agent-to-service communication, handling API key auth, OAuth2 with PKCE, JWT issuance, scope enforcemen… |
 
 ## Issue reporting
 

@@ -58,14 +58,14 @@ npm install @reaatech/classifier-evals @reaatech/classifier-evals-cli @reaatech/
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/classifier-evals` | published v0.1.0 | Canonical TypeScript types, Zod schemas, and shared utilities (structured logging, OpenTelemetry tracing/metrics, PII redaction, hashing) for the classifier-evals evaluation eco… |
-| `@reaatech/classifier-evals-cli` | published v0.1.0 | A CLI for running classifier evaluations, comparing models, checking regression gates, and exporting results, built on Commander.js and the `@reaatech/classifier-evals-*` ecosys… |
-| `@reaatech/classifier-evals-dataset` | published v0.1.0 | A dataset loading and validation utility for classifier evaluation, supporting CSV, JSON, and JSONL formats. Provides functions (`loadDataset`, `validateDataset`, `splitDataset`… |
-| `@reaatech/classifier-evals-exporters` | published v0.1.0 | Export classifier evaluation results as JSON, HTML, Arize Phoenix traces, or Langfuse traces. Provides four functions (`exportToJson`, `exportToHtml`, `exportToPhoenix`, `export… |
-| `@reaatech/classifier-evals-gates` | published v0.1.0 | A gate evaluation engine that checks classifier metrics (accuracy, F1, precision, recall) against threshold, baseline-comparison, and distribution gates, returning pass/fail res… |
-| `@reaatech/classifier-evals-judge` | published v0.1.0 | A function that creates an LLM-as-judge engine for evaluating classifier outputs, supporting Anthropic and OpenAI models with configurable consensus voting, real-time cost track… |
-| `@reaatech/classifier-evals-mcp-server` | published v0.1.0 | An MCP server that exposes five tools (`run_eval`, `check_gates`, `compare_models`, `llm_judge`, `generate_report`) for running classifier evaluation pipelines, checking regress… |
-| `@reaatech/classifier-evals-metrics` | published v0.1.0 | A function that computes confusion matrices, 14 classification metrics (accuracy, macro/micro/weighted precision/recall/F1, MCC, Cohen's Kappa), model comparison with McNemar's… |
+| `@reaatech/classifier-evals` | published v0.1.1 | Canonical TypeScript types, Zod schemas, and shared utilities (structured logging, OpenTelemetry tracing/metrics, PII redaction, hashing) for the classifier-evals evaluation eco… |
+| `@reaatech/classifier-evals-cli` | published v0.1.1 | A CLI for running classifier evaluations, comparing models, checking regression gates, and exporting results, built on Commander.js and the `@reaatech/classifier-evals-*` ecosys… |
+| `@reaatech/classifier-evals-dataset` | published v0.1.1 | A dataset loading and validation utility for classifier evaluation, supporting CSV, JSON, and JSONL formats. Provides functions (`loadDataset`, `validateDataset`, `splitDataset`… |
+| `@reaatech/classifier-evals-exporters` | published v0.1.1 | Export classifier evaluation results as JSON, HTML, Arize Phoenix traces, or Langfuse traces. Provides four functions (`exportToJson`, `exportToHtml`, `exportToPhoenix`, `export… |
+| `@reaatech/classifier-evals-gates` | published v0.1.1 | A gate evaluation engine that checks classifier metrics (accuracy, F1, precision, recall) against threshold, baseline-comparison, and distribution gates, returning pass/fail res… |
+| `@reaatech/classifier-evals-judge` | published v0.1.1 | A function that creates an LLM-as-judge engine for evaluating classifier outputs, supporting Anthropic and OpenAI models with configurable consensus voting, real-time cost track… |
+| `@reaatech/classifier-evals-mcp-server` | published v0.1.1 | An MCP server that exposes five tools (`run_eval`, `check_gates`, `compare_models`, `llm_judge`, `generate_report`) for running classifier evaluation pipelines, checking regress… |
+| `@reaatech/classifier-evals-metrics` | published v0.1.1 | A function that computes confusion matrices, 14 classification metrics (accuracy, macro/micro/weighted precision/recall/F1, MCC, Cohen's Kappa), model comparison with McNemar's… |
 
 ## Issue reporting
 

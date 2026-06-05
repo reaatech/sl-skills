@@ -58,11 +58,11 @@ npm install @reaatech/confidence-router @reaatech/confidence-router-classifiers 
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/confidence-router` | published v0.1.0 | A threshold-based decision engine that takes a classification result with confidence scores and returns a `RoutingDecision` indicating whether to **route** (high confidence), **… |
-| `@reaatech/confidence-router-classifiers` | published v0.1.0 | A pluggable classifier system for confidence-router, providing keyword matching, embedding similarity, and LLM-based classification as classes conforming to the `Classifier` int… |
-| `@reaatech/confidence-router-core` | published v0.1.0 | Core type definitions, error classes, configuration utilities, and the `DecisionEngine` for the confidence-router ecosystem. Exports TypeScript types (`Prediction`, `RoutingDeci… |
-| `@reaatech/confidence-router-evaluation` | published v0.1.0 | A grid search optimizer that tunes `routeThreshold` and `fallbackThreshold` on any `RouterInterface` object to maximize F1 score against a labeled dataset, returning `OptimizedT… |
-| `@reaatech/confidence-router-languages` | published v0.1.0 | Provides locale-aware clarification prompt generation for confidence-router, exposing `LanguageManager` and `PromptGenerator` classes that handle 47 built-in languages with RTL… |
+| `@reaatech/confidence-router` | published v0.1.1 | A threshold-based decision engine that takes a classification result with confidence scores and returns a `RoutingDecision` indicating whether to **route** (high confidence), **… |
+| `@reaatech/confidence-router-classifiers` | published v0.1.1 | A pluggable classifier system for confidence-router, providing keyword matching, embedding similarity, and LLM-based classification as classes conforming to the `Classifier` int… |
+| `@reaatech/confidence-router-core` | published v0.1.1 | Core type definitions, error classes, configuration utilities, and the `DecisionEngine` for the confidence-router ecosystem. Exports TypeScript types (`Prediction`, `RoutingDeci… |
+| `@reaatech/confidence-router-evaluation` | published v0.1.1 | A grid search optimizer that tunes `routeThreshold` and `fallbackThreshold` on any `RouterInterface` object to maximize F1 score against a labeled dataset, returning `OptimizedT… |
+| `@reaatech/confidence-router-languages` | published v0.1.1 | Provides locale-aware clarification prompt generation for confidence-router, exposing `LanguageManager` and `PromptGenerator` classes that handle 47 built-in languages with RTL… |
 
 ## Issue reporting
 

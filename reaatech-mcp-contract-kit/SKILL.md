@@ -52,12 +52,12 @@ npm install @reaatech/mcp-contract-cli @reaatech/mcp-contract-client @reaatech/m
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/mcp-contract-cli` | published v0.1.0 | CLI tool and programmatic API for running conformance tests against MCP servers, covering protocol, registry, routing, security, and performance validators. Exports `runTests`,… |
-| `@reaatech/mcp-contract-client` | published v0.1.0 | A factory function (`createMCPClient`) and class (`MCPHttpClient`) for connecting to Model Context Protocol servers over HTTP, providing tool discovery, tool invocation, JSON-RP… |
-| `@reaatech/mcp-contract-core` | published v0.1.0 | Core domain types, JSON-RPC 2.0 schemas, and shared utilities for MCP contract validation, providing enums (`Severity`, `TestCategory`, `TestSuite`), result interfaces (`TestRes… |
-| `@reaatech/mcp-contract-observability` | published v0.1.0 | A pino-based structured logger, in-memory metrics collector, and W3C trace context propagator for MCP contract validation. Exports a logger singleton with automatic PII redactio… |
-| `@reaatech/mcp-contract-reporters` | published v0.1.0 | A set of reporter functions that consume `TestReport` objects from `@reaatech/mcp-contract-core` and render them as colored console output, JSON, GitHub-flavored Markdown, or a… |
-| `@reaatech/mcp-contract-validators` | published v0.1.0 | A set of conformance validators for MCP servers that checks protocol compliance (JSON-RPC 2.0), registry configuration, routing contracts, security posture, and performance base… |
+| `@reaatech/mcp-contract-cli` | published v0.1.1 | CLI tool and programmatic API for running conformance tests against MCP servers, covering protocol, registry, routing, security, and performance validators. Exports `runTests`,… |
+| `@reaatech/mcp-contract-client` | published v0.1.1 | A factory function (`createMCPClient`) and class (`MCPHttpClient`) for connecting to Model Context Protocol servers over HTTP, providing tool discovery, tool invocation, JSON-RP… |
+| `@reaatech/mcp-contract-core` | published v0.1.1 | Core domain types, JSON-RPC 2.0 schemas, and shared utilities for MCP contract validation, providing enums (`Severity`, `TestCategory`, `TestSuite`), result interfaces (`TestRes… |
+| `@reaatech/mcp-contract-observability` | published v0.1.1 | A pino-based structured logger, in-memory metrics collector, and W3C trace context propagator for MCP contract validation. Exports a logger singleton with automatic PII redactio… |
+| `@reaatech/mcp-contract-reporters` | published v0.1.1 | A set of reporter functions that consume `TestReport` objects from `@reaatech/mcp-contract-core` and render them as colored console output, JSON, GitHub-flavored Markdown, or a… |
+| `@reaatech/mcp-contract-validators` | published v0.1.1 | A set of conformance validators for MCP servers that checks protocol compliance (JSON-RPC 2.0), registry configuration, routing contracts, security posture, and performance base… |
 
 ## Issue reporting
 

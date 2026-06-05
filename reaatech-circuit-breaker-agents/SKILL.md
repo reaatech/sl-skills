@@ -61,9 +61,9 @@ npm install @reaatech/circuit-breaker-agents @reaatech/circuit-breaker-core @rea
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/circuit-breaker-agents` | published v0.1.0 | A meta-package that re-exports all public APIs from `@reaatech/circuit-breaker-core` and `@reaatech/circuit-breaker-persistence` as a single dependency, providing classes (`Circ… |
-| `@reaatech/circuit-breaker-core` | published v0.1.0 | A circuit breaker state machine for agent-to-tool and agent-to-agent communication, providing a `CircuitBreaker` class with lazy auto-transition state evaluation, configurable t… |
-| `@reaatech/circuit-breaker-persistence` | published v0.1.0 | Persistence adapters for circuit breaker state that survive restarts and share state across instances. Exports a `PersistenceAdapter` interface with four implementations: `InMem… |
+| `@reaatech/circuit-breaker-agents` | published v0.1.1 | A meta-package that re-exports all public APIs from `@reaatech/circuit-breaker-core` and `@reaatech/circuit-breaker-persistence` as a single dependency, providing classes (`Circ… |
+| `@reaatech/circuit-breaker-core` | published v0.1.1 | A circuit breaker state machine for agent-to-tool and agent-to-agent communication, providing a `CircuitBreaker` class with lazy auto-transition state evaluation, configurable t… |
+| `@reaatech/circuit-breaker-persistence` | published v0.1.1 | Persistence adapters for circuit breaker state that survive restarts and share state across instances. Exports a `PersistenceAdapter` interface with four implementations: `InMem… |
 | `@reaatech/circuit-breaker-example-basic` | pending npm | Description pending. |
 | `@reaatech/circuit-breaker-example-dynamodb` | pending npm | Description pending. |
 | `@reaatech/circuit-breaker-example-firestore` | pending npm | Description pending. |
