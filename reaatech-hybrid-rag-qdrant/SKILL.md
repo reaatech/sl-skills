@@ -58,15 +58,15 @@ npm install @reaatech/hybrid-rag @reaatech/hybrid-rag-cli @reaatech/hybrid-rag-e
 | Package | Status | Purpose |
 | --- | --- | --- |
 | `@reaatech/hybrid-rag` | published v0.1.0 | Zod schemas, TypeScript types, and enums for documents, chunks, retrieval results, evaluation samples, ablation configs, and benchmarking metrics that serve as the shared type f… |
-| `@reaatech/hybrid-rag-cli` | published v0.1.0 | A CLI tool for hybrid RAG (Retrieval-Augmented Generation) workflows, providing commands for document ingestion, querying, evaluation, ablation studies, benchmarking, chunking p… |
+| `@reaatech/hybrid-rag-cli` | published v0.1.1 | A CLI tool for hybrid RAG (Retrieval-Augmented Generation) workflows, providing commands for document ingestion, querying, evaluation, ablation studies, benchmarking, chunking p… |
 | `@reaatech/hybrid-rag-embedding` | published v0.1.0 | A class that generates text embeddings through a provider-agnostic interface, currently supporting OpenAI models with built-in batch processing, rate limiting, and cost tracking. |
-| `@reaatech/hybrid-rag-evaluation` | published v0.1.0 | An evaluation runner for hybrid RAG systems that provides standard IR metrics (Precision@K, Recall@K, NDCG@K, MAP, MRR), generation quality scoring, ablation studies with YAML-c… |
-| `@reaatech/hybrid-rag-ingestion` | published v0.1.0 | A set of classes (`DocumentLoader`, `TextPreprocessor`, `DocumentValidator`) and a `chunkDocument` function for loading, preprocessing, validating, and chunking documents from P… |
-| `@reaatech/hybrid-rag-mcp-server` | published v0.1.0 | An MCP server that exposes 41+ tools for hybrid RAG (vector + BM25) operations, including retrieval, ingestion, evaluation, query analysis, session management, and agent integra… |
-| `@reaatech/hybrid-rag-observability` | published v0.1.0 | A Pino-based structured logger and OpenTelemetry tracing/metrics collector for hybrid RAG pipelines, providing pre-built helpers for logging query lifecycles, recording span dur… |
-| `@reaatech/hybrid-rag-pipeline` | published v0.1.0 | A single `RAGPipeline` class that orchestrates document ingestion and hybrid retrieval (vector + BM25) against a Qdrant vector store, with optional reranking via Cohere, Jina, O… |
+| `@reaatech/hybrid-rag-evaluation` | published v0.1.1 | An evaluation runner for hybrid RAG systems that provides standard IR metrics (Precision@K, Recall@K, NDCG@K, MAP, MRR), generation quality scoring, ablation studies with YAML-c… |
+| `@reaatech/hybrid-rag-ingestion` | published v0.1.1 | A set of classes (`DocumentLoader`, `TextPreprocessor`, `DocumentValidator`) and a `chunkDocument` function for loading, preprocessing, validating, and chunking documents from P… |
+| `@reaatech/hybrid-rag-mcp-server` | published v0.1.1 | An MCP server that exposes 41+ tools for hybrid RAG (vector + BM25) operations, including retrieval, ingestion, evaluation, query analysis, session management, and agent integra… |
+| `@reaatech/hybrid-rag-observability` | published v0.1.1 | A Pino-based structured logger and OpenTelemetry tracing/metrics collector for hybrid RAG pipelines, providing pre-built helpers for logging query lifecycles, recording span dur… |
+| `@reaatech/hybrid-rag-pipeline` | published v0.1.1 | A single `RAGPipeline` class that orchestrates document ingestion and hybrid retrieval (vector + BM25) against a Qdrant vector store, with optional reranking via Cohere, Jina, O… |
 | `@reaatech/hybrid-rag-qdrant` | published v0.1.0 | A Qdrant vector database adapter that wraps `@qdrant/js-client-rest` with collection management, batch upsert, vector search with automatic metadata filtering, and health checks… |
-| `@reaatech/hybrid-rag-retrieval` | published v0.1.0 | A hybrid retrieval engine that combines Qdrant vector search, in-process BM25 keyword search, cross-encoder reranking, and configurable score fusion (RRF, weighted sum, normaliz… |
+| `@reaatech/hybrid-rag-retrieval` | published v0.1.1 | A hybrid retrieval engine that combines Qdrant vector search, in-process BM25 keyword search, cross-encoder reranking, and configurable score fusion (RRF, weighted sum, normaliz… |
 
 ## Issue reporting
 

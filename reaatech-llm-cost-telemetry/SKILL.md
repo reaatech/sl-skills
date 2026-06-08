@@ -51,14 +51,14 @@ npm install @reaatech/llm-cost-telemetry @reaatech/llm-cost-telemetry-aggregatio
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/llm-cost-telemetry` | published v0.1.0 | Core types, Zod schemas, shared utilities, and configuration loaders that serve as the foundation for the `@reaatech/llm-cost-telemetry-*` ecosystem. It exports 40+ domain types… |
-| `@reaatech/llm-cost-telemetry-aggregation` | published v0.1.0 | A set of classes (`CostCollector`, `CostAggregator`, `BudgetManager`) for buffering, aggregating by tenant/feature/route/model, and enforcing per-tenant daily/monthly budgets wi… |
-| `@reaatech/llm-cost-telemetry-calculator` | published v0.1.0 | A function that calculates LLM API costs across OpenAI, Anthropic, and Google models, with built-in pricing tables, cache-aware pricing, token counting, and pre-call cost estima… |
-| `@reaatech/llm-cost-telemetry-cli` | published v0.1.0 | A CLI tool that generates LLM cost reports, checks budget status, and triggers exports to observability platforms (CloudWatch, Cloud Monitoring, Phoenix/Loki) from JSON cost spa… |
-| `@reaatech/llm-cost-telemetry-exporters` | published v0.1.0 | Exporters for pushing LLM cost telemetry to AWS CloudWatch (standard and EMF), GCP Cloud Monitoring, and Grafana Loki/Phoenix, provided as configurable class instances (`CloudWa… |
-| `@reaatech/llm-cost-telemetry-mcp` | published v0.1.0 | An MCP server that exposes three layers of LLM cost telemetry tools — atomic span recording, multi-dimensional aggregation, and budget enforcement — consumable by MCP clients li… |
-| `@reaatech/llm-cost-telemetry-observability` | published v0.1.0 | A set of OpenTelemetry tracing, metrics, and Pino-based logging managers specifically for tracking LLM API costs, providing classes like `TracingManager`, `MetricsManager`, and… |
-| `@reaatech/llm-cost-telemetry-providers` | published v0.1.0 | Provides `wrapOpenAI`, `wrapAnthropic`, and `wrapGoogleGenerativeAI` functions that wrap their respective official SDK clients to automatically emit `CostSpan` objects with toke… |
+| `@reaatech/llm-cost-telemetry` | published v0.2.0 | Core types, Zod schemas, shared utilities, and configuration loaders that serve as the foundation for the `@reaatech/llm-cost-telemetry-*` ecosystem. It exports 40+ domain types… |
+| `@reaatech/llm-cost-telemetry-aggregation` | published v0.1.1 | A set of classes (`CostCollector`, `CostAggregator`, `BudgetManager`) for buffering, aggregating by tenant/feature/route/model, and enforcing per-tenant daily/monthly budgets wi… |
+| `@reaatech/llm-cost-telemetry-calculator` | published v0.1.1 | A function that calculates LLM API costs across OpenAI, Anthropic, and Google models, with built-in pricing tables, cache-aware pricing, token counting, and pre-call cost estima… |
+| `@reaatech/llm-cost-telemetry-cli` | published v0.2.0 | A CLI tool that generates LLM cost reports, checks budget status, and triggers exports to observability platforms (CloudWatch, Cloud Monitoring, Phoenix/Loki) from JSON cost spa… |
+| `@reaatech/llm-cost-telemetry-exporters` | published v0.1.1 | Exporters for pushing LLM cost telemetry to AWS CloudWatch (standard and EMF), GCP Cloud Monitoring, and Grafana Loki/Phoenix, provided as configurable class instances (`CloudWa… |
+| `@reaatech/llm-cost-telemetry-mcp` | published v0.1.1 | An MCP server that exposes three layers of LLM cost telemetry tools — atomic span recording, multi-dimensional aggregation, and budget enforcement — consumable by MCP clients li… |
+| `@reaatech/llm-cost-telemetry-observability` | published v0.1.1 | A set of OpenTelemetry tracing, metrics, and Pino-based logging managers specifically for tracking LLM API costs, providing classes like `TracingManager`, `MetricsManager`, and… |
+| `@reaatech/llm-cost-telemetry-providers` | published v0.1.1 | Provides `wrapOpenAI`, `wrapAnthropic`, and `wrapGoogleGenerativeAI` functions that wrap their respective official SDK clients to automatically emit `CostSpan` objects with toke… |
 
 ## Issue reporting
 
