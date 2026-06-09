@@ -224,20 +224,6 @@
     "packageCount": 4
   },
   {
-    "name": "reaatech-hybrid-rag-qdrant",
-    "description": "These packages give you a complete, modular RAG stack built around Qdrant, with hybrid retrieval that combines vector search, BM25 keyword search, and cross-encoder reranking. You'd adopt them to avoid assembling and integrating a dozen…",
-    "path": "reaatech-hybrid-rag-qdrant/SKILL.md",
-    "repo": {
-      "slug": "hybrid-rag-qdrant",
-      "fullName": "reaatech/hybrid-rag-qdrant"
-    },
-    "category": {
-      "slug": "domain-pipelines",
-      "name": "Domain Pipelines"
-    },
-    "packageCount": 10
-  },
-  {
     "name": "reaatech-idempotency-middleware",
     "description": "These packages give you idempotency middleware for POST, PUT, and PATCH requests — duplicate requests with the same `Idempotency-Key` header return the cached original response instead of re-executing side effects. You'd adopt them to sa…",
     "path": "reaatech-idempotency-middleware/SKILL.md",
