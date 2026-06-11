@@ -61,7 +61,7 @@ npm install @reaatech/idempotency-middleware @reaatech/idempotency-middleware-ad
 | Package | Status | Purpose |
 | --- | --- | --- |
 | `@reaatech/idempotency-middleware` | published v1.0.0 | A framework-agnostic TypeScript middleware that makes POST, PUT, and PATCH requests idempotent by caching responses keyed to an `Idempotency-Key` header, with pluggable storage… |
-| `@reaatech/idempotency-middleware-adapter-dynamodb` | published v1.0.0 | A DynamoDB storage adapter for `@reaatech/idempotency-middleware` that implements the `StorageAdapter` interface using conditional writes for distributed locking and TTL-compati… |
+| `@reaatech/idempotency-middleware-adapter-dynamodb` | published v1.0.1 | A DynamoDB storage adapter for `@reaatech/idempotency-middleware` that implements the `StorageAdapter` interface using conditional writes for distributed locking and TTL-compati… |
 | `@reaatech/idempotency-middleware-adapter-firestore` | published v1.1.0 | A Firestore storage adapter for `@reaatech/idempotency-middleware` that provides transaction-gated distributed locking and TTL-compatible expiry via `expiresAt` Date fields. Exp… |
 | `@reaatech/idempotency-middleware-adapter-redis` | published v1.0.0 | Redis storage adapter for `@reaatech/idempotency-middleware` that implements the `StorageAdapter` interface using ioredis, providing distributed idempotency caching with token-g… |
 | `@reaatech/idempotency-middleware-express` | published v1.0.0 | Express middleware that caches responses keyed by the `Idempotency-Key` header, preventing duplicate processing of retried requests. It monkey-patches `res.json()` and `res.send… |
