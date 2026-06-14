@@ -58,10 +58,10 @@ npm install @reaatech/mcp-server-auth @reaatech/mcp-server-core @reaatech/mcp-se
 | --- | --- | --- |
 | `@reaatech/mcp-server-auth` | published v1.0.1 | Express middleware that validates incoming MCP server requests via API key or Bearer token using constant-time comparison, with an automatic dev-mode bypass when no key is confi… |
 | `@reaatech/mcp-server-core` | published v1.0.1 | Provides shared Zod schemas, domain types (`ToolResponse`, `ContentBlock`, `RequestContext`), validated environment configuration, and content block factories for the `@reaatech… |
-| `@reaatech/mcp-server-engine` | published v1.0.1 | An Express 5-based MCP server framework that provides a composable middleware pipeline (auth, rate limiting, idempotency, sanitization), dual transport support (Streamable HTTP… |
+| `@reaatech/mcp-server-engine` | published v1.0.3 | An Express 5-based MCP server framework that provides a composable middleware pipeline (auth, rate limiting, idempotency, sanitization), dual transport support (Streamable HTTP… |
 | `@reaatech/mcp-server-observability` | published v1.1.0 | Provides structured logging (Pino-based with PII redaction), OpenTelemetry tracing with OTLP export, and Prometheus-compatible metrics for MCP servers, exporting a logger, `init… |
 | `@reaatech/mcp-server-tools` | published v1.0.1 | A type-safe tool registry and discovery system for MCP servers, providing a `defineTool()` helper with Zod input schemas, an in-memory registry with `registerTool`/`getTools`/`g… |
-| `@reaatech/mcp-server-transport` | published v1.0.1 | Mounts Streamable HTTP and SSE MCP transport handlers onto an Express application, managing session lifecycle, automatic cleanup, and transport-level metrics. Exports `mountStre… |
+| `@reaatech/mcp-server-transport` | published v1.2.0 | Mounts Streamable HTTP and SSE MCP transport handlers onto an Express application, managing session lifecycle, automatic cleanup, and transport-level metrics. Exports `mountStre… |
 
 ## Issue reporting
 

@@ -54,16 +54,16 @@ npm install @reaatech/mcp-gateway-allowlist @reaatech/mcp-gateway-audit @reaatec
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `@reaatech/mcp-gateway-allowlist` | published v1.0.0 | A per-tenant tool access control library for MCP gateways, providing Express middleware that enforces allow/deny rules with wildcard pattern matching and versioned allowlist sto… |
-| `@reaatech/mcp-gateway-audit` | published v1.0.0 | A structured audit logging library for the MCP Gateway that captures security-relevant events (auth, rate limiting, tool execution, cache operations) with configurable severity,… |
-| `@reaatech/mcp-gateway-auth` | published v1.0.0 | Pluggable Express middleware that authenticates requests via API key, JWT (with JWKS), OAuth2 token introspection (RFC 7662), or OIDC ID token validation, attaching a typed `Aut… |
-| `@reaatech/mcp-gateway-cache` | published v1.0.0 | An Express middleware and cache manager for MCP Gateway responses, providing in-memory LRU or Redis backends with per-tool TTL strategies, `Cache-Control` bypass support, and st… |
-| `@reaatech/mcp-gateway-core` | published v1.0.0 | Core types, Zod schemas, configuration loading, and structured logging for the MCP Gateway ecosystem. It provides domain interfaces, runtime validation, YAML-based config loadin… |
-| `@reaatech/mcp-gateway-fanout` | published v1.0.0 | A function that fans out a single MCP request to multiple upstream servers, then aggregates responses using strategies like first-success, all-wait, or majority-vote. It provide… |
-| `@reaatech/mcp-gateway-gateway` | published v1.0.0 | An Express 5-based MCP Gateway server factory (`createApp()`) that wires together authentication, rate limiting, schema validation, tool allowlists, fan-out routing, response ca… |
-| `@reaatech/mcp-gateway-observability` | published v1.0.0 | OpenTelemetry tracing, metrics, health checks, and structured logging for the MCP Gateway, providing auto-configured OTel SDK initialization, pre-built gateway metrics (counters… |
-| `@reaatech/mcp-gateway-rate-limit` | published v1.0.0 | A per-tenant rate limiter for MCP gateways using a token bucket algorithm, providing Express middleware that enforces configurable per-minute and per-day request limits and sets… |
-| `@reaatech/mcp-gateway-validation` | published v1.0.0 | JSON Schema validation for MCP protocol messages, providing an Express middleware that validates JSON-RPC 2.0 request structure and MCP method payloads, plus a `SchemaValidator`… |
+| `@reaatech/mcp-gateway-allowlist` | published v1.1.0 | A per-tenant tool access control library for MCP gateways, providing Express middleware that enforces allow/deny rules with wildcard pattern matching and versioned allowlist sto… |
+| `@reaatech/mcp-gateway-audit` | published v1.1.0 | A structured audit logging library for the MCP Gateway that captures security-relevant events (auth, rate limiting, tool execution, cache operations) with configurable severity,… |
+| `@reaatech/mcp-gateway-auth` | published v1.1.0 | Pluggable Express middleware that authenticates requests via API key, JWT (with JWKS), OAuth2 token introspection (RFC 7662), or OIDC ID token validation, attaching a typed `Aut… |
+| `@reaatech/mcp-gateway-cache` | published v1.1.0 | An Express middleware and cache manager for MCP Gateway responses, providing in-memory LRU or Redis backends with per-tool TTL strategies, `Cache-Control` bypass support, and st… |
+| `@reaatech/mcp-gateway-core` | published v1.1.0 | Core types, Zod schemas, configuration loading, and structured logging for the MCP Gateway ecosystem. It provides domain interfaces, runtime validation, YAML-based config loadin… |
+| `@reaatech/mcp-gateway-fanout` | published v1.0.1 | A function that fans out a single MCP request to multiple upstream servers, then aggregates responses using strategies like first-success, all-wait, or majority-vote. It provide… |
+| `@reaatech/mcp-gateway-gateway` | published v1.0.1 | An Express 5-based MCP Gateway server factory (`createApp()`) that wires together authentication, rate limiting, schema validation, tool allowlists, fan-out routing, response ca… |
+| `@reaatech/mcp-gateway-observability` | published v1.0.1 | OpenTelemetry tracing, metrics, health checks, and structured logging for the MCP Gateway, providing auto-configured OTel SDK initialization, pre-built gateway metrics (counters… |
+| `@reaatech/mcp-gateway-rate-limit` | published v1.1.0 | A per-tenant rate limiter for MCP gateways using a token bucket algorithm, providing Express middleware that enforces configurable per-minute and per-day request limits and sets… |
+| `@reaatech/mcp-gateway-validation` | published v1.0.1 | JSON Schema validation for MCP protocol messages, providing an Express middleware that validates JSON-RPC 2.0 request structure and MCP method payloads, plus a `SchemaValidator`… |
 
 ## Issue reporting
 
