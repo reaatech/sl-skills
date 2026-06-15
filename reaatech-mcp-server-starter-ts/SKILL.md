@@ -1,12 +1,12 @@
 ---
 name: reaatech-mcp-server-starter-ts
-description: "These packages give you a full MCP server—core types, an Express 5 framework with a composable middleware pipeline, tool registration and auto-discovery, dual Streamable HTTP and SSE transports, and built-in observability with Pino loggi…"
+description: "These packages give you a production-ready MCP server with Express 5, pluggable auth, rate limiting, idempotency, structured logging, OpenTelemetry tracing, and dual Streamable HTTP/SSE transports. You'd adopt them to skip building the o…"
 license: MIT
 ---
 
 # REAA mcp-server-starter-ts
 
-These packages give you a full MCP server—core types, an Express 5 framework with a composable middleware pipeline, tool registration and auto-discovery, dual Streamable HTTP and SSE transports, and built-in observability with Pino logging, OpenTelemetry tracing, and Prometheus metrics. You'd adopt them to build, secure, and operate an MCP server without wiring up authentication, rate limiting, idempotency, session management, or structured logging yourself. The most distinctive thing is that every concern—auth, rate limiting, idempotency, sanitization, tracing, metrics—is a separate, independently installable package that plugs into a single Express middleware pipeline, so you can compose exactly what you need.
+These packages give you a production-ready MCP server with Express 5, pluggable auth, rate limiting, idempotency, structured logging, OpenTelemetry tracing, and dual Streamable HTTP/SSE transports. You'd adopt them to skip building the operational scaffolding around an MCP server—auth, observability, security middleware, and transport session management—and instead focus on writing tools. The most distinctive thing is that every concern (auth, observability, transport, tools) is a separate, independently installable package, but the engine package wires them together into a single middleware pipeline with auto-discovery of `.tool.ts` files.
 
 ## When to use this
 
@@ -61,7 +61,7 @@ npm install @reaatech/mcp-server-auth @reaatech/mcp-server-core @reaatech/mcp-se
 | `@reaatech/mcp-server-engine` | published v1.0.3 | An Express 5-based MCP server framework that provides a composable middleware pipeline (auth, rate limiting, idempotency, sanitization), dual transport support (Streamable HTTP… |
 | `@reaatech/mcp-server-observability` | published v1.1.0 | Provides structured logging (Pino-based with PII redaction), OpenTelemetry tracing with OTLP export, and Prometheus-compatible metrics for MCP servers, exporting a logger, `init… |
 | `@reaatech/mcp-server-tools` | published v1.0.1 | A type-safe tool registry and discovery system for MCP servers, providing a `defineTool()` helper with Zod input schemas, an in-memory registry with `registerTool`/`getTools`/`g… |
-| `@reaatech/mcp-server-transport` | published v1.2.0 | Mounts Streamable HTTP and SSE MCP transport handlers onto an Express application, managing session lifecycle, automatic cleanup, and transport-level metrics. Exports `mountStre… |
+| `@reaatech/mcp-server-transport` | published v1.2.0 | Mounts MCP transport handlers (Streamable HTTP and SSE) onto an Express or Fastify application, managing session lifecycle, automatic cleanup, and transport-level metrics. Expor… |
 
 ## Issue reporting
 

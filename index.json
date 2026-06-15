@@ -323,7 +323,7 @@
   },
   {
     "name": "reaatech-mcp-gateway",
-    "description": "These packages give you a full-featured gateway for MCP (Model Context Protocol) servers, handling authentication, rate limiting, caching, schema validation, tool access control, and fan-out routing to multiple upstreams. You would adopt…",
+    "description": "These packages give you a full-featured API gateway for MCP servers, handling authentication, rate limiting, schema validation, tool allowlists, fan-out routing, response caching, audit logging, and OpenTelemetry observability. You would…",
     "path": "reaatech-mcp-gateway/SKILL.md",
     "repo": {
       "slug": "mcp-gateway",
@@ -379,7 +379,7 @@
   },
   {
     "name": "reaatech-mcp-server-starter-ts",
-    "description": "These packages give you a full MCP server—core types, an Express 5 framework with a composable middleware pipeline, tool registration and auto-discovery, dual Streamable HTTP and SSE transports, and built-in observability with Pino loggi…",
+    "description": "These packages give you a production-ready MCP server with Express 5, pluggable auth, rate limiting, idempotency, structured logging, OpenTelemetry tracing, and dual Streamable HTTP/SSE transports. You'd adopt them to skip building the o…",
     "path": "reaatech-mcp-server-starter-ts/SKILL.md",
     "repo": {
       "slug": "mcp-server-starter-ts",
