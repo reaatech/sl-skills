@@ -30,13 +30,13 @@ npm install tool-use-firewall @reaatech/tool-use-firewall-approvals @reaatech/to
 
 | Package | Status | Purpose |
 | --- | --- | --- |
-| `tool-use-firewall` | published v0.1.0 | A CLI and programmatic proxy server that intercepts every tool call from an AI agent to an MCP server, validating each call against a policy file before forwarding it upstream.… |
-| `@reaatech/tool-use-firewall-approvals` | published v0.1.0 | A human-in-the-loop approval workflow engine for tool-use-firewall that provides an `ApprovalWorkflow` class for managing multi-level approval chains with timeouts, plus Express… |
-| `@reaatech/tool-use-firewall-audit` | published v0.1.0 | An audit logger for tool-use-firewall that records ALLOW, BLOCK, and APPROVAL_REQUIRED decisions with configurable verbosity levels, automatic sensitive data redaction, rotating… |
-| `@reaatech/tool-use-firewall-config` | published v0.1.0 | Zod-based policy schema definitions and YAML policy file loader for the tool-use-firewall proxy. Exports `loadPolicyConfig(path)` to read and validate a YAML policy file, `valid… |
-| `@reaatech/tool-use-firewall-core` | published v0.1.0 | Core types, error classes, structured logger, sensitive data redactor, and ReDoS-safe regex utilities for the tool-use-firewall ecosystem. Exports TypeScript types (`RequestCont… |
-| `@reaatech/tool-use-firewall-policies` | published v0.1.0 | A collection of middleware components—policy engine, rate limiter, cost tracker, argument validators, SQL validator, secret scanner, anomaly detector, and read-only enforcement—… |
-| `@reaatech/tool-use-firewall-server` | published v0.1.0 | An MCP proxy server that spawns upstream MCP servers as child processes, intercepts JSON-RPC `tools/call` messages, runs them through a configurable policy pipeline (rate limite… |
+| `tool-use-firewall` | published v0.2.0 | A CLI and programmatic proxy server that intercepts every tool call from an AI agent to an MCP server, validating each call against a policy file before forwarding it upstream.… |
+| `@reaatech/tool-use-firewall-approvals` | published v0.2.0 | A human-in-the-loop approval workflow engine for tool-use-firewall that provides an `ApprovalWorkflow` class for managing multi-level approval chains with timeouts, plus Express… |
+| `@reaatech/tool-use-firewall-audit` | published v0.2.0 | An audit logger for tool-use-firewall that records ALLOW, BLOCK, and APPROVAL_REQUIRED decisions with configurable verbosity levels, automatic sensitive data redaction, rotating… |
+| `@reaatech/tool-use-firewall-config` | published v0.2.0 | Zod-based policy schema definitions and YAML policy file loader for the tool-use-firewall proxy. Exports `loadPolicyConfig(path)` to read and validate a YAML policy file, `valid… |
+| `@reaatech/tool-use-firewall-core` | published v0.2.0 | Core types, error classes, structured logger, sensitive data redactor, and ReDoS-safe regex utilities for the tool-use-firewall ecosystem. Exports TypeScript types (`RequestCont… |
+| `@reaatech/tool-use-firewall-policies` | published v0.2.0 | A collection of middleware components—policy engine, rate limiter, cost tracker, argument validators, SQL validator, secret scanner, anomaly detector, and read-only enforcement—… |
+| `@reaatech/tool-use-firewall-server` | published v0.2.0 | An MCP proxy server that spawns upstream MCP servers as child processes, intercepts JSON-RPC `tools/call` messages, runs them through a configurable policy pipeline (rate limite… |
 
 ## Issue reporting
 
