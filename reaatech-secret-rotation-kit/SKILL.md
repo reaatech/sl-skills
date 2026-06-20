@@ -67,10 +67,10 @@ npm install @reaatech/secret-rotation-core @reaatech/secret-rotation-observabili
 | `@reaatech/secret-rotation-core` | published v0.1.0 | A zero-downtime secret rotation engine that orchestrates the full lifecycle (generate → propagate → verify → activate → revoke) with overlapping key windows, dual verification s… |
 | `@reaatech/secret-rotation-observability` | published v0.1.0 | A structured JSON logger and Prometheus-format metrics registry with zero runtime dependencies, providing `LoggerService` and `MetricsService` classes that implement the `Logger… |
 | `@reaatech/secret-rotation-provider-aws` | published v0.1.0 | An AWS Secrets Manager adapter for the Secret Rotation Kit, implementing the `SecretProvider` interface with CRUD operations, version stage management (`AWSCURRENT`, `AWSPENDING… |
-| `@reaatech/secret-rotation-provider-gcp` | published v0.1.0 | GCP Secret Manager adapter for the Secret Rotation Kit, implementing the `SecretProvider` interface with CRUD, versioning, rotation sessions, and health checks via the `@google-… |
+| `@reaatech/secret-rotation-provider-gcp` | published v1.0.0 | GCP Secret Manager adapter for the Secret Rotation Kit, implementing the `SecretProvider` interface with CRUD, versioning, rotation sessions, and health checks via the `@google-… |
 | `@reaatech/secret-rotation-provider-vault` | published v0.1.0 | A HashiCorp Vault KV v2 adapter for the Secret Rotation Kit, implementing the `SecretProvider` interface with CRUD, versioning, rotation sessions, and health checks. It provides… |
 | `@reaatech/secret-rotation-provider-vercel` | published v0.1.0 | A Vercel-specific `SecretProvider` implementation for the Secret Rotation Kit that manages environment variables via the Vercel REST API using only the global `fetch`. It provid… |
-| `@reaatech/secret-rotation-sidecar` | published v0.1.0 | HTTP sidecar server that exposes secret rotation operations, health checks, Prometheus metrics, and SSE event streaming over a REST API, built on Node.js's built-in `http` modul… |
+| `@reaatech/secret-rotation-sidecar` | published v1.0.0 | HTTP sidecar server that exposes secret rotation operations, health checks, Prometheus metrics, and SSE event streaming over a REST API, built on Node.js's built-in `http` modul… |
 | `@reaatech/secret-rotation-types` | published v0.1.0 | Type definitions, abstract interfaces, and error classes for the Secret Rotation Kit ecosystem, providing shared types like `SecretKey`, `RotationState`, `SecretProvider`, and `… |
 
 ## Issue reporting
